@@ -891,7 +891,48 @@ affordablePackages:
 multipleSizes:
     "提供多种学位服尺寸选择",
 
+// =========================
+// CONTACT PAGE
+// =========================
 
+contactTitle:
+    "联系我们",
+
+contactDescription:
+    "如有毕业学位服相关问题，欢迎联系我们。",
+
+
+wechatTitle:
+    "微信",
+
+wechatText:
+    "UKYUWIN",
+
+
+emailTitle:
+    "邮箱",
+
+emailText:
+    "如有咨询，请通过邮箱联系我们。",
+
+
+phoneTitle:
+    "电话",
+
+phoneText:
+    "提供毕业学位服预订咨询服务。",
+
+
+
+gownEnquiryTitle:
+    "毕业学位服咨询",
+
+
+gownEnquiryText:
+    `如果您对学位服尺寸、套餐选择、
+库存情况或预订安排有任何问题，请联系我们。
+
+我们将帮助您准备南安普顿大学毕业典礼。`,
 
     
 };

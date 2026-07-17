@@ -3,6 +3,9 @@ import Footer from "../components/footer";
 
 import { useLanguage } from "../context/LanguageContext.jsx";
 
+import en from "../translations/en.js";
+import zhCN from "../translations/zh-CN.js";
+
 import {
     MessageCircle,
     Mail,

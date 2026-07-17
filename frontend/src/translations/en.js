@@ -300,6 +300,51 @@ affordablePackages:
 
 multipleSizes:
     "Multiple gown sizes available",
+
+    // =========================
+// CONTACT PAGE
+// =========================
+
+contactTitle:
+    "Contact Us",
+
+contactDescription:
+    "Get in touch for graduation gown enquiries.",
+
+
+wechatTitle:
+    "WeChat",
+
+wechatText:
+    "UKYUWIN",
+
+
+emailTitle:
+    "Email",
+
+emailText:
+    "Contact us via email for enquiries.",
+
+
+phoneTitle:
+    "Phone",
+
+phoneText:
+    "Available for graduation booking enquiries.",
+
+
+
+gownEnquiryTitle:
+    "Graduation Gown Rental Enquiries",
+
+
+gownEnquiryText:
+    `If you have any questions about gown sizes,
+packages, availability or booking arrangements,
+please contact us.
+
+We will help you prepare for your
+University of Southampton graduation day.`,
     
     // =========================
     // ABOUT
