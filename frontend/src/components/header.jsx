@@ -113,14 +113,26 @@ export default function Header({
 
 
                     <Link
-                        to="/how-it-works"
+                        to="/about"
                         className="
                             hover:text-blue-400
                             transition
                         "
                     >
 
-                        How It Works
+                        About Us
+
+                    </Link>
+
+                    <Link
+                        to="/contact"
+                        className="
+                            hover:text-blue-400
+                            transition
+                        "
+                    >
+
+                        Contact Us
 
                     </Link>
 
@@ -360,6 +372,18 @@ export default function Header({
                     >
 
                         About Us
+
+                    </Link>
+
+                    <Link
+                        to="/contact"
+                        className="
+                            hover:text-blue-400
+                            transition
+                        "
+                    >
+
+                        Contact Us
 
                     </Link>
 
