@@ -353,13 +353,13 @@ export default function Header({
 
                     <Link
 
-                        to="/how-it-works"
+                        to="/about"
 
                         onClick={()=>setOpen(false)}
 
                     >
 
-                        How It Works
+                        About Us
 
                     </Link>
 

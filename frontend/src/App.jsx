@@ -17,6 +17,7 @@ import Products from "./views/staff/Products.jsx";
 import Payments from "./views/staff/Payments.jsx";
 import Returns from "./views/staff/Returns.jsx";
 import Gowns from "./views/Gowns.jsx";
+import About from "./views/About.jsx";
 
 
 export default function App() {
@@ -106,6 +107,11 @@ export default function App() {
 <Route
     path="/gowns"
     element={<Gowns />}
+/>
+
+<Route
+    path="/about"
+    element={<About />}
 />
 
         </Routes>
