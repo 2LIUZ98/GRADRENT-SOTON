@@ -6,6 +6,9 @@ import Footer from "../components/footer";
 
 import { useLanguage } from "../context/LanguageContext.jsx";
 
+import en from "../translations/en.js";
+import zhCN from "../translations/zh-CN.js";
+
 import {
     GraduationCap,
     CheckCircle,
@@ -21,22 +24,21 @@ export default function Gowns() {
     const { language } = useLanguage();
 
 
-    const text = language;
+    const text = language === "zh"
+        ? zhCN
+        : en;
+
 
 
 
     const gownOptions = [
 
-
         {
-            title:
-                text.highReplica,
+            title: text.highReplica,
 
-            price:
-                "£13 per day",
+            price: "£13 per day",
 
-
-            items:[
+            items: [
 
                 text.southamptonGown,
 
@@ -53,19 +55,13 @@ export default function Gowns() {
         },
 
 
-
         {
 
+            title: text.original,
 
-            title:
-                text.original,
+            price: "£43 per day",
 
-
-            price:
-                "£43 per day",
-
-
-            items:[
+            items: [
 
                 text.officialGown,
 
@@ -81,8 +77,8 @@ export default function Gowns() {
 
         }
 
-
     ];
+
 
 
 
@@ -96,11 +92,14 @@ export default function Gowns() {
         ">
 
 
+
             <Header />
 
 
 
 
+
+            {/* HERO */}
 
             <section className="
                 bg-[#00539F]
@@ -154,12 +153,16 @@ export default function Gowns() {
 
 
 
+            {/* FEATURES */}
+
+
             <section className="
                 max-w-6xl
                 mx-auto
                 px-6
                 py-16
             ">
+
 
 
                 <div className="
@@ -207,6 +210,7 @@ export default function Gowns() {
                     />
 
 
+
                 </div>
 
 
@@ -216,6 +220,9 @@ export default function Gowns() {
 
 
 
+
+
+            {/* GOWN OPTIONS */}
 
 
             <section className="
@@ -232,6 +239,7 @@ export default function Gowns() {
                 ">
 
 
+
                     <h2 className="
                         text-3xl
                         font-bold
@@ -246,12 +254,12 @@ export default function Gowns() {
 
 
 
-
                     <div className="
                         grid
                         md:grid-cols-2
                         gap-8
                     ">
+
 
 
                         {
@@ -274,6 +282,7 @@ export default function Gowns() {
                                 >
 
 
+
                                     <h3 className="
                                         text-2xl
                                         font-bold
@@ -283,8 +292,6 @@ export default function Gowns() {
                                         {gown.title}
 
                                     </h3>
-
-
 
 
 
@@ -298,7 +305,6 @@ export default function Gowns() {
                                             gown.items.map(
                                                 (item,i)=>(
 
-
                                                 <li
 
                                                     key={i}
@@ -311,12 +317,9 @@ export default function Gowns() {
 
                                                 >
 
-
                                                     <CheckCircle size={18}/>
 
-
                                                     {item}
-
 
                                                 </li>
 
@@ -326,12 +329,7 @@ export default function Gowns() {
 
 
                                     </ul>
-
-
-
-
-
-                                    <p className="
+                                                                        <p className="
                                         text-xl
                                         font-bold
                                         mb-6
@@ -339,9 +337,7 @@ export default function Gowns() {
 
                                         {gown.price}
 
-
                                     </p>
-
 
 
 
@@ -386,6 +382,7 @@ export default function Gowns() {
                 </div>
 
 
+
             </section>
 
 
@@ -394,6 +391,9 @@ export default function Gowns() {
 
 
 
+
+
+            {/* SIZE GUIDE */}
 
 
             <section className="
@@ -411,6 +411,8 @@ export default function Gowns() {
                 ">
 
 
+
+
                     <h2 className="
                         text-3xl
                         font-bold
@@ -426,11 +428,17 @@ export default function Gowns() {
 
 
 
-                    <p>
+
+                    <p className="
+                        text-gray-700
+                    ">
 
                         {text.availableSizes}
 
+
                     </p>
+
+
 
 
 
@@ -445,33 +453,38 @@ export default function Gowns() {
                     ">
 
 
+
                         {
+
                             ["45","48","51","54"].map(
-                                size=>(
+
+                                size => (
+
+                                    <div
+
+                                        key={size}
+
+                                        className="
+                                            bg-white
+                                            px-8
+                                            py-4
+                                            rounded-lg
+                                            shadow
+                                            font-bold
+                                        "
+
+                                    >
+
+                                        {text.size} {size}
 
 
-                                <div
-
-                                    key={size}
-
-                                    className="
-                                        bg-white
-                                        px-8
-                                        py-4
-                                        rounded-lg
-                                        shadow
-                                        font-bold
-                                    "
-
-                                >
-
-                                    {text.size} {size}
+                                    </div>
 
 
-                                </div>
+                                )
 
+                            )
 
-                            ))
                         }
 
 
@@ -497,6 +510,7 @@ export default function Gowns() {
 
         </div>
 
+
     );
 
 }
@@ -504,6 +518,12 @@ export default function Gowns() {
 
 
 
+
+
+
+// =====================================
+// FEATURE COMPONENT
+// =====================================
 
 
 function Feature({
@@ -517,6 +537,7 @@ function Feature({
 
     return (
 
+
         <div className="
             bg-white
             rounded-xl
@@ -526,6 +547,7 @@ function Feature({
         ">
 
 
+
             <div className="
                 flex
                 justify-center
@@ -533,9 +555,12 @@ function Feature({
                 text-blue-600
             ">
 
+
                 {icon}
 
+
             </div>
+
 
 
 
@@ -546,9 +571,12 @@ function Feature({
                 mb-3
             ">
 
+
                 {title}
 
+
             </h3>
+
 
 
 
@@ -557,7 +585,9 @@ function Feature({
                 text-gray-600
             ">
 
+
                 {text}
+
 
             </p>
 
@@ -567,5 +597,6 @@ function Feature({
 
 
     );
+
 
 }

@@ -934,6 +934,60 @@ gownEnquiryText:
 
 我们将帮助您准备南安普顿大学毕业典礼。`,
 
+// =========================
+// GOWNS PAGE
+// =========================
+
+gownsTitle:
+    "毕业学位服",
+
+gownsDescription:
+    "选择适合您的南安普顿大学毕业学位服套餐。",
+
+
+southamptonGown:
+    "南安普顿大学毕业袍",
+
+officialGown:
+    "官方毕业学位服",
+
+
+maHood:
+    "MA 披肩",
+
+mscHood:
+    "MSc 披肩",
+
+
+hatIncluded:
+    "包含毕业帽",
+
+
+sizes:
+    "尺寸",
+
+
+universitySpecific:
+    "学校专属",
+
+universitySpecificText:
+    "专为南安普顿大学毕业典礼设计。",
+
+
+availablePackages:
+    "可选学位服套餐",
+
+
+bookPackage:
+    "预订此套餐",
+
+
+sizeGuide:
+    "学位服尺寸指南",
+
+
+availableSizes:
+    "可提供尺寸：",
     
 };
 

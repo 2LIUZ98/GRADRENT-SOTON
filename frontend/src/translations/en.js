@@ -345,6 +345,42 @@ please contact us.
 
 We will help you prepare for your
 University of Southampton graduation day.`,
+
+southamptonGown:
+    "University of Southampton gown",
+
+officialGown:
+    "Official graduation gown",
+
+maHood:
+    "MA Hood",
+
+mscHood:
+    "MSc Hood",
+
+hatIncluded:
+    "Graduation hat included",
+
+sizes:
+    "Sizes",
+
+universitySpecific:
+    "University Specific",
+
+universitySpecificText:
+    "Designed for University of Southampton graduation ceremonies.",
+
+availablePackages:
+    "Available Gown Packages",
+
+bookPackage:
+    "Book This Package",
+
+sizeGuide:
+    "Gown Size Guide",
+
+availableSizes:
+    "Available sizes:",
     
     // =========================
     // ABOUT
