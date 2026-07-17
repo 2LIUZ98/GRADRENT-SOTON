@@ -2,12 +2,9 @@ import express from "express";
 import bcrypt from "bcrypt";
 import db from "../db.mjs";
 
-
 const staffRouter = express.Router();
 
-
 const SALT_ROUNDS = 10;
-
 
 
 
@@ -17,15 +14,12 @@ const SALT_ROUNDS = 10;
 
 staffRouter.post("/login", async (req, res) => {
 
-
     try {
-
 
         const {
             Username,
             Password
         } = req.body;
-
 
 
         const staff = db.prepare(`
@@ -44,20 +38,15 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-
         if (!staff) {
-
 
             return res.status(401).json({
 
-                error: "Invalid username or password"
+                error:"Invalid username or password"
 
             });
 
-
         }
-
-
 
 
 
@@ -71,20 +60,15 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-
         if (!validPassword) {
-
 
             return res.status(401).json({
 
-                error: "Invalid username or password"
+                error:"Invalid username or password"
 
             });
 
-
         }
-
-
 
 
 
@@ -106,33 +90,19 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-
-
         res.json({
 
+            message:"Login successful",
 
-            message:
-                "Login successful",
+            Staff_ID:staff.Staff_ID,
 
+            Full_Name:staff.Full_Name,
 
-            Staff_ID:
-                staff.Staff_ID,
+            Username:staff.Username,
 
-
-            Full_Name:
-                staff.Full_Name,
-
-
-            Username:
-                staff.Username,
-
-
-            Role:
-                staff.Role
-
+            Role:staff.Role
 
         });
-
 
 
 
@@ -145,6 +115,165 @@ staffRouter.post("/login", async (req, res) => {
         res.status(500).json({
 
             error:"Login failed"
+
+        });
+
+
+    }
+
+
+});
+
+
+
+
+
+
+
+
+
+// =====================================
+// CREATE STAFF
+// =====================================
+
+staffRouter.post("/create", async (req,res)=>{
+
+
+    try {
+
+
+        const {
+
+            Full_Name,
+
+            Username,
+
+            Password,
+
+            Role,
+
+            WeChat_ID,
+
+            Phone
+
+
+        } = req.body;
+
+
+
+
+
+        const exists = db.prepare(`
+
+            SELECT Staff_ID
+
+            FROM STAFF
+
+            WHERE Username = ?
+
+        `).get(
+
+            Username
+
+        );
+
+
+
+
+
+        if(exists){
+
+
+            return res.status(409).json({
+
+                error:"Username already exists"
+
+            });
+
+
+        }
+
+
+
+
+
+        const hash = await bcrypt.hash(
+
+            Password,
+
+            SALT_ROUNDS
+
+        );
+
+
+
+
+
+        const result = db.prepare(`
+
+            INSERT INTO STAFF
+
+            (
+
+                Full_Name,
+
+                Username,
+
+                Password_Hash,
+
+                Role,
+
+                WeChat_ID,
+
+                Phone
+
+            )
+
+            VALUES
+
+            (?, ?, ?, ?, ?, ?)
+
+        `).run(
+
+
+            Full_Name,
+
+            Username,
+
+            hash,
+
+            Role || "Staff",
+
+            WeChat_ID,
+
+            Phone
+
+
+        );
+
+
+
+
+
+        res.status(201).json({
+
+            message:"Staff created successfully",
+
+            Staff_ID:result.lastInsertRowid
+
+        });
+
+
+
+    } catch(error){
+
+
+        console.error(error);
+
+
+        res.status(500).json({
+
+            error:"Failed to create staff"
 
         });
 
@@ -205,12 +334,11 @@ staffRouter.get("/", (req,res)=>{
 
 
 
-
         res.json(staff);
 
 
 
-    } catch(error) {
+    }catch(error){
 
 
         console.error(error);
@@ -237,51 +365,6 @@ staffRouter.get("/", (req,res)=>{
 
 
 // =====================================
-// STAFF DASHBOARD
-// =====================================
-
-staffRouter.get("/dashboard", (req,res)=>{
-
-
-    res.json({
-
-
-        message:
-            "Staff dashboard API",
-
-
-        modules:[
-
-            "Customers",
-
-            "Inventory",
-
-            "Products",
-
-            "Rentals",
-
-            "Payments",
-
-            "Returns"
-
-        ]
-
-
-    });
-
-
-
-});
-
-
-
-
-
-
-
-
-
-// =====================================
 // GET STAFF BY ID
 // =====================================
 
@@ -293,9 +376,7 @@ staffRouter.get("/:id",(req,res)=>{
 
         const staff = db.prepare(`
 
-
             SELECT
-
 
                 Staff_ID,
 
@@ -316,7 +397,6 @@ staffRouter.get("/:id",(req,res)=>{
                 Created_At
 
 
-
             FROM STAFF
 
 
@@ -328,7 +408,6 @@ staffRouter.get("/:id",(req,res)=>{
             req.params.id
 
         );
-
 
 
 
@@ -354,7 +433,7 @@ staffRouter.get("/:id",(req,res)=>{
 
 
 
-    } catch(error){
+    }catch(error){
 
 
         console.error(error);
@@ -363,193 +442,6 @@ staffRouter.get("/:id",(req,res)=>{
         res.status(500).json({
 
             error:"Failed to fetch staff"
-
-        });
-
-
-    }
-
-
-});
-
-
-
-
-
-
-
-
-
-// =====================================
-// CREATE STAFF
-// =====================================
-
-staffRouter.post("/create", async(req,res)=>{
-
-
-    try {
-
-
-        const {
-
-            Full_Name,
-
-            Username,
-
-            Password,
-
-            Role,
-
-            WeChat_ID,
-
-            Phone
-
-
-        } = req.body;
-
-
-
-
-
-
-        const exists = db.prepare(`
-
-
-            SELECT Staff_ID
-
-            FROM STAFF
-
-            WHERE Username = ?
-
-
-
-        `).get(
-
-            Username
-
-        );
-
-
-
-
-
-
-        if(exists){
-
-
-            return res.status(409).json({
-
-                error:"Username already exists"
-
-            });
-
-
-        }
-
-
-
-
-
-
-
-
-        const hash = await bcrypt.hash(
-
-            Password,
-
-            SALT_ROUNDS
-
-        );
-
-
-
-
-
-
-
-        const result = db.prepare(`
-
-
-            INSERT INTO STAFF
-
-
-            (
-
-                Full_Name,
-
-                Username,
-
-                Password_Hash,
-
-                Role,
-
-                WeChat_ID,
-
-                Phone
-
-            )
-
-
-            VALUES
-
-            (?,?,?,?,?,?)
-
-
-
-        `).run(
-
-
-            Full_Name,
-
-            Username,
-
-            hash,
-
-            Role || "Staff",
-
-            WeChat_ID,
-
-            Phone
-
-
-        );
-
-
-
-
-
-
-
-        res.status(201).json({
-
-
-            message:
-
-                "Staff created successfully",
-
-
-            Staff_ID:
-
-                result.lastInsertRowid
-
-
-
-        });
-
-
-
-
-
-    } catch(error){
-
-
-        console.error(error);
-
-
-
-        res.status(500).json({
-
-            error:"Failed to create staff"
 
         });
 
@@ -579,7 +471,6 @@ staffRouter.put("/:id",(req,res)=>{
 
         const {
 
-
             Full_Name,
 
             Username,
@@ -602,28 +493,20 @@ staffRouter.put("/:id",(req,res)=>{
 
             UPDATE STAFF
 
-
             SET
-
 
                 Full_Name = ?,
 
-
                 Username = ?,
-
 
                 Role = ?,
 
-
                 WeChat_ID = ?,
-
 
                 Phone = ?
 
 
-
             WHERE Staff_ID = ?
-
 
 
         `).run(
@@ -672,8 +555,6 @@ staffRouter.put("/:id",(req,res)=>{
 
 
 
-
-
     }catch(error){
 
 
@@ -704,7 +585,7 @@ staffRouter.put("/:id",(req,res)=>{
 // CHANGE PASSWORD
 // =====================================
 
-staffRouter.put("/:id/password",async(req,res)=>{
+staffRouter.put("/:id/password", async(req,res)=>{
 
 
     try {
@@ -728,45 +609,22 @@ staffRouter.put("/:id/password",async(req,res)=>{
 
 
 
-        const result = db.prepare(`
 
+        db.prepare(`
 
             UPDATE STAFF
 
-
             SET Password_Hash = ?
-
 
             WHERE Staff_ID = ?
 
-
-
         `).run(
-
 
             hash,
 
             req.params.id
 
-
         );
-
-
-
-
-
-
-        if(result.changes===0){
-
-
-            return res.status(404).json({
-
-                error:"Staff not found"
-
-            });
-
-
-        }
 
 
 
@@ -777,8 +635,6 @@ staffRouter.put("/:id/password",async(req,res)=>{
             message:"Password updated successfully"
 
         });
-
-
 
 
 
@@ -826,44 +682,21 @@ staffRouter.put("/:id/active",(req,res)=>{
 
 
 
-        const result=db.prepare(`
-
+        db.prepare(`
 
             UPDATE STAFF
 
-
             SET Is_Active = ?
-
 
             WHERE Staff_ID = ?
 
-
-
         `).run(
-
 
             Is_Active,
 
             req.params.id
 
-
         );
-
-
-
-
-
-        if(result.changes===0){
-
-
-            return res.status(404).json({
-
-                error:"Staff not found"
-
-            });
-
-
-        }
 
 
 
@@ -877,17 +710,15 @@ staffRouter.put("/:id/active",(req,res)=>{
 
 
 
-
     }catch(error){
 
 
         console.error(error);
 
 
-
         res.status(500).json({
 
-            error:"Failed to update staff status"
+            error:"Failed to update status"
 
         });
 
@@ -915,15 +746,11 @@ staffRouter.delete("/:id",(req,res)=>{
     try {
 
 
-        const result=db.prepare(`
-
+        db.prepare(`
 
             DELETE FROM STAFF
 
-
             WHERE Staff_ID = ?
-
-
 
         `).run(
 
@@ -931,21 +758,6 @@ staffRouter.delete("/:id",(req,res)=>{
 
         );
 
-
-
-
-
-        if(result.changes===0){
-
-
-            return res.status(404).json({
-
-                error:"Staff not found"
-
-            });
-
-
-        }
 
 
 
@@ -958,12 +770,10 @@ staffRouter.delete("/:id",(req,res)=>{
 
 
 
-
     }catch(error){
 
 
         console.error(error);
-
 
 
         res.status(500).json({
@@ -977,8 +787,6 @@ staffRouter.delete("/:id",(req,res)=>{
 
 
 });
-
-
 
 
 
