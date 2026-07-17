@@ -287,7 +287,31 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 
+// =====================================
+// STAFF DASHBOARD API
+// =====================================
+staffRouter.get("/dashboard", (req,res)=>{
 
+
+    res.json({
+
+        message:"Staff dashboard API",
+
+        modules:[
+
+            "Customers",
+            "Inventory",
+            "Products",
+            "Rentals",
+            "Payments",
+            "Returns"
+
+        ]
+
+    });
+
+
+});
 
 
 
