@@ -5,7 +5,7 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import {
     LanguageProvider
-} from "../src/context/LanguageContext.jsx";
+} from "../src/context/LangaugeContext.jsx"
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
