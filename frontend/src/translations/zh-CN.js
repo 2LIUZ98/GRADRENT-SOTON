@@ -562,6 +562,153 @@ termsTitle:
 privacyTitle:
     "隐私政策",
 
+    // =========================
+// PRIVACY PAGE
+// =========================
+
+privacyTitle:
+    "隐私政策",
+
+privacySubtitle:
+    "南安普顿大学毕业学位服租赁",
+
+
+privacy1Title:
+    "1. 我们收集的信息",
+
+privacy1Text:
+    "当您预订学位服或联系我们时，我们可能会收集您的个人信息，包括姓名、微信号、联系方式、毕业信息、学位服需求以及订单信息。",
+
+
+privacy2Title:
+    "2. 我们如何使用您的信息",
+
+privacy2Text:
+    "您的信息用于处理学位服租赁订单、确认预订、与您沟通订单详情以及提供客户支持。",
+
+
+privacy3Title:
+    "3. 数据保护",
+
+privacy3Text:
+    "我们会采取合理措施保护您的个人信息，防止未经授权访问、丢失或滥用您的数据。",
+
+
+privacy4Title:
+    "4. 信息共享",
+
+privacy4Text:
+    "除非为了提供服务或法律要求，我们不会出售、出租或向第三方分享您的个人信息。",
+
+
+privacy5Title:
+    "5. 数据保存",
+
+privacy5Text:
+    "我们只会在提供服务、保存记录以及履行法律义务所需的期限内保存您的预订信息。",
+
+
+privacy6Title:
+    "6. 您的权利",
+
+privacy6Text:
+    "您有权要求查看、更正或删除您的个人信息（在适用情况下）。",
+
+
+privacy7Title:
+    "7. 联系我们",
+
+privacy7Text:
+    "如果您对本隐私政策或您的信息处理方式有任何疑问，请联系我们。",
+
+    // =========================
+// TERMS PAGE
+// =========================
+
+termsTitle:
+    "服务条款",
+
+
+termsSubtitle:
+    "南安普顿大学毕业学位服租赁",
+
+
+
+termsBookingTitle:
+    "1. 预订与预约",
+
+
+termsBookingText:
+    "只有在您提供所需信息并收到确认后，预订才会正式确认。学位服供应情况取决于预订时的库存情况。",
+
+
+
+termsRentalTitle:
+    "2. 租赁期限",
+
+
+termsRentalText:
+    "毕业学位服将在约定的租赁期限内提供。客户必须在安排好的日期和时间领取并归还学位服。",
+
+
+
+termsResponsibilityTitle:
+    "3. 客户责任",
+
+
+termsResponsibilityText:
+    "客户在租赁期间需要妥善保管学位服、披肩和帽子。如出现损坏、遗失或物品缺失，可能需要支付额外费用。",
+
+
+
+termsCancellationTitle:
+    "4. 取消政策",
+
+
+termsCancellationText:
+    "如需取消预订，请尽早联系我们。退款资格取决于取消时间以及学位服是否已经被预留。",
+
+
+
+termsPaymentTitle:
+    "5. 付款",
+
+
+termsPaymentText:
+    "付款详情将在预订过程中确认。价格可能会根据学位服类型、套餐选择以及租赁时间有所不同。",
+
+
+
+termsPrivacyTitle:
+    "6. 隐私保护",
+
+
+termsPrivacyText:
+    "预订过程中收集的个人信息仅用于处理您的学位服租赁订单以及与您联系相关订单事宜。",
+
+
+
+termsContactTitle:
+    "7. 联系我们",
+
+
+termsContactText:
+    "如果您对这些服务条款有任何疑问，请在预订前联系我们。",
+
+    welcomeBack:"欢迎回来",
+
+manage:"管理",
+
+staffInformation:"员工信息",
+
+name:"姓名",
+
+username:"用户名",
+
+role:"角色",
+
+staffID:"员工编号",
+
 
 };
 

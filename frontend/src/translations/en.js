@@ -416,9 +416,132 @@ const en = {
     quantity:
         "Quantity",
 
+        // =========================
+// PRIVACY PAGE
+// =========================
+
+privacyTitle:
+    "Privacy Policy",
+
+privacySubtitle:
+    "Southampton Graduation Gown Rental",
+
+privacy1Title:
+    "1. Information We Collect",
+
+privacy1Text:
+    "When you make a booking or contact us, we may collect personal information including your name, WeChat ID, contact details, graduation information, gown requirements, and booking details.",
 
 
+privacy2Title:
+    "2. How We Use Your Information",
 
+privacy2Text:
+    "Your information is used to process gown rental bookings, confirm reservations, communicate with you regarding your order, and provide customer support.",
+
+
+privacy3Title:
+    "3. Data Protection",
+
+privacy3Text:
+    "We take reasonable steps to protect your personal information and prevent unauthorised access, loss, or misuse of your data.",
+
+
+privacy4Title:
+    "4. Sharing Your Information",
+
+privacy4Text:
+    "We do not sell, rent, or share your personal information with third parties unless required for providing our services or where required by law.",
+
+
+privacy5Title:
+    "5. Data Retention",
+
+privacy5Text:
+    "We retain booking information only for as long as necessary to provide our services, maintain records, and comply with legal obligations.",
+
+
+privacy6Title:
+    "6. Your Rights",
+
+privacy6Text:
+    "You have the right to request access to your personal information, request corrections, or ask for deletion of your data where applicable.",
+
+
+privacy7Title:
+    "7. Contact Us",
+
+privacy7Text:
+    "If you have any questions about this Privacy Policy or how your information is handled, please contact us.",
+
+// =========================
+// TERMS PAGE
+// =========================
+
+termsSubtitle:
+    "Southampton Graduation Gown Rental",
+
+termsBookingTitle:
+    "1. Booking & Reservation",
+
+termsBookingText:
+    "A booking is only confirmed once the required information has been provided and confirmation has been received. Availability is subject to gown stock at the time of booking.",
+
+
+termsRentalTitle:
+    "2. Rental Period",
+
+termsRentalText:
+    "Graduation gowns are rented for the agreed rental period. Customers must collect and return the gown within the arranged dates and times.",
+
+
+termsResponsibilityTitle:
+    "3. Customer Responsibility",
+
+termsResponsibilityText:
+    "Customers are responsible for taking care of the gown, hood, and hat during the rental period. Any damage, loss, or missing items may result in additional charges.",
+
+
+termsCancellationTitle:
+    "4. Cancellation Policy",
+
+termsCancellationText:
+    "Cancellation requests should be made as early as possible. Refund eligibility depends on the timing of the cancellation and whether the gown has already been reserved.",
+
+
+termsPaymentTitle:
+    "5. Payment",
+
+termsPaymentText:
+    "Payment details will be confirmed during the booking process. Prices may vary depending on gown type, package selection, and rental duration.",
+
+
+termsPrivacyTitle:
+    "6. Privacy",
+
+termsPrivacyText:
+    "Personal information collected during booking will only be used for processing your gown rental and contacting you regarding your order.",
+
+
+termsContactTitle:
+    "7. Contact Us",
+
+termsContactText:
+    "If you have any questions regarding these terms and conditions, please contact us before making a booking.",
+
+welcomeBack:"Welcome back",
+
+manage:"Manage",
+
+staffInformation:"Staff Information",
+
+name:"Name",
+
+username:"Username",
+
+role:"Role",
+
+staffID:"Staff ID",
 
     // =========================
     // COMMON
