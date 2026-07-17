@@ -114,11 +114,11 @@ export default function Footer() {
                             <li>
 
                                 <Link
-                                    to="/how-it-works"
+                                    to="/about"
                                     className="hover:text-blue-400"
                                 >
 
-                                    How It Works
+                                    About Us
 
                                 </Link>
 
