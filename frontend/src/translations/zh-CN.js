@@ -830,7 +830,73 @@ additionalNotes:
 
 universityGraduation:
     "南安普顿大学毕业典礼",
+
+    // =========================
+// ABOUT PAGE EXTRA
+// =========================
+
+
+whoWeAre:
+    "我们是谁",
+
+
+aboutText1:
+    "我们专门为南安普顿大学学生提供毕业学位服租赁服务。我们的目标是通过价格实惠、方便可靠的学位服套餐，让学生更轻松地准备毕业典礼。",
+
+
+aboutText2:
+    "从学位服选择、尺寸建议，到领取和归还安排，我们全程支持学生完成毕业准备。",
+
+
+
+studentFocused:
+    "学生优先",
+
+
+studentFocusedText:
+    "根据南安普顿大学毕业需求设计服务。",
+
+
+
+completePackages:
+    "完整套餐",
+
+
+completePackagesText:
+    "提供毕业袍、披肩和毕业帽组合。",
+
+
+
+personalSupport:
+    "个人支持",
+
+
+personalSupportText:
+    "从预订到领取归还，全程提供帮助。",
+
+
+
+universityFocused:
+    "专注南安普顿大学学生服务",
+
+
+easyBookingProcess:
+    "简单快捷的预订流程",
+
+
+affordablePackages:
+    "价格实惠的毕业学位服套餐",
+
+
+multipleSizes:
+    "提供多种学位服尺寸选择",
+
+
+
+    
 };
+
+
 
 
 export default zhCN;

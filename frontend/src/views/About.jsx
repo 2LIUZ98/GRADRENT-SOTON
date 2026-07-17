@@ -1,6 +1,11 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import { useLanguage } from "../context/LanguageContext.jsx";
+
+import en from "../translations/en.js";
+import zhCN from "../translations/zh-CN.js";
+
 
 import {
     GraduationCap,
@@ -10,15 +15,29 @@ import {
 } from "lucide-react";
 
 
+
 export default function About() {
 
+
+    const { language } = useLanguage();
+
+
+    const t = language === "zh"
+        ? zhCN
+        : en;
+
+
+
+
     return (
+
 
         <div className="
             min-h-screen
             bg-slate-100
             text-gray-900
         ">
+
 
 
             {/* HEADER */}
@@ -28,7 +47,12 @@ export default function About() {
 
 
 
-            {/* HERO */}
+
+
+            {/* =========================
+                HERO
+            ========================= */}
+
 
             <section className="
                 bg-[#00539F]
@@ -37,6 +61,7 @@ export default function About() {
                 px-6
                 text-center
             ">
+
 
 
                 <GraduationCap
@@ -51,15 +76,22 @@ export default function About() {
                 />
 
 
+
+
                 <h1 className="
                     text-5xl
                     font-bold
                     mb-5
                 ">
 
-                    About Graduation Gown Rental
+
+                    {t.aboutTitle}
+
 
                 </h1>
+
+
+
 
 
                 <p className="
@@ -69,10 +101,12 @@ export default function About() {
                     text-xl
                 ">
 
-                    Providing affordable and reliable University of Southampton
-                    graduation gown rental services for students.
+
+                    {t.aboutDescription}
+
 
                 </p>
+
 
 
             </section>
@@ -81,7 +115,14 @@ export default function About() {
 
 
 
-            {/* ABOUT CONTENT */}
+
+
+
+
+            {/* =========================
+                ABOUT CONTENT
+            ========================= */}
+
 
             <section className="
                 max-w-6xl
@@ -89,6 +130,7 @@ export default function About() {
                 px-6
                 py-16
             ">
+
 
 
                 <div className="
@@ -99,9 +141,15 @@ export default function About() {
                 ">
 
 
+
+
+
+
                     {/* TEXT */}
 
+
                     <div>
+
 
 
                         <h2 className="
@@ -110,9 +158,13 @@ export default function About() {
                             mb-5
                         ">
 
-                            Who We Are
+
+                            {t.whoWeAre}
+
 
                         </h2>
+
+
 
 
 
@@ -122,15 +174,14 @@ export default function About() {
                             mb-5
                         ">
 
-                            We provide graduation gown rental services
-                            specifically designed for University of Southampton
-                            students.
 
-                            Our aim is to make graduation preparation easier
-                            by offering affordable, convenient and reliable
-                            gown packages.
+                            {t.aboutText1}
+
 
                         </p>
+
+
+
 
 
 
@@ -139,11 +190,13 @@ export default function About() {
                             leading-relaxed
                         ">
 
-                            From gown selection and sizing advice to collection
-                            and return arrangements, we support students
-                            throughout their graduation journey.
+
+                            {t.aboutText2}
+
 
                         </p>
+
+
 
 
                     </div>
@@ -153,7 +206,11 @@ export default function About() {
 
 
 
-                    {/* CARD */}
+
+
+
+                    {/* WHY CHOOSE CARD */}
+
 
                     <div className="
                         bg-white
@@ -164,15 +221,22 @@ export default function About() {
                     ">
 
 
+
+
                         <h3 className="
                             text-2xl
                             font-bold
                             mb-5
                         ">
 
-                            Why Choose Us
+
+                            {t.whyChoose}
+
 
                         </h3>
+
+
+
 
 
 
@@ -182,18 +246,6 @@ export default function About() {
                         ">
 
 
-                            <li className="
-                                flex
-                                gap-3
-                                items-center
-                            ">
-
-                                <CheckCircle className="text-blue-600"/>
-
-                                Affordable graduation gown packages
-
-                            </li>
-
 
 
                             <li className="
@@ -202,25 +254,25 @@ export default function About() {
                                 items-center
                             ">
 
-                                <CheckCircle className="text-blue-600"/>
-
-                                Multiple gown sizes available
-
-                            </li>
 
 
+                                <CheckCircle
 
-                            <li className="
-                                flex
-                                gap-3
-                                items-center
-                            ">
+                                    className="
+                                        text-blue-600
+                                    "
 
-                                <CheckCircle className="text-blue-600"/>
+                                />
 
-                                University of Southampton focused service
+
+
+                                {t.affordablePackages}
+
+
 
                             </li>
+
+
 
 
 
@@ -230,21 +282,98 @@ export default function About() {
                                 items-center
                             ">
 
-                                <CheckCircle className="text-blue-600"/>
 
-                                Easy booking process
+                                <CheckCircle
+
+                                    className="
+                                        text-blue-600
+                                    "
+
+                                />
+
+
+
+                                {t.multipleSizes}
+
+
 
                             </li>
+
+                            
+
+
+
+                            <li className="
+                                flex
+                                gap-3
+                                items-center
+                            ">
+
+
+                                <CheckCircle
+
+                                    className="
+                                        text-blue-600
+                                    "
+
+                                />
+
+
+
+                                {t.universityFocused}
+
+
+
+                            </li>
+
+
+
+
+
+
+                            <li className="
+                                flex
+                                gap-3
+                                items-center
+                            ">
+
+
+                                <CheckCircle
+
+                                    className="
+                                        text-blue-600
+                                    "
+
+                                />
+
+
+
+                                {t.easyBookingProcess}
+
+
+
+                            </li>
+
+
 
 
 
                         </ul>
 
 
+
+
+
                     </div>
 
 
+
+
+
                 </div>
+
+
+
 
 
             </section>
@@ -255,13 +384,20 @@ export default function About() {
 
 
 
-            {/* FEATURES */}
+
+
+            {/* =========================
+                FEATURES
+            ========================= */}
+
+
 
             <section className="
                 bg-white
                 py-16
                 border-t
             ">
+
 
 
                 <div className="
@@ -276,43 +412,62 @@ export default function About() {
 
 
 
+
                     <Feature
 
-                        icon={<GraduationCap size={45}/>}
+                        icon={
+                            <GraduationCap size={45}/>
+                        }
 
-                        title="Student Focused"
+                        title={t.studentFocused}
 
-                        text="Designed around University of Southampton graduation needs."
+                        text={t.studentFocusedText}
 
                     />
 
 
 
-                    <Feature
-
-                        icon={<PackageCheck size={45}/>}
-
-                        title="Complete Packages"
-
-                        text="Gowns, hoods and hats available together."
-
-                    />
 
 
 
                     <Feature
 
-                        icon={<Users size={45}/>}
+                        icon={
+                            <PackageCheck size={45}/>
+                        }
 
-                        title="Personal Support"
+                        title={t.completePackages}
 
-                        text="Guidance from booking to collection and return."
+                        text={t.completePackagesText}
 
                     />
+
+
+
+
+
+
+
+                    <Feature
+
+                        icon={
+                            <Users size={45}/>
+                        }
+
+                        title={t.personalSupport}
+
+                        text={t.personalSupportText}
+
+                    />
+
+
 
 
 
                 </div>
+
+
+
 
 
             </section>
@@ -322,16 +477,30 @@ export default function About() {
 
 
 
+
+
+
             {/* FOOTER */}
+
 
             <Footer />
 
 
+
+
+
         </div>
+
+
 
     );
 
+
 }
+
+
+
+
 
 
 
@@ -340,19 +509,27 @@ export default function About() {
 function Feature({
 
     icon,
+
     title,
+
     text
+
 
 }) {
 
 
+
     return (
+
+
 
         <div className="
             p-8
             rounded-xl
             bg-slate-100
         ">
+
+
 
 
             <div className="
@@ -362,9 +539,16 @@ function Feature({
                 text-blue-600
             ">
 
+
+
                 {icon}
 
+
+
             </div>
+
+
+
 
 
 
@@ -374,9 +558,15 @@ function Feature({
                 mb-3
             ">
 
+
                 {title}
 
+
+
             </h3>
+
+
+
 
 
 
@@ -384,12 +574,21 @@ function Feature({
                 text-gray-600
             ">
 
+
                 {text}
+
+
 
             </p>
 
 
+
+
+
+
         </div>
+
+
 
     );
 

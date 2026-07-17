@@ -253,7 +253,54 @@ universityGraduation:
     "University of Southampton Graduation",
 
 
+// =========================
+// ABOUT PAGE EXTRA
+// =========================
 
+whoWeAre:
+    "Who We Are",
+
+aboutText1:
+    "We provide graduation gown rental services specifically designed for University of Southampton students. Our aim is to make graduation preparation easier by offering affordable, convenient and reliable gown packages.",
+
+aboutText2:
+    "From gown selection and sizing advice to collection and return arrangements, we support students throughout their graduation journey.",
+
+
+studentFocused:
+    "Student Focused",
+
+studentFocusedText:
+    "Designed around University of Southampton graduation needs.",
+
+
+completePackages:
+    "Complete Packages",
+
+completePackagesText:
+    "Gowns, hoods and hats available together.",
+
+
+personalSupport:
+    "Personal Support",
+
+personalSupportText:
+    "Guidance from booking to collection and return.",
+
+
+universityFocused:
+    "University of Southampton focused service",
+
+easyBookingProcess:
+    "Easy booking process",
+
+
+affordablePackages:
+    "Affordable graduation gown packages",
+
+multipleSizes:
+    "Multiple gown sizes available",
+    
     // =========================
     // ABOUT
     // =========================
