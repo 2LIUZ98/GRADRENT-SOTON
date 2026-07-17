@@ -1,11 +1,28 @@
 import { Link } from "react-router-dom";
 
+import { useLanguage } from "../context/LanguageContext.jsx";
+
+import en from "../translations/en.js";
+import zhCN from "../translations/zh-CN.js";
+
+
 
 export default function Footer() {
+
+
+    const { language } = useLanguage();
+
+
+    const text = language === "zh"
+        ? zhCN
+        : en;
+
+
 
     return (
 
         <footer className="bg-slate-900 text-white">
+
 
 
             <div className="
@@ -14,6 +31,7 @@ export default function Footer() {
                 px-6
                 py-12
             ">
+
 
 
                 <div className="
@@ -25,7 +43,10 @@ export default function Footer() {
 
 
 
-                    {/* Company */}
+
+
+                    {/* COMPANY */}
+
 
                     <div>
 
@@ -36,9 +57,12 @@ export default function Footer() {
                             mb-4
                         ">
 
-                            Southampton Gown Rental 🎓
+
+                            {text.footerCompany} 🎓
+
 
                         </h2>
+
 
 
 
@@ -46,12 +70,12 @@ export default function Footer() {
                             text-gray-300
                         ">
 
-                            Graduation gown rental service
-                            for University of Southampton
-                            students, providing gowns,
-                            hoods and graduation caps.
+
+                            {text.footerDescription}
+
 
                         </p>
+
 
 
                     </div>
@@ -61,7 +85,10 @@ export default function Footer() {
 
 
 
-                    {/* Quick Links */}
+
+
+                    {/* QUICK LINKS */}
+
 
                     <div>
 
@@ -72,13 +99,17 @@ export default function Footer() {
                             mb-4
                         ">
 
-                            Quick Links
+
+                            {text.quickLinks}
+
 
                         </h3>
 
 
 
+
                         <ul className="space-y-2">
+
 
 
                             <li>
@@ -88,11 +119,14 @@ export default function Footer() {
                                     className="hover:text-blue-400"
                                 >
 
-                                    Home
+                                    {text.home}
 
                                 </Link>
 
+
                             </li>
+
+
 
 
 
@@ -103,11 +137,14 @@ export default function Footer() {
                                     className="hover:text-blue-400"
                                 >
 
-                                    Gowns
+                                    {text.gowns}
 
                                 </Link>
 
+
                             </li>
+
+
 
 
 
@@ -118,11 +155,14 @@ export default function Footer() {
                                     className="hover:text-blue-400"
                                 >
 
-                                    About Us
+                                    {text.about}
 
                                 </Link>
 
+
                             </li>
+
+
 
 
 
@@ -133,11 +173,14 @@ export default function Footer() {
                                     className="hover:text-blue-400"
                                 >
 
-                                    Book Now
+                                    {text.bookNow}
 
                                 </Link>
 
+
                             </li>
+
+
 
 
 
@@ -148,14 +191,17 @@ export default function Footer() {
                                     className="hover:text-blue-400"
                                 >
 
-                                    Contact
+                                    {text.contact}
 
                                 </Link>
+
 
                             </li>
 
 
+
                         </ul>
+
 
 
                     </div>
@@ -167,7 +213,9 @@ export default function Footer() {
 
 
 
-                    {/* Services */}
+
+                    {/* SERVICES */}
+
 
                     <div>
 
@@ -178,9 +226,12 @@ export default function Footer() {
                             mb-4
                         ">
 
-                            Our Services
+
+                            {text.services}
+
 
                         </h3>
+
 
 
 
@@ -190,9 +241,10 @@ export default function Footer() {
                         ">
 
 
+
                             <li>
 
-                                Graduation Gown Rental
+                                {text.graduationGownRental}
 
                             </li>
 
@@ -200,7 +252,7 @@ export default function Footer() {
 
                             <li>
 
-                                MA & MSc Hoods
+                                {text.maMscHoods}
 
                             </li>
 
@@ -208,7 +260,7 @@ export default function Footer() {
 
                             <li>
 
-                                Graduation Caps
+                                {text.graduationCaps}
 
                             </li>
 
@@ -216,12 +268,14 @@ export default function Footer() {
 
                             <li>
 
-                                University of Southampton
+                                {text.southamptonUniversity}
 
                             </li>
+
 
 
                         </ul>
+
 
 
                     </div>
@@ -233,7 +287,9 @@ export default function Footer() {
 
 
 
-                    {/* Contact */}
+
+                    {/* CONTACT */}
+
 
                     <div>
 
@@ -244,17 +300,24 @@ export default function Footer() {
                             mb-4
                         ">
 
-                            Contact
+
+                            {text.contact}
+
 
                         </h3>
 
 
 
+
+
                         <p className="text-gray-300">
+
 
                             WeChat: Southampton Gown Rental
 
+
                         </p>
+
 
 
 
@@ -263,12 +326,17 @@ export default function Footer() {
                             mt-2
                         ">
 
+
                             University of Southampton
+
 
                         </p>
 
 
+
                     </div>
+
+
 
 
 
@@ -280,7 +348,11 @@ export default function Footer() {
 
 
 
-                {/* Bottom */}
+
+
+
+                {/* BOTTOM */}
+
 
                 <div className="
                     border-t
@@ -297,12 +369,18 @@ export default function Footer() {
                 ">
 
 
+
                     <p>
 
+
                         © 2026 Southampton Gown Rental.
-                        All rights reserved.
+                        {text.allRightsReserved}
+
 
                     </p>
+
+
+
 
 
 
@@ -314,49 +392,72 @@ export default function Footer() {
                     ">
 
 
+
                         <Link
+
                             to="/privacy"
+
                             className="hover:text-white"
+
                         >
 
-                            Privacy Policy
+                            {text.privacyPolicy}
 
                         </Link>
 
 
 
+
+
                         <Link
+
                             to="/terms"
+
                             className="hover:text-white"
+
                         >
 
-                            Terms & Conditions
+                            {text.termsConditions}
 
                         </Link>
+
+
 
 
 
                         <Link
+
                             to="/contact"
+
                             className="hover:text-white"
+
                         >
 
-                            Contact
+                            {text.contact}
 
                         </Link>
+
+
 
 
 
                     </div>
 
 
+
+
                 </div>
+
+
+
 
 
             </div>
 
 
+
         </footer>
+
 
     );
 

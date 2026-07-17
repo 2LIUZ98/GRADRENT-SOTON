@@ -994,6 +994,57 @@ sizeGuide:
 
 availableSizes:
     "可提供尺寸：",
+    footerCompany:
+        "南安毕业服租赁",
+
+    footerDescription:
+        "专为南安大学学生提供毕业服租赁服务，包括毕业袍、披肩及毕业帽。",
+
+
+    quickLinks:
+        "快速链接",
+
+    home:
+        "首页",
+
+    gowns:
+        "毕业服",
+
+    about:
+        "关于我们",
+
+    bookNow:
+        "立即预约",
+
+    contact:
+        "联系我们",
+
+
+    services:
+        "我们的服务",
+
+    graduationGownRental:
+        "毕业服租赁",
+
+    maMscHoods:
+        "MA & MSc 披肩",
+
+    graduationCaps:
+        "毕业帽",
+
+    southamptonUniversity:
+        "南安普顿大学",
+
+
+    privacyPolicy:
+        "隐私政策",
+
+    termsConditions:
+        "条款与条件",
+
+    allRightsReserved:
+        " 版权所有。"
+
     
 };
 

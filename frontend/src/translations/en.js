@@ -825,7 +825,57 @@ gownEnquiryText:
 
 
     noData:
-        "No data found."
+        "No data found.",
+        footerCompany:
+        "Southampton Gown Rental",
+
+    footerDescription:
+        "Graduation gown rental service for University of Southampton students, providing gowns, hoods and graduation caps.",
+
+
+    quickLinks:
+        "Quick Links",
+
+    home:
+        "Home",
+
+    gowns:
+        "Gowns",
+
+    about:
+        "About Us",
+
+    bookNow:
+        "Book Now",
+
+    contact:
+        "Contact",
+
+
+    services:
+        "Our Services",
+
+    graduationGownRental:
+        "Graduation Gown Rental",
+
+    maMscHoods:
+        "MA & MSc Hoods",
+
+    graduationCaps:
+        "Graduation Caps",
+
+    southamptonUniversity:
+        "University of Southampton",
+
+
+    privacyPolicy:
+        "Privacy Policy",
+
+    termsConditions:
+        "Terms & Conditions",
+
+    allRightsReserved:
+        " All rights reserved."
 
 };
 
