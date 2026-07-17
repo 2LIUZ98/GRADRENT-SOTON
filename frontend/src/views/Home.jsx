@@ -24,7 +24,7 @@ export default function Home({
 
     return (
 
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-gray-50 text-gray-900">
 
 
             {/* ================================
@@ -147,7 +147,7 @@ export default function Home({
 
                     <ServiceCard
 
-                        icon={<PackageCheck size={40}/>}
+                        icon={<PackageCheck size={40} className="text-primary"/>}
 
                         title="Complete Set"
 
@@ -160,7 +160,7 @@ export default function Home({
 
                     <ServiceCard
 
-                        icon={<Ruler size={40}/>}
+                        icon={<Ruler size={40} className="text-primary"/>}
 
                         title="Multiple Sizes"
 
@@ -173,7 +173,7 @@ export default function Home({
 
                     <ServiceCard
 
-                        icon={<MessageCircle size={40}/>}
+                        icon={<MessageCircle size={40} className="text-primary"/>}
 
                         title="Easy Booking"
 
@@ -198,6 +198,7 @@ export default function Home({
 
             <section className="
                 bg-white
+                text-gray-800
                 py-16
                 px-6
             ">
@@ -283,6 +284,7 @@ export default function Home({
                 py-16
                 px-6
                 bg-gray-100
+                text-gray-900
             ">
 
 
@@ -456,6 +458,7 @@ function ServiceCard({
 
         <div className="
             bg-white
+            text-gray-900
             p-8
             rounded-xl
             shadow
@@ -519,6 +522,7 @@ function OptionCard({
             p-8
             shadow-sm
             bg-white
+            text-gray-900
         ">
 
 
