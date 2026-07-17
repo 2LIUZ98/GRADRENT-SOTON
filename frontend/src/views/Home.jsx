@@ -98,24 +98,20 @@ export default function Home({
                         </p>
 
 
-                        <Link
-
+                      <Link
                             to="/booking"
-
                             className="
                                 bg-blue-600
-                                text-primary
+                                text-white
                                 px-8
                                 py-3
                                 rounded-lg
                                 font-bold
-                                hover:bg-gray-100
-                            "
-
-                        >
-
-                            Book Your Gown
-
+                                hover:bg-blue-700
+                                transition
+                                  "
+                                        >
+                          Book Your Gown
                         </Link>
 
 
@@ -415,6 +411,7 @@ export default function Home({
                         py-3
                         rounded-lg
                         font-bold
+                        hover:bg-blue-700
                     "
 
                 >
