@@ -4,46 +4,64 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 
 
+const API =
+"https://gradrent-soton.onrender.com/products";
+
+
+
 export default function Products() {
 
 
-    const [products, setProducts] = useState([]);
+    const [products,setProducts] = useState([]);
 
-    const [loading, setLoading] = useState(true);
-
-
+    const [loading,setLoading] = useState(true);
 
 
+    const [showForm,setShowForm] = useState(false);
 
-    useEffect(() => {
+
+    const [editing,setEditing] = useState(null);
+
+
+
+    const emptyProduct = {
+
+        Product_Name:"",
+        Product_Type:"",
+        Degree_Type:"",
+        Size:"",
+        Price:"",
+        Quantity:""
+
+    };
+
+
+
+    const [form,setForm] = useState(emptyProduct);
+
+
+
+
+
+
+    useEffect(()=>{
 
         fetchProducts();
 
-    }, []);
+    },[]);
 
 
 
 
 
 
-    async function fetchProducts() {
+    async function fetchProducts(){
 
 
-        try {
+        try{
 
 
-            const response = await fetch(
-                "https://gradrent-soton.onrender.com/products"
-            );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Failed to fetch products"
-                );
-
-            }
+            const response = await fetch(API);
 
 
             const data = await response.json();
@@ -53,16 +71,17 @@ export default function Products() {
 
 
 
-        } catch(error) {
+        }catch(error){
 
 
             console.error(
-                "Product loading error:",
+                "Loading products failed:",
                 error
             );
 
 
         }
+
 
 
         setLoading(false);
@@ -76,317 +95,689 @@ export default function Products() {
 
 
 
+
+
+    function handleChange(e){
+
+
+        const {
+            name,
+            value
+        } = e.target;
+
+
+
+        setForm(prev=>({
+
+            ...prev,
+
+            [name]:value
+
+        }));
+
+
+    }
+
+
+
+
+
+
+
+
+
+    function openAdd(){
+
+
+        setEditing(null);
+
+        setForm(emptyProduct);
+
+        setShowForm(true);
+
+
+    }
+
+
+
+
+
+
+
+
+
+    function openEdit(product){
+
+
+        setEditing(
+            product.Product_ID
+        );
+
+
+        setForm({
+
+
+            Product_Name:
+            product.Product_Name,
+
+
+            Product_Type:
+            product.Product_Type,
+
+
+            Degree_Type:
+            product.Degree_Type || "",
+
+
+            Size:
+            product.Size || "",
+
+
+            Price:
+            product.Price,
+
+
+            Quantity:
+            product.Quantity
+
+
+        });
+
+
+
+        setShowForm(true);
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+    async function saveProduct(){
+
+
+
+        try{
+
+
+            const response = await fetch(
+
+                editing
+
+                ? `${API}/${editing}`
+
+                : API,
+
+
+                {
+
+
+                    method:
+                    editing
+                    ? "PUT"
+                    : "POST",
+
+
+                    headers:{
+
+                        "Content-Type":
+                        "application/json"
+
+                    },
+
+
+                    body:
+                    JSON.stringify(form)
+
+
+                }
+
+            );
+
+
+
+
+
+            if(!response.ok){
+
+                throw new Error(
+                    "Failed saving product"
+                );
+
+            }
+
+
+
+
+
+
+            alert(
+
+                editing
+
+                ? "Product updated"
+
+                : "Product added"
+
+            );
+
+
+
+            setShowForm(false);
+
+
+            setEditing(null);
+
+
+            setForm(emptyProduct);
+
+
+
+            fetchProducts();
+
+
+
+
+
+        }catch(error){
+
+
+            console.error(error);
+
+
+            alert(
+                "Unable to save product"
+            );
+
+
+        }
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+    async function deleteProduct(id){
+
+
+
+        const confirmDelete =
+        window.confirm(
+            "Delete this product?"
+        );
+
+
+
+        if(!confirmDelete)
+            return;
+
+
+
+
+
+        try{
+
+
+            const response =
+            await fetch(
+
+                `${API}/${id}`,
+
+                {
+
+                    method:"DELETE"
+
+                }
+
+            );
+
+
+
+
+
+            if(!response.ok){
+
+                throw new Error();
+
+            }
+
+
+
+
+
+            alert(
+                "Product deleted"
+            );
+
+
+
+            fetchProducts();
+
+
+
+
+
+        }catch(error){
+
+
+            console.error(error);
+
+
+            alert(
+                "Unable to delete product"
+            );
+
+
+        }
+
+
+    }
+
+
+
+
+
+
+
+
+
     return (
 
-        <div className="
-            min-h-screen
-            bg-slate-100
-            text-gray-900
-        ">
 
+<div className="
+min-h-screen
+bg-slate-100
+text-gray-900
+">
 
-            <Header />
 
+<Header />
 
 
 
-            <main className="
-                max-w-7xl
-                mx-auto
-                px-6
-                py-12
-            ">
+<main className="
+max-w-7xl
+mx-auto
+px-6
+py-12
+">
 
 
 
-                <div className="
-                    flex
-                    justify-between
-                    items-center
-                    mb-8
-                ">
+<div className="
+flex
+justify-between
+items-center
+mb-8
+">
 
 
-                    <h1 className="
-                        text-4xl
-                        font-bold
-                    ">
+<h1 className="
+text-4xl
+font-bold
+">
 
-                        Products
+Products
 
-                    </h1>
+</h1>
 
 
 
-                    <button
 
-                        className="
-                            bg-blue-600
-                            hover:bg-blue-700
-                            text-white
-                            px-5
-                            py-3
-                            rounded-lg
-                        "
+<button
 
-                    >
+onClick={openAdd}
 
-                        + Add Product
+className="
+bg-blue-600
+hover:bg-blue-700
+text-white
+px-5
+py-3
+rounded-lg
+"
 
-                    </button>
+>
 
++ Add Product
 
-                </div>
+</button>
 
 
+</div>
 
 
 
 
 
-                <div className="
-                    grid
-                    md:grid-cols-3
-                    gap-8
-                ">
 
 
+{
+showForm && (
 
-                    {
-                        loading ? (
+<div className="
+bg-white
+rounded-xl
+shadow
+p-8
+mb-10
+">
 
 
-                            <p>
-                                Loading products...
-                            </p>
+<h2 className="
+text-2xl
+font-bold
+mb-6
+">
 
+{
+editing
+?
+"Edit Product"
+:
+"Add Product"
+}
 
+</h2>
 
-                        ) : products.length === 0 ? (
 
 
-                            <p>
-                                No products found.
-                            </p>
 
 
+{
 
-                        ) : (
+Object.keys(emptyProduct).map(field=>(
 
 
-                            products.map(product => (
+<input
 
+key={field}
 
-                                <div
+name={field}
 
-                                    key={
-                                        product.Product_ID
-                                    }
+placeholder={field}
 
-                                    className="
-                                        bg-white
-                                        rounded-xl
-                                        shadow
-                                        p-6
-                                    "
+value={form[field]}
 
-                                >
+onChange={handleChange}
 
+className="
+w-full
+border
+rounded-lg
+p-3
+mb-4
+"
 
+/>
 
-                                    <h2 className="
-                                        text-2xl
-                                        font-bold
-                                        mb-4
-                                    ">
 
-                                        {
-                                            product.Product_Name
-                                        }
+))
 
-                                    </h2>
+}
 
 
 
 
 
-                                    <div className="
-                                        space-y-2
-                                        text-gray-700
-                                    ">
+<button
 
+onClick={saveProduct}
 
+className="
+bg-green-600
+text-white
+px-5
+py-3
+rounded-lg
+mr-3
+"
 
-                                        <p>
+>
 
-                                            <b>
-                                                Type:
-                                            </b>
+Save
 
-                                            {" "}
+</button>
 
-                                            {
-                                                product.Product_Type
-                                            }
 
-                                        </p>
 
 
+<button
 
+onClick={()=>setShowForm(false)}
 
+className="
+bg-gray-500
+text-white
+px-5
+py-3
+rounded-lg
+"
 
-                                        <p>
+>
 
-                                            <b>
-                                                Degree:
-                                            </b>
+Cancel
 
-                                            {" "}
+</button>
 
-                                            {
-                                                product.Degree_Type || "-"
-                                            }
 
-                                        </p>
 
+</div>
 
+)
 
+}
 
 
-                                        <p>
 
-                                            <b>
-                                                Size:
-                                            </b>
 
-                                            {" "}
 
-                                            {
-                                                product.Size || "-"
-                                            }
 
-                                        </p>
 
 
 
+<div className="
+grid
+md:grid-cols-3
+gap-8
+">
 
 
-                                        <p>
 
-                                            <b>
-                                                Price:
-                                            </b>
 
-                                            {"£"}
 
-                                            {
-                                                product.Price
-                                            }
+{
 
-                                        </p>
+loading ?
 
 
+<p>
+Loading products...
+</p>
 
 
 
-                                        <p>
+:
 
-                                            <b>
-                                                Stock:
-                                            </b>
+products.length===0 ?
 
-                                            {" "}
 
-                                            {
-                                                product.Quantity
-                                            }
+<p>
+No products found.
+</p>
 
-                                        </p>
 
 
+:
 
-                                    </div>
 
+products.map(product=>(
 
 
 
+<div
 
+key={
+product.Product_ID
+}
 
-                                    <div className="
-                                        mt-5
-                                        flex
-                                        gap-3
-                                    ">
+className="
+bg-white
+rounded-xl
+shadow
+p-6
+"
 
 
-                                        <button
+>
 
-                                            className="
-                                                bg-blue-600
-                                                text-white
-                                                px-4
-                                                py-2
-                                                rounded-lg
-                                            "
 
-                                        >
+<h2 className="
+text-2xl
+font-bold
+mb-4
+">
 
-                                            Edit
+{product.Product_Name}
 
-                                        </button>
+</h2>
 
 
 
-                                        <button
 
-                                            className="
-                                                bg-red-600
-                                                text-white
-                                                px-4
-                                                py-2
-                                                rounded-lg
-                                            "
 
-                                        >
+<p>
+<b>Type:</b>{" "}
+{product.Product_Type}
+</p>
 
-                                            Delete
 
-                                        </button>
+<p>
+<b>Degree:</b>{" "}
+{product.Degree_Type || "-"}
+</p>
 
 
+<p>
+<b>Size:</b>{" "}
+{product.Size || "-"}
+</p>
 
-                                    </div>
 
+<p>
+<b>Price:</b>{" "}
+£{product.Price}
+</p>
 
 
+<p>
+<b>Stock:</b>{" "}
+{product.Quantity}
+</p>
 
 
-                                </div>
 
 
 
-                            ))
 
 
-                        )
-                    }
+<div className="
+mt-5
+flex
+gap-3
+">
 
 
+<button
 
-                </div>
+onClick={()=>
+openEdit(product)
+}
 
+className="
+bg-blue-600
+text-white
+px-4
+py-2
+rounded-lg
+"
 
+>
 
+Edit
 
-            </main>
+</button>
 
 
 
 
-            <Footer />
+<button
 
+onClick={()=>
+deleteProduct(product.Product_ID)
+}
 
-        </div>
+className="
+bg-red-600
+text-white
+px-4
+py-2
+rounded-lg
+"
+
+>
+
+Delete
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+))
+
+
+}
+
+
+
+</div>
+
+
+
+
+
+</main>
+
+
+
+<Footer />
+
+
+</div>
+
 
     );
 
