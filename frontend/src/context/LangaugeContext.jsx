@@ -5,7 +5,13 @@ import {
 } from "react";
 
 
+import en from "../translations/en";
+import zhCN from "../translations/zh-CN";
+
+
+
 const LanguageContext = createContext();
+
 
 
 
@@ -14,9 +20,20 @@ export function LanguageProvider({children}) {
 
     const [language, setLanguage] = useState(
 
-        localStorage.getItem("language") || "en"
+        localStorage.getItem("language") || "zh-CN"
 
     );
+
+
+
+    const translations = {
+
+        en,
+
+        "zh-CN": zhCN
+
+    };
+
 
 
 
@@ -36,13 +53,19 @@ export function LanguageProvider({children}) {
 
 
 
+
     return (
 
         <LanguageContext.Provider
 
             value={{
+
                 language,
-                changeLanguage
+
+                changeLanguage,
+
+                t: translations[language]
+
             }}
 
         >
@@ -55,6 +78,8 @@ export function LanguageProvider({children}) {
 
 
 }
+
+
 
 
 
