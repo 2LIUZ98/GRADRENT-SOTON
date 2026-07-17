@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 import {
     GraduationCap,
     CheckCircle,
@@ -11,7 +14,12 @@ import {
 } from "lucide-react";
 
 
-export default function Home() {
+export default function Home({
+
+    colorTheme,
+    setTheme
+
+}) {
 
 
     return (
@@ -20,81 +28,105 @@ export default function Home() {
 
 
             {/* ================================
-                HERO SECTION
+                HEADER
             ================================= */}
 
-            <section className="
-                bg-primary
-                text-white
-                py-20
-                px-6
-                text-center
-            ">
+            <Header
 
-                <div className="
-                    max-w-5xl
-                    mx-auto
-                ">
+                colorTheme={colorTheme}
 
+                setTheme={setTheme}
 
-                    <GraduationCap
-                        size={70}
-                        className="mx-auto mb-6"
-                    />
-
-
-                    <h1 className="
-                        text-5xl
-                        font-bold
-                        mb-6
-                    ">
-
-                        University of Southampton
-                        <br />
-
-                        Graduation Gown Rental 🎓
-
-                    </h1>
-
-
-                    <p className="
-                        text-xl
-                        mb-8
-                        opacity-90
-                    ">
-
-                        Affordable graduation gowns,
-                        hoods and caps for your special day.
-
-                    </p>
-
-
-                    <Link
-                        to="/booking"
-                        className="
-                            bg-white
-                            text-primary
-                            px-8
-                            py-3
-                            rounded-lg
-                            font-bold
-                            hover:bg-gray-100
-                        "
-                    >
-
-                        Book Your Gown
-
-                    </Link>
-
-
-                </div>
-
-
-            </section>
+            />
 
 
 
             {/* ================================
+                MAIN CONTENT
+            ================================= */}
+
+            <main>
+
+
+                {/* ================================
+                    HERO SECTION
+                ================================= */}
+
+                <section className="
+                    bg-primary
+                    text-white
+                    py-20
+                    px-6
+                    text-center
+                ">
+
+                    <div className="
+                        max-w-5xl
+                        mx-auto
+                    ">
+
+
+                        <GraduationCap
+                            size={70}
+                            className="mx-auto mb-6"
+                        />
+
+
+                        <h1 className="
+                            text-5xl
+                            font-bold
+                            mb-6
+                        ">
+
+                            University of Southampton
+                            <br />
+
+                            Graduation Gown Rental 🎓
+
+                        </h1>
+
+
+                        <p className="
+                            text-xl
+                            mb-8
+                            opacity-90
+                        ">
+
+                            Affordable graduation gowns,
+                            hoods and caps for your special day.
+
+                        </p>
+
+
+                        <Link
+
+                            to="/booking"
+
+                            className="
+                                bg-white
+                                text-primary
+                                px-8
+                                py-3
+                                rounded-lg
+                                font-bold
+                                hover:bg-gray-100
+                            "
+
+                        >
+
+                            Book Your Gown
+
+                        </Link>
+
+
+                    </div>
+
+
+                </section>
+
+
+
+                {/* ================================
                 SERVICES
             ================================= */}
 
@@ -393,199 +425,15 @@ export default function Home() {
             </section>
 
 
-        </div>
+                </main>
 
-    );
 
-}
 
+            {/* ================================
+                FOOTER
+            ================================= */}
 
-
-// =====================================
-// COMPONENTS
-// =====================================
-
-
-function ServiceCard({
-    icon,
-    title,
-    text
-}) {
-
-    return (
-
-        <div className="
-            bg-white
-            p-8
-            rounded-xl
-            shadow
-            text-center
-        ">
-
-
-            <div className="
-                flex
-                justify-center
-                mb-5
-            ">
-
-                {icon}
-
-            </div>
-
-
-            <h3 className="
-                text-xl
-                font-bold
-                mb-3
-            ">
-
-                {title}
-
-            </h3>
-
-
-            <p className="text-gray-600">
-
-                {text}
-
-            </p>
-
-
-        </div>
-
-    );
-
-}
-
-
-
-function OptionCard({
-    title,
-    items,
-    price
-}) {
-
-    return (
-
-        <div className="
-            border
-            rounded-xl
-            p-8
-            shadow-sm
-        ">
-
-
-            <h3 className="
-                text-2xl
-                font-bold
-                mb-5
-            ">
-
-                {title}
-
-            </h3>
-
-
-
-            <ul className="
-                space-y-3
-                mb-6
-            ">
-
-
-                {items.map((item,index)=>(
-
-                    <li
-                        key={index}
-                        className="
-                            flex
-                            gap-2
-                            items-center
-                        "
-                    >
-
-                        <CheckCircle
-                            size={18}
-                        />
-
-                        {item}
-
-                    </li>
-
-                ))}
-
-
-            </ul>
-
-
-
-            <p className="
-                text-xl
-                font-bold
-            ">
-
-                {price}
-
-            </p>
-
-
-        </div>
-
-    );
-
-}
-
-
-
-function Step({
-    number,
-    title,
-    text
-}) {
-
-    return (
-
-        <div className="
-            text-center
-        ">
-
-
-            <div className="
-                w-12
-                h-12
-                rounded-full
-                bg-primary
-                text-white
-                flex
-                items-center
-                justify-center
-                mx-auto
-                mb-4
-                font-bold
-            ">
-
-                {number}
-
-            </div>
-
-
-            <h3 className="
-                font-bold
-                text-xl
-                mb-2
-            ">
-
-                {title}
-
-            </h3>
-
-
-            <p className="text-gray-600">
-
-                {text}
-
-            </p>
+            <Footer />
 
 
         </div>
