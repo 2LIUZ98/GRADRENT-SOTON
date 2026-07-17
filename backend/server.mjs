@@ -55,7 +55,6 @@ ViteExpress.listen(app, 3000, () => {
 
     console.log("====================================");
     console.log("🎓 Graduation Gown Rental System");
-    console.log("🚀 Server running at http://localhost:3000");
     console.log("====================================");
 
 });
