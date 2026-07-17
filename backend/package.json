@@ -3,5 +3,8 @@
   "scripts": {
     "dev": "nodemon server.mjs",
     "start": "node server.mjs"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0"
   }
 }
