@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import ViteExpress from "vite-express";
 
-import customersRouter from "./routes/customers.mjs";
+import customersRouter from "./routes/customer.mjs";
 import inventoryRouter from "./routes/inventory.mjs";
 import productsRouter from "./routes/products.mjs";
 import rentalsRouter from "./routes/rentals.mjs";
