@@ -908,6 +908,30 @@ privacySection7Title: "7. Contact Us",
 privacySection7Text:
     "If you have any questions about this Privacy Policy or how your information is handled, please contact us.",
 
+    termsTitle: "Terms & Conditions",
+termsSubtitle: "Southampton Graduation Gown Rental",
+
+termsBookingTitle: "1. Booking",
+termsBookingText: "Bookings are subject to availability. Please ensure that all information provided is accurate when submitting your booking.",
+
+termsRentalTitle: "2. Rental Period",
+termsRentalText: "Graduation gowns must be collected and returned on the agreed dates. Late returns may incur additional charges.",
+
+termsResponsibilityTitle: "3. Responsibility",
+termsResponsibilityText: "Customers are responsible for keeping rented items in good condition. Lost or damaged items may be subject to replacement or repair costs.",
+
+termsCancellationTitle: "4. Cancellation",
+termsCancellationText: "If you need to cancel your booking, please contact us as soon as possible. Refund eligibility may depend on the timing of the cancellation.",
+
+termsPaymentTitle: "5. Payment",
+termsPaymentText: "Rental fees must be paid before collection unless otherwise agreed.",
+
+termsPrivacyTitle: "6. Privacy",
+termsPrivacyText: "Any personal information collected during the booking process will be handled in accordance with our Privacy Policy.",
+
+termsContactTitle: "7. Contact Us",
+termsContactText: "If you have any questions regarding these Terms & Conditions, please contact us.",
+
 };
 
 

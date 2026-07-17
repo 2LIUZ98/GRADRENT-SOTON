@@ -1075,6 +1075,30 @@ privacySection7Title: "7. 联系我们",
 privacySection7Text:
     "如果您对本隐私政策或您的个人信息处理方式有任何疑问，请随时联系我们。",
 
+    termsTitle: "服务条款",
+termsSubtitle: "南安普顿毕业学位服租赁",
+
+termsBookingTitle: "1. 预约",
+termsBookingText: "所有预约均需视库存情况而定。提交预约时，请确保所填写的信息真实、准确。",
+
+termsRentalTitle: "2. 租赁期限",
+termsRentalText: "学位服需按照约定的日期领取及归还。逾期归还可能会产生额外费用。",
+
+termsResponsibilityTitle: "3. 使用责任",
+termsResponsibilityText: "租赁期间，客户需妥善保管租赁物品。如发生遗失或损坏，可能需要承担维修或赔偿费用。",
+
+termsCancellationTitle: "4. 取消预约",
+termsCancellationText: "如需取消预约，请尽早联系我们。是否可退款将根据取消时间及具体情况决定。",
+
+termsPaymentTitle: "5. 付款",
+termsPaymentText: "除非另有约定，所有租赁费用需在领取学位服前完成支付。",
+
+termsPrivacyTitle: "6. 隐私",
+termsPrivacyText: "您在预约过程中提供的个人信息将按照我们的《隐私政策》进行处理和保护。",
+
+termsContactTitle: "7. 联系我们",
+termsContactText: "如对本服务条款有任何疑问，请随时联系我们。",
+
     
 };
 

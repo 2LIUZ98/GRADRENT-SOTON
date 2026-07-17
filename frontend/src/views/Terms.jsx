@@ -1,12 +1,21 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import { useLanguage } from "../context/LanguageContext.jsx";
+
+import en from "../translations/en.js";
+import zhCN from "../translations/zh-CN.js";
 
 
 export default function Terms() {
 
 
-    const { t } = useLanguage();
+    const { language } = useLanguage();
+
+
+    const text = language === "zh"
+        ? zhCN
+        : en;
 
 
 
@@ -39,7 +48,7 @@ export default function Terms() {
                     font-bold
                 ">
 
-                    {t.termsTitle}
+                    {text.termsTitle}
 
                 </h1>
 
@@ -51,13 +60,12 @@ export default function Terms() {
                     text-lg
                 ">
 
-                    {t.termsSubtitle}
+                    {text.termsSubtitle}
 
                 </p>
 
 
             </section>
-
 
 
 
@@ -73,7 +81,6 @@ export default function Terms() {
             ">
 
 
-
                 <div className="
                     bg-white
                     rounded-2xl
@@ -83,254 +90,43 @@ export default function Terms() {
                 ">
 
 
-
-
-
-                    {/* 1 */}
-
-                    <div>
-
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
-
-                            {t.termsBookingTitle}
-
-                        </h2>
-
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            {t.termsBookingText}
-
-                        </p>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    {/* 2 */}
-
-                    <div>
-
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
-
-                            {t.termsRentalTitle}
-
-                        </h2>
-
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            {t.termsRentalText}
-
-                        </p>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    {/* 3 */}
-
-                    <div>
-
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
-
-                            {t.termsResponsibilityTitle}
-
-                        </h2>
-
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            {t.termsResponsibilityText}
-
-                        </p>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    {/* 4 */}
-
-                    <div>
-
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
-
-                            {t.termsCancellationTitle}
-
-                        </h2>
-
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            {t.termsCancellationText}
-
-                        </p>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    {/* 5 */}
-
-                    <div>
-
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
-
-                            {t.termsPaymentTitle}
-
-                        </h2>
-
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            {t.termsPaymentText}
-
-                        </p>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    {/* 6 */}
-
-                    <div>
-
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
-
-                            {t.termsPrivacyTitle}
-
-                        </h2>
-
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            {t.termsPrivacyText}
-
-                        </p>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    {/* 7 */}
-
-                    <div>
-
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
-
-                            {t.termsContactTitle}
-
-                        </h2>
-
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            {t.termsContactText}
-
-                        </p>
-
-
-                    </div>
-
-
-
+                    <TermsSection
+                        title={text.termsBookingTitle}
+                        text={text.termsBookingText}
+                    />
+
+                    <TermsSection
+                        title={text.termsRentalTitle}
+                        text={text.termsRentalText}
+                    />
+
+                    <TermsSection
+                        title={text.termsResponsibilityTitle}
+                        text={text.termsResponsibilityText}
+                    />
+
+                    <TermsSection
+                        title={text.termsCancellationTitle}
+                        text={text.termsCancellationText}
+                    />
+
+                    <TermsSection
+                        title={text.termsPaymentTitle}
+                        text={text.termsPaymentText}
+                    />
+
+                    <TermsSection
+                        title={text.termsPrivacyTitle}
+                        text={text.termsPrivacyText}
+                    />
+
+                    <TermsSection
+                        title={text.termsContactTitle}
+                        text={text.termsContactText}
+                    />
 
 
                 </div>
-
 
 
             </section>
@@ -338,11 +134,54 @@ export default function Terms() {
 
 
 
-
-
             <Footer />
 
 
+        </div>
+
+    );
+
+}
+
+
+
+
+
+// =====================================
+// TERMS SECTION COMPONENT
+// =====================================
+
+function TermsSection({
+
+    title,
+    text
+
+}) {
+
+    return (
+
+        <div>
+
+            <h2 className="
+                text-2xl
+                font-bold
+                mb-3
+                text-[#00539F]
+            ">
+
+                {title}
+
+            </h2>
+
+
+            <p className="
+                text-gray-700
+                leading-relaxed
+            ">
+
+                {text}
+
+            </p>
 
         </div>
 
