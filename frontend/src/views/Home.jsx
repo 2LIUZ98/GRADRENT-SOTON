@@ -441,3 +441,205 @@ export default function Home({
     );
 
 }
+
+// =====================================
+// SERVICE CARD COMPONENT
+// =====================================
+
+function ServiceCard({
+    icon,
+    title,
+    text
+}) {
+
+    return (
+
+        <div className="
+            bg-white
+            p-8
+            rounded-xl
+            shadow
+            text-center
+        ">
+
+
+            <div className="
+                flex
+                justify-center
+                mb-5
+            ">
+
+                {icon}
+
+            </div>
+
+
+            <h3 className="
+                text-xl
+                font-bold
+                mb-3
+            ">
+
+                {title}
+
+            </h3>
+
+
+            <p className="text-gray-600">
+
+                {text}
+
+            </p>
+
+
+        </div>
+
+    );
+
+}
+
+
+
+// =====================================
+// OPTION CARD COMPONENT
+// =====================================
+
+function OptionCard({
+    title,
+    items,
+    price
+}) {
+
+
+    return (
+
+        <div className="
+            border
+            rounded-xl
+            p-8
+            shadow-sm
+            bg-white
+        ">
+
+
+            <h3 className="
+                text-2xl
+                font-bold
+                mb-5
+            ">
+
+                {title}
+
+            </h3>
+
+
+
+            <ul className="
+                space-y-3
+                mb-6
+            ">
+
+
+                {items.map((item, index) => (
+
+                    <li
+                        key={index}
+                        className="
+                            flex
+                            items-center
+                            gap-2
+                        "
+                    >
+
+                        <CheckCircle size={18}/>
+
+                        {item}
+
+                    </li>
+
+                ))}
+
+
+            </ul>
+
+
+
+            <p className="
+                text-xl
+                font-bold
+            ">
+
+                {price}
+
+            </p>
+
+
+        </div>
+
+    );
+
+}
+
+
+
+
+// =====================================
+// STEP COMPONENT
+// =====================================
+
+function Step({
+    number,
+    title,
+    text
+}) {
+
+
+    return (
+
+        <div className="text-center">
+
+
+            <div className="
+                w-12
+                h-12
+                rounded-full
+                bg-primary
+                text-white
+                flex
+                items-center
+                justify-center
+                mx-auto
+                mb-4
+                font-bold
+            ">
+
+                {number}
+
+            </div>
+
+
+
+            <h3 className="
+                text-xl
+                font-bold
+                mb-2
+            ">
+
+                {title}
+
+            </h3>
+
+
+
+            <p className="text-gray-600">
+
+                {text}
+
+            </p>
+
+
+        </div>
+
+    );
+
+}
