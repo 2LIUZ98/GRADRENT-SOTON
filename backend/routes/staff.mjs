@@ -9,8 +9,6 @@ const SALT_ROUNDS = 10;
 
 
 
-
-
 // =====================================
 // STAFF LOGIN
 // =====================================
@@ -18,7 +16,6 @@ const SALT_ROUNDS = 10;
 staffRouter.post("/login", async (req, res) => {
 
     try {
-
 
         const {
             Username,
@@ -37,10 +34,7 @@ staffRouter.post("/login", async (req, res) => {
 
             AND Is_Active = 1
 
-        `).get(
-            Username
-        );
-
+        `).get(Username);
 
 
 
@@ -57,8 +51,7 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-
-        const passwordValid = await bcrypt.compare(
+        const validPassword = await bcrypt.compare(
 
             Password,
 
@@ -68,8 +61,7 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-
-        if (!passwordValid) {
+        if (!validPassword) {
 
             return res.status(401).json({
 
@@ -78,7 +70,6 @@ staffRouter.post("/login", async (req, res) => {
             });
 
         }
-
 
 
 
@@ -102,10 +93,9 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-
         res.json({
 
-            message:"Login successful",
+            message: "Login successful",
 
             Staff_ID: staff.Staff_ID,
 
@@ -116,7 +106,6 @@ staffRouter.post("/login", async (req, res) => {
             Role: staff.Role
 
         });
-
 
 
 
@@ -137,8 +126,6 @@ staffRouter.post("/login", async (req, res) => {
 
 
 });
-
-
 
 
 
@@ -178,8 +165,7 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 
-
-        const existing = db.prepare(`
+        const exists = db.prepare(`
 
             SELECT Staff_ID
 
@@ -187,17 +173,12 @@ staffRouter.post("/create", async (req,res)=>{
 
             WHERE Username = ?
 
-        `).get(
-
-            Username
-
-        );
+        `).get(Username);
 
 
 
 
-
-        if(existing){
+        if(exists){
 
 
             return res.status(409).json({
@@ -221,7 +202,6 @@ staffRouter.post("/create", async (req,res)=>{
             SALT_ROUNDS
 
         );
-
 
 
 
@@ -256,7 +236,6 @@ staffRouter.post("/create", async (req,res)=>{
 
         `).run(
 
-
             Full_Name,
 
             Username,
@@ -269,7 +248,6 @@ staffRouter.post("/create", async (req,res)=>{
 
             Phone
 
-
         );
 
 
@@ -281,14 +259,14 @@ staffRouter.post("/create", async (req,res)=>{
 
             message:"Staff created successfully",
 
-            Staff_ID: result.lastInsertRowid
+            Staff_ID:result.lastInsertRowid
 
         });
 
 
 
 
-    } catch(error) {
+    } catch(error){
 
 
         console.error(error);
@@ -305,8 +283,6 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 });
-
-
 
 
 
@@ -348,9 +324,7 @@ staffRouter.get("/", (req,res)=>{
 
                 Created_At
 
-
             FROM STAFF
-
 
             ORDER BY Full_Name
 
@@ -364,7 +338,7 @@ staffRouter.get("/", (req,res)=>{
 
 
 
-    } catch(error) {
+    } catch(error){
 
 
         console.error(error);
@@ -392,13 +366,32 @@ staffRouter.get("/", (req,res)=>{
 
 // =====================================
 // GET STAFF BY ID
-// ONLY NUMBERS
 // =====================================
 
-staffRouter.get("/:id([0-9]+)", (req,res)=>{
+staffRouter.get("/:id", (req,res)=>{
 
 
     try {
+
+
+        const id = Number(req.params.id);
+
+
+
+        if(Number.isNaN(id)){
+
+
+            return res.status(404).json({
+
+                error:"Staff not found"
+
+            });
+
+
+        }
+
+
+
 
 
         const staff = db.prepare(`
@@ -430,11 +423,7 @@ staffRouter.get("/:id([0-9]+)", (req,res)=>{
             WHERE Staff_ID = ?
 
 
-        `).get(
-
-            req.params.id
-
-        );
+        `).get(id);
 
 
 
@@ -460,11 +449,10 @@ staffRouter.get("/:id([0-9]+)", (req,res)=>{
 
 
 
-    } catch(error){
+    }catch(error){
 
 
         console.error(error);
-
 
 
         res.status(500).json({
@@ -472,7 +460,6 @@ staffRouter.get("/:id([0-9]+)", (req,res)=>{
             error:"Failed to fetch staff"
 
         });
-
 
 
     }
@@ -488,16 +475,33 @@ staffRouter.get("/:id([0-9]+)", (req,res)=>{
 
 
 
-
-
 // =====================================
 // UPDATE STAFF
 // =====================================
 
-staffRouter.put("/:id([0-9]+)", (req,res)=>{
+staffRouter.put("/:id", (req,res)=>{
 
 
     try {
+
+
+        const id = Number(req.params.id);
+
+
+        if(Number.isNaN(id)){
+
+
+            return res.status(404).json({
+
+                error:"Staff not found"
+
+            });
+
+
+        }
+
+
+
 
 
         const {
@@ -519,7 +523,8 @@ staffRouter.put("/:id([0-9]+)", (req,res)=>{
 
 
 
-        db.prepare(`
+
+        const result = db.prepare(`
 
             UPDATE STAFF
 
@@ -541,7 +546,6 @@ staffRouter.put("/:id([0-9]+)", (req,res)=>{
 
         `).run(
 
-
             Full_Name,
 
             Username,
@@ -552,10 +556,25 @@ staffRouter.put("/:id([0-9]+)", (req,res)=>{
 
             Phone,
 
-            req.params.id
-
+            id
 
         );
+
+
+
+
+
+        if(result.changes === 0){
+
+
+            return res.status(404).json({
+
+                error:"Staff not found"
+
+            });
+
+
+        }
 
 
 
@@ -595,16 +614,33 @@ staffRouter.put("/:id([0-9]+)", (req,res)=>{
 
 
 
-
-
 // =====================================
 // CHANGE PASSWORD
 // =====================================
 
-staffRouter.put("/:id([0-9]+)/password", async(req,res)=>{
+staffRouter.put("/:id/password", async(req,res)=>{
 
 
     try {
+
+
+        const id = Number(req.params.id);
+
+
+
+        if(Number.isNaN(id)){
+
+
+            return res.status(404).json({
+
+                error:"Staff not found"
+
+            });
+
+
+        }
+
+
 
 
         const {
@@ -641,7 +677,7 @@ staffRouter.put("/:id([0-9]+)/password", async(req,res)=>{
 
             hash,
 
-            req.params.id
+            id
 
         );
 
@@ -651,7 +687,7 @@ staffRouter.put("/:id([0-9]+)/password", async(req,res)=>{
 
         res.json({
 
-            message:"Password updated"
+            message:"Password updated successfully"
 
         });
 
@@ -683,16 +719,33 @@ staffRouter.put("/:id([0-9]+)/password", async(req,res)=>{
 
 
 
-
-
 // =====================================
-// ACTIVATE / DEACTIVATE
+// ACTIVATE / DEACTIVATE STAFF
 // =====================================
 
-staffRouter.put("/:id([0-9]+)/active",(req,res)=>{
+staffRouter.put("/:id/active",(req,res)=>{
 
 
     try {
+
+
+        const id = Number(req.params.id);
+
+
+
+        if(Number.isNaN(id)){
+
+
+            return res.status(404).json({
+
+                error:"Staff not found"
+
+            });
+
+
+        }
+
+
 
 
         const {
@@ -717,7 +770,7 @@ staffRouter.put("/:id([0-9]+)/active",(req,res)=>{
 
             Is_Active,
 
-            req.params.id
+            id
 
         );
 
@@ -727,7 +780,7 @@ staffRouter.put("/:id([0-9]+)/active",(req,res)=>{
 
         res.json({
 
-            message:"Status updated"
+            message:"Staff status updated"
 
         });
 
@@ -759,16 +812,34 @@ staffRouter.put("/:id([0-9]+)/active",(req,res)=>{
 
 
 
-
-
 // =====================================
 // DELETE STAFF
 // =====================================
 
-staffRouter.delete("/:id([0-9]+)",(req,res)=>{
+staffRouter.delete("/:id",(req,res)=>{
 
 
     try {
+
+
+        const id = Number(req.params.id);
+
+
+
+        if(Number.isNaN(id)){
+
+
+            return res.status(404).json({
+
+                error:"Staff not found"
+
+            });
+
+
+        }
+
+
+
 
 
         db.prepare(`
@@ -777,11 +848,7 @@ staffRouter.delete("/:id([0-9]+)",(req,res)=>{
 
             WHERE Staff_ID = ?
 
-        `).run(
-
-            req.params.id
-
-        );
+        `).run(id);
 
 
 
@@ -789,7 +856,7 @@ staffRouter.delete("/:id([0-9]+)",(req,res)=>{
 
         res.json({
 
-            message:"Staff deleted"
+            message:"Staff deleted successfully"
 
         });
 
@@ -812,6 +879,7 @@ staffRouter.delete("/:id([0-9]+)",(req,res)=>{
 
 
 });
+
 
 
 
