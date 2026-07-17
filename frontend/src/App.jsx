@@ -21,6 +21,7 @@ import About from "./views/About.jsx";
 import Contact from "./views/Contact.jsx";
 import Terms from "./views/Terms.jsx";
 import Privacy from "./views/Privacy.jsx";
+import Management from "./views/staff/Management.jsx";
 
 
 export default function App() {
@@ -130,6 +131,11 @@ export default function App() {
 <Route
     path="/privacy"
     element={<Privacy />}
+/>
+
+<Route
+    path="/staff/manage"
+    element={<Management />}
 />
         </Routes>
 
