@@ -9,6 +9,7 @@ import {
 import Home from "./views/Home.jsx";
 import Booking from "./views/Booking.jsx";
 import Auth from "./views/Auth.jsx";
+import Staff from "./views/Staff.jsx";
 
 
 
@@ -54,6 +55,14 @@ export default function App() {
     path="/staff"
 
     element={<Auth />}
+
+/>
+
+<Route
+
+    path="/dashboard"
+
+    element={<Staff />}
 
 />
 
