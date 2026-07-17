@@ -2,9 +2,12 @@ import express from "express";
 import bcrypt from "bcrypt";
 import db from "../db.mjs";
 
+
 const staffRouter = express.Router();
 
 const SALT_ROUNDS = 10;
+
+
 
 
 
@@ -16,10 +19,12 @@ staffRouter.post("/login", async (req, res) => {
 
     try {
 
+
         const {
             Username,
             Password
         } = req.body;
+
 
 
         const staff = db.prepare(`
@@ -38,11 +43,12 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
+
         if (!staff) {
 
             return res.status(401).json({
 
-                error:"Invalid username or password"
+                error: "Staff not found"
 
             });
 
@@ -50,7 +56,9 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-        const validPassword = await bcrypt.compare(
+
+
+        const passwordValid = await bcrypt.compare(
 
             Password,
 
@@ -60,15 +68,18 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
-        if (!validPassword) {
+
+        if (!passwordValid) {
 
             return res.status(401).json({
 
-                error:"Invalid username or password"
+                error: "Invalid password"
 
             });
 
         }
+
+
 
 
 
@@ -90,19 +101,22 @@ staffRouter.post("/login", async (req, res) => {
 
 
 
+
+
         res.json({
 
             message:"Login successful",
 
-            Staff_ID:staff.Staff_ID,
+            Staff_ID: staff.Staff_ID,
 
-            Full_Name:staff.Full_Name,
+            Full_Name: staff.Full_Name,
 
-            Username:staff.Username,
+            Username: staff.Username,
 
-            Role:staff.Role
+            Role: staff.Role
 
         });
+
 
 
 
@@ -123,6 +137,8 @@ staffRouter.post("/login", async (req, res) => {
 
 
 });
+
+
 
 
 
@@ -163,7 +179,7 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 
-        const exists = db.prepare(`
+        const existing = db.prepare(`
 
             SELECT Staff_ID
 
@@ -181,7 +197,7 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 
-        if(exists){
+        if(existing){
 
 
             return res.status(409).json({
@@ -197,6 +213,7 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 
+
         const hash = await bcrypt.hash(
 
             Password,
@@ -204,6 +221,8 @@ staffRouter.post("/create", async (req,res)=>{
             SALT_ROUNDS
 
         );
+
+
 
 
 
@@ -229,9 +248,11 @@ staffRouter.post("/create", async (req,res)=>{
 
             )
 
+
             VALUES
 
             (?, ?, ?, ?, ?, ?)
+
 
         `).run(
 
@@ -255,17 +276,19 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 
+
         res.status(201).json({
 
             message:"Staff created successfully",
 
-            Staff_ID:result.lastInsertRowid
+            Staff_ID: result.lastInsertRowid
 
         });
 
 
 
-    } catch(error){
+
+    } catch(error) {
 
 
         console.error(error);
@@ -282,6 +305,8 @@ staffRouter.post("/create", async (req,res)=>{
 
 
 });
+
+
 
 
 
@@ -334,11 +359,12 @@ staffRouter.get("/", (req,res)=>{
 
 
 
+
         res.json(staff);
 
 
 
-    }catch(error){
+    } catch(error) {
 
 
         console.error(error);
@@ -366,9 +392,10 @@ staffRouter.get("/", (req,res)=>{
 
 // =====================================
 // GET STAFF BY ID
+// ONLY NUMBERS
 // =====================================
 
-staffRouter.get("/:id",(req,res)=>{
+staffRouter.get("/:id([0-9]+)", (req,res)=>{
 
 
     try {
@@ -433,10 +460,11 @@ staffRouter.get("/:id",(req,res)=>{
 
 
 
-    }catch(error){
+    } catch(error){
 
 
         console.error(error);
+
 
 
         res.status(500).json({
@@ -444,6 +472,7 @@ staffRouter.get("/:id",(req,res)=>{
             error:"Failed to fetch staff"
 
         });
+
 
 
     }
@@ -459,11 +488,13 @@ staffRouter.get("/:id",(req,res)=>{
 
 
 
+
+
 // =====================================
 // UPDATE STAFF
 // =====================================
 
-staffRouter.put("/:id",(req,res)=>{
+staffRouter.put("/:id([0-9]+)", (req,res)=>{
 
 
     try {
@@ -488,8 +519,7 @@ staffRouter.put("/:id",(req,res)=>{
 
 
 
-        const result = db.prepare(`
-
+        db.prepare(`
 
             UPDATE STAFF
 
@@ -531,22 +561,6 @@ staffRouter.put("/:id",(req,res)=>{
 
 
 
-        if(result.changes===0){
-
-
-            return res.status(404).json({
-
-                error:"Staff not found"
-
-            });
-
-
-        }
-
-
-
-
-
         res.json({
 
             message:"Staff updated successfully"
@@ -563,7 +577,7 @@ staffRouter.put("/:id",(req,res)=>{
 
         res.status(500).json({
 
-            error:"Failed to update staff"
+            error:"Update failed"
 
         });
 
@@ -581,19 +595,24 @@ staffRouter.put("/:id",(req,res)=>{
 
 
 
+
+
 // =====================================
 // CHANGE PASSWORD
 // =====================================
 
-staffRouter.put("/:id/password", async(req,res)=>{
+staffRouter.put("/:id([0-9]+)/password", async(req,res)=>{
 
 
     try {
 
 
         const {
+
             Password
+
         } = req.body;
+
 
 
 
@@ -632,7 +651,7 @@ staffRouter.put("/:id/password", async(req,res)=>{
 
         res.json({
 
-            message:"Password updated successfully"
+            message:"Password updated"
 
         });
 
@@ -646,7 +665,7 @@ staffRouter.put("/:id/password", async(req,res)=>{
 
         res.status(500).json({
 
-            error:"Failed to change password"
+            error:"Password update failed"
 
         });
 
@@ -664,18 +683,22 @@ staffRouter.put("/:id/password", async(req,res)=>{
 
 
 
+
+
 // =====================================
-// ACTIVATE / DEACTIVATE STAFF
+// ACTIVATE / DEACTIVATE
 // =====================================
 
-staffRouter.put("/:id/active",(req,res)=>{
+staffRouter.put("/:id([0-9]+)/active",(req,res)=>{
 
 
     try {
 
 
         const {
+
             Is_Active
+
         } = req.body;
 
 
@@ -704,7 +727,7 @@ staffRouter.put("/:id/active",(req,res)=>{
 
         res.json({
 
-            message:"Staff status updated"
+            message:"Status updated"
 
         });
 
@@ -718,7 +741,7 @@ staffRouter.put("/:id/active",(req,res)=>{
 
         res.status(500).json({
 
-            error:"Failed to update status"
+            error:"Status update failed"
 
         });
 
@@ -736,11 +759,13 @@ staffRouter.put("/:id/active",(req,res)=>{
 
 
 
+
+
 // =====================================
 // DELETE STAFF
 // =====================================
 
-staffRouter.delete("/:id",(req,res)=>{
+staffRouter.delete("/:id([0-9]+)",(req,res)=>{
 
 
     try {
@@ -764,7 +789,7 @@ staffRouter.delete("/:id",(req,res)=>{
 
         res.json({
 
-            message:"Staff deleted successfully"
+            message:"Staff deleted"
 
         });
 
@@ -778,7 +803,7 @@ staffRouter.delete("/:id",(req,res)=>{
 
         res.status(500).json({
 
-            error:"Failed to delete staff"
+            error:"Delete failed"
 
         });
 
@@ -787,6 +812,8 @@ staffRouter.delete("/:id",(req,res)=>{
 
 
 });
+
+
 
 
 
