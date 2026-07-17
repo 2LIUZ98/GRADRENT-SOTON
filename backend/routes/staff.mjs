@@ -158,7 +158,7 @@ staffRouter.get("/:id", (req, res) => {
 // =====================================
 // CREATE STAFF
 // =====================================
-staffRouter.post("/", async (req, res) => {
+staffRouter.post("/create", async (req, res) => {
 
     try {
 
