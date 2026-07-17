@@ -135,7 +135,7 @@ function handleItemChange(index,e){
 
             const response = await fetch(
 
-                "https://YOUR-BACKEND-URL/rentals",
+                "https://gradrent-soton.onrender.com/rentals",
 
                 {
 

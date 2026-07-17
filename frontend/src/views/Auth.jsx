@@ -74,7 +74,7 @@ export default function Auth() {
 
             const response = await fetch(
 
-                `https://uk-yuwin.onrender.com${endpoint}`,
+                `https://gradrent-soton.onrender.com${endpoint}`,
 
                 {
 

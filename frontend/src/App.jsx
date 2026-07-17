@@ -10,6 +10,7 @@ import Home from "./views/Home.jsx";
 import Booking from "./views/Booking.jsx";
 import Auth from "./views/Auth.jsx";
 import Staff from "./views/Staff.jsx";
+import Customers from "./views/staff/Customers.jsx";
 
 
 
@@ -64,6 +65,11 @@ export default function App() {
 
     element={<Staff />}
 
+/>
+
+<Route
+    path="/staff/customers"
+    element={<Customers />}
 />
 
 
