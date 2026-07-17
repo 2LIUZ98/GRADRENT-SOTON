@@ -103,7 +103,7 @@ export default function Home({
                             to="/booking"
 
                             className="
-                                bg-white
+                                bg-blue-600
                                 text-primary
                                 px-8
                                 py-3
@@ -409,7 +409,7 @@ export default function Home({
                     to="/booking"
 
                     className="
-                        bg-white
+                        bg-blue-600
                         text-primary
                         px-8
                         py-3
@@ -607,7 +607,7 @@ function Step({
                 w-12
                 h-12
                 rounded-full
-                bg-primary
+                bg-blue-600
                 text-white
                 flex
                 items-center
