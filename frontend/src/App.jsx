@@ -20,6 +20,7 @@ import Gowns from "./views/Gowns.jsx";
 import About from "./views/About.jsx";
 import Contact from "./views/Contact.jsx";
 import Terms from "./views/Terms.jsx";
+import Privacy from "./views/Privacy.jsx";
 
 
 export default function App() {
@@ -124,6 +125,11 @@ export default function App() {
 <Route
     path="/terms"
     element={<Terms />}
+/>
+
+<Route
+    path="/privacy"
+    element={<Privacy />}
 />
         </Routes>
 
