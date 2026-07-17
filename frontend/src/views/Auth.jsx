@@ -69,7 +69,7 @@ export default function Auth() {
 
                 ? "/staff/login"
 
-                : "/staff";
+                : "/staff/create";
 
 
 
@@ -96,8 +96,17 @@ export default function Auth() {
 
 
 
-            const data = await response.json();
+          const contentType = response.headers.get("content-type");
 
+let data;
+
+if (contentType && contentType.includes("application/json")) {
+    data = await response.json();
+} else {
+    const text = await response.text();
+    console.error(text);
+    throw new Error("Server returned HTML instead of JSON.");
+}
 
 
             if (!response.ok) {
@@ -140,7 +149,7 @@ export default function Auth() {
                 );
 
 
-                window.location.href = "/dashboard";
+                window.location.href = "/staff/dashboard";
 
 
             } 

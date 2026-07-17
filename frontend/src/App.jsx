@@ -114,7 +114,7 @@ export default function App() {
 
 
                 <Route
-                    path="/staff"
+                    path="/staff/dashboard"
                     element={<Staff />}
                 />
 
