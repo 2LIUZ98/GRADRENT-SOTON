@@ -337,7 +337,9 @@ console.log(
 
 
 
-
-
+console.log(
+    "DATABASE CREATED TIME:",
+    fs.statSync(dbPath).birthtime
+);
 
 export default db;
