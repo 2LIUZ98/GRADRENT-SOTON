@@ -204,7 +204,7 @@ export default function Header({
 
                     <Link
 
-                        to="/staff"
+                        to="/staff-login"
 
                         className="
                             flex
@@ -424,7 +424,7 @@ export default function Header({
 
                     <Link
 
-                        to="/staff"
+                        to="/staff-login"
 
                         onClick={()=>setOpen(false)}
 
