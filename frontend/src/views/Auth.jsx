@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useLanguage } from "../context/LanguageContext.jsx";
 
 
 export default function Auth() {
