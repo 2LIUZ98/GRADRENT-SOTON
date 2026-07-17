@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 
-import Home from "../views/Home.jsx";
+import Home from "./views/Home.jsx";
 
 
 
