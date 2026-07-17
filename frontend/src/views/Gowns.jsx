@@ -19,7 +19,7 @@ export default function Gowns() {
 
         {
             title: "High Replica 高仿",
-            price: "From £12",
+            price: "£13 per day",
 
             items: [
                 "University of Southampton gown",
@@ -34,7 +34,7 @@ export default function Gowns() {
 
         {
             title: "Original Official 原版",
-            price: "Premium",
+            price: "£43 per day",
 
             items: [
                 "Official graduation gown",

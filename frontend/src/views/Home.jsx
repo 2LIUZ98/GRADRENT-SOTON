@@ -238,7 +238,7 @@ export default function Home({
                                 "Hat sizes: L / XL"
                             ]}
 
-                            price="From £12"
+                            price="£13 per day"
 
                         />
 
@@ -255,7 +255,7 @@ export default function Home({
                                 "Hat sizes: S / M / L / XL"
                             ]}
 
-                            price="Premium Option"
+                            price="£43 per day"
 
                         />
 
