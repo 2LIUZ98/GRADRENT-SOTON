@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import db from "../db.mjs";
+import db from "./db.mjs";
 
 
 const staffRouter = express.Router();
