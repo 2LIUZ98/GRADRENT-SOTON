@@ -19,6 +19,7 @@ import Returns from "./views/staff/Returns.jsx";
 import Gowns from "./views/Gowns.jsx";
 import About from "./views/About.jsx";
 import Contact from "./views/Contact.jsx";
+import Terms from "./views/Terms.jsx";
 
 
 export default function App() {
@@ -120,6 +121,10 @@ export default function App() {
     element={<Contact />}
 />
 
+<Route
+    path="/terms"
+    element={<Terms />}
+/>
         </Routes>
 
 
