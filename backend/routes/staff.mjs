@@ -1,638 +1,428 @@
-import { useState } from "react";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import express from "express";
+import bcrypt from "bcrypt";
+import db from "../db.mjs";
 
+const staffRouter = express.Router();
 
-export default function Auth() {
+const SALT_ROUNDS = 10;
 
 
-    const [mode, setMode] = useState("login");
+// =====================================
+// STAFF LOGIN
+// =====================================
+staffRouter.post("/login", async (req, res) => {
 
-    const [loading, setLoading] = useState(false);
+    try {
 
+        const { Username, Password } = req.body;
 
+        const stmt = db.prepare(`
+            SELECT *
+            FROM STAFF
+            WHERE Username = ?
+            AND Is_Active = 1
+        `);
 
-    const [form, setForm] = useState({
+        const staff = stmt.get(Username);
 
-        Full_Name: "",
+        if (!staff) {
 
-        Username: "",
-
-        Password: "",
-
-        Role: "Staff",
-
-        WeChat_ID: "",
-
-        Phone: ""
-
-    });
-
-
-
-
-
-    function handleChange(e) {
-
-        const { name, value } = e.target;
-
-
-        setForm(prev => ({
-
-            ...prev,
-
-            [name]: value
-
-        }));
-
-    }
-
-
-
-
-
-
-    async function handleSubmit(e) {
-
-        e.preventDefault();
-
-
-        setLoading(true);
-
-
-
-        try {
-
-
-            const endpoint = mode === "login"
-
-                ? "/staff/login"
-
-                : "/staff";
-
-
-
-            const response = await fetch(
-
-                `https://uk-yuwin.onrender.com${endpoint}`,
-
-                {
-
-                    method: "POST",
-
-                    headers: {
-
-                        "Content-Type": "application/json"
-
-                    },
-
-
-                    body: JSON.stringify(form)
-
-                }
-
-            );
-
-
-
-            const data = await response.json();
-
-
-
-            if (!response.ok) {
-
-                throw new Error(
-
-                    data.error || "Authentication failed"
-
-                );
-
-            }
-
-
-
-
-
-            alert(
-
-                mode === "login"
-
-                    ? "Login successful"
-
-                    : "Staff account created successfully"
-
-            );
-
-
-
-
-
-            if (mode === "login") {
-
-
-                localStorage.setItem(
-
-                    "staff",
-
-                    JSON.stringify(data)
-
-                );
-
-
-                window.location.href = "/dashboard";
-
-
-            } 
-            else {
-
-
-                setMode("login");
-
-
-                setForm({
-
-                    Full_Name: "",
-
-                    Username: "",
-
-                    Password: "",
-
-                    Role: "Staff",
-
-                    WeChat_ID: "",
-
-                    Phone: ""
-
-                });
-
-
-            }
-
-
-
-
-        } catch (error) {
-
-
-            console.error(error);
-
-
-            alert(error.message);
-
+            return res.status(401).json({
+                error: "Invalid username or password"
+            });
 
         }
 
+        const validPassword = await bcrypt.compare(
+            Password,
+            staff.Password_Hash
+        );
 
+        if (!validPassword) {
 
-        setLoading(false);
+            return res.status(401).json({
+                error: "Invalid username or password"
+            });
 
+        }
+
+        db.prepare(`
+            UPDATE STAFF
+            SET Last_Login = CURRENT_TIMESTAMP
+            WHERE Staff_ID = ?
+        `).run(staff.Staff_ID);
+
+        res.json({
+            message: "Login successful",
+            Staff_ID: staff.Staff_ID,
+            Full_Name: staff.Full_Name,
+            Username: staff.Username,
+            Role: staff.Role
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            error: "Login failed"
+        });
 
     }
 
+});
 
 
+// =====================================
+// GET ALL STAFF
+// =====================================
+staffRouter.get("/", (req, res) => {
 
+    try {
 
+        const staff = db.prepare(`
+            SELECT
+                Staff_ID,
+                Full_Name,
+                Username,
+                Role,
+                WeChat_ID,
+                Phone,
+                Is_Active,
+                Last_Login,
+                Created_At
+            FROM STAFF
+            ORDER BY Full_Name
+        `).all();
 
+        res.json(staff);
 
-    return (
+    } catch (error) {
 
+        console.error(error);
 
-        <div className="
-            min-h-screen
-            bg-[#00539F]
-            text-white
-        ">
+        res.status(500).json({
+            error: "Failed to fetch staff"
+        });
+
+    }
+
+});
+
+
+// =====================================
+// GET STAFF BY ID
+// =====================================
+staffRouter.get("/:id", (req, res) => {
+
+    try {
+
+        const staff = db.prepare(`
+            SELECT
+                Staff_ID,
+                Full_Name,
+                Username,
+                Role,
+                WeChat_ID,
+                Phone,
+                Is_Active,
+                Last_Login,
+                Created_At
+            FROM STAFF
+            WHERE Staff_ID = ?
+        `).get(req.params.id);
 
+        if (!staff) {
 
+            return res.status(404).json({
+                error: "Staff not found"
+            });
 
-            <Header />
+        }
 
+        res.json(staff);
 
+    } catch (error) {
 
+        console.error(error);
 
+        res.status(500).json({
+            error: "Failed to fetch staff"
+        });
 
+    }
 
-            <section className="
-                py-16
-                px-6
-                flex
-                justify-center
-            ">
+});
 
 
+// =====================================
+// CREATE STAFF
+// =====================================
+staffRouter.post("/", async (req, res) => {
 
-                <form
+    try {
 
-                    onSubmit={handleSubmit}
+        const {
+            Full_Name,
+            Username,
+            Password,
+            Role,
+            WeChat_ID,
+            Phone
+        } = req.body;
 
-                    className="
-                        bg-white
-                        text-gray-900
-                        w-full
-                        max-w-md
-                        rounded-xl
-                        shadow-xl
-                        p-8
-                        space-y-5
-                    "
+        const exists = db.prepare(`
+            SELECT Staff_ID
+            FROM STAFF
+            WHERE Username = ?
+        `).get(Username);
 
-                >
+        if (exists) {
 
+            return res.status(409).json({
+                error: "Username already exists"
+            });
 
+        }
 
+        const hash = await bcrypt.hash(
+            Password,
+            SALT_ROUNDS
+        );
 
-                    <h1 className="
-                        text-3xl
-                        font-bold
-                        text-center
-                    ">
+        const result = db.prepare(`
+            INSERT INTO STAFF
+            (
+                Full_Name,
+                Username,
+                Password_Hash,
+                Role,
+                WeChat_ID,
+                Phone
+            )
+            VALUES (?, ?, ?, ?, ?, ?)
+        `).run(
+            Full_Name,
+            Username,
+            hash,
+            Role || "Staff",
+            WeChat_ID,
+            Phone
+        );
 
+        res.status(201).json({
+            message: "Staff created successfully",
+            Staff_ID: result.lastInsertRowid
+        });
 
-                        Staff
+    } catch (error) {
 
-                        {
+        console.error(error);
 
-                            mode === "login"
+        res.status(500).json({
+            error: "Failed to create staff"
+        });
 
-                            ?
+    }
 
-                            " Login"
+});
 
-                            :
 
-                            " Sign Up"
+// =====================================
+// UPDATE STAFF
+// =====================================
+staffRouter.put("/:id", (req, res) => {
 
-                        }
+    try {
 
+        const {
+            Full_Name,
+            Username,
+            Role,
+            WeChat_ID,
+            Phone
+        } = req.body;
 
-                    </h1>
+        const result = db.prepare(`
+            UPDATE STAFF
 
+            SET
 
+                Full_Name = ?,
 
+                Username = ?,
 
+                Role = ?,
 
+                WeChat_ID = ?,
 
+                Phone = ?
 
-                    {
+            WHERE Staff_ID = ?
+        `).run(
+            Full_Name,
+            Username,
+            Role,
+            WeChat_ID,
+            Phone,
+            req.params.id
+        );
 
-                    mode === "signup" &&
+        if (result.changes === 0) {
 
+            return res.status(404).json({
+                error: "Staff not found"
+            });
 
-                    <input
+        }
 
+        res.json({
+            message: "Staff updated successfully"
+        });
 
-                        name="Full_Name"
+    } catch (error) {
 
+        console.error(error);
 
-                        placeholder="Full Name"
+        res.status(500).json({
+            error: "Failed to update staff"
+        });
 
+    }
 
-                        value={form.Full_Name}
+});
 
 
-                        onChange={handleChange}
+// =====================================
+// CHANGE PASSWORD
+// =====================================
+staffRouter.put("/:id/password", async (req, res) => {
 
+    try {
 
-                        required
+        const { Password } = req.body;
 
+        const hash = await bcrypt.hash(
+            Password,
+            SALT_ROUNDS
+        );
 
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
+        const result = db.prepare(`
+            UPDATE STAFF
 
+            SET Password_Hash = ?
 
-                    />
+            WHERE Staff_ID = ?
+        `).run(
+            hash,
+            req.params.id
+        );
 
+        if (result.changes === 0) {
 
-                    }
+            return res.status(404).json({
+                error: "Staff not found"
+            });
 
+        }
 
+        res.json({
+            message: "Password updated successfully"
+        });
 
+    } catch (error) {
 
+        console.error(error);
 
+        res.status(500).json({
+            error: "Failed to change password"
+        });
 
+    }
 
-                    <input
+});
 
 
-                        name="Username"
+// =====================================
+// ACTIVATE / DEACTIVATE STAFF
+// =====================================
+staffRouter.put("/:id/active", (req, res) => {
 
+    try {
 
-                        placeholder="Username"
+        const { Is_Active } = req.body;
 
+        const result = db.prepare(`
+            UPDATE STAFF
 
-                        value={form.Username}
+            SET Is_Active = ?
 
+            WHERE Staff_ID = ?
+        `).run(
+            Is_Active,
+            req.params.id
+        );
 
-                        onChange={handleChange}
+        if (result.changes === 0) {
 
+            return res.status(404).json({
+                error: "Staff not found"
+            });
 
-                        required
+        }
 
+        res.json({
+            message: "Staff status updated"
+        });
 
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
+    } catch (error) {
 
+        console.error(error);
 
-                    />
+        res.status(500).json({
+            error: "Failed to update staff status"
+        });
 
+    }
 
+});
 
 
+// =====================================
+// DELETE STAFF
+// =====================================
+staffRouter.delete("/:id", (req, res) => {
 
+    try {
 
+        const result = db.prepare(`
+            DELETE FROM STAFF
+            WHERE Staff_ID = ?
+        `).run(req.params.id);
 
-                    <input
+        if (result.changes === 0) {
 
+            return res.status(404).json({
+                error: "Staff not found"
+            });
 
-                        type="password"
+        }
 
+        res.json({
+            message: "Staff deleted successfully"
+        });
 
-                        name="Password"
+    } catch (error) {
 
+        console.error(error);
 
-                        placeholder="Password"
+        res.status(500).json({
+            error: "Failed to delete staff"
+        });
 
+    }
 
-                        value={form.Password}
+});
 
 
-                        onChange={handleChange}
-
-
-                        required
-
-
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
-
-
-                    />
-
-
-
-
-
-
-
-                    {
-
-
-                    mode === "signup" &&
-
-
-                    <>
-
-
-                    <input
-
-
-                        name="WeChat_ID"
-
-
-                        placeholder="WeChat ID"
-
-
-                        value={form.WeChat_ID}
-
-
-                        onChange={handleChange}
-
-
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
-
-
-                    />
-
-
-
-
-
-                    <input
-
-
-                        name="Phone"
-
-
-                        placeholder="Phone Number"
-
-
-                        value={form.Phone}
-
-
-                        onChange={handleChange}
-
-
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
-
-
-                    />
-
-
-
-
-
-                    <select
-
-
-                        name="Role"
-
-
-                        value={form.Role}
-
-
-                        onChange={handleChange}
-
-
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
-
-
-                    >
-
-
-                        <option value="Staff">
-
-                            Staff
-
-                        </option>
-
-
-                        <option value="Admin">
-
-                            Admin
-
-                        </option>
-
-
-
-                    </select>
-
-
-
-                    </>
-
-
-                    }
-
-
-
-
-
-
-
-                    <button
-
-
-                        disabled={loading}
-
-
-                        className="
-                            w-full
-                            bg-blue-600
-                            hover:bg-blue-700
-                            text-white
-                            py-3
-                            rounded-lg
-                            font-bold
-                        "
-
-
-                    >
-
-
-
-                        {
-
-                        loading
-
-                        ?
-
-                        "Processing..."
-
-                        :
-
-                        mode === "login"
-
-                        ?
-
-                        "Login"
-
-                        :
-
-                        "Create Staff Account"
-
-
-                        }
-
-
-
-                    </button>
-
-
-
-
-
-
-
-                    <button
-
-
-                        type="button"
-
-
-                        onClick={() => setMode(
-
-                            mode === "login"
-
-                            ?
-
-                            "signup"
-
-                            :
-
-                            "login"
-
-                        )}
-
-
-                        className="
-                            w-full
-                            text-blue-600
-                            font-semibold
-                        "
-
-
-                    >
-
-
-                        {
-
-                        mode === "login"
-
-                        ?
-
-                        "Create Staff Account"
-
-                        :
-
-                        "Back to Login"
-
-
-                        }
-
-
-                    </button>
-
-
-
-
-
-                </form>
-
-
-
-            </section>
-
-
-
-
-
-
-
-            <Footer />
-
-
-
-        </div>
-
-
-    );
-
-}
+export default staffRouter;

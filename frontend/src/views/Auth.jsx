@@ -11,26 +11,37 @@ export default function Auth() {
     const [loading, setLoading] = useState(false);
 
 
-    const [form,setForm] = useState({
 
-        Staff_Name:"",
-        Email:"",
-        Password:""
+    const [form, setForm] = useState({
+
+        Full_Name: "",
+
+        Username: "",
+
+        Password: "",
+
+        Role: "Staff",
+
+        WeChat_ID: "",
+
+        Phone: ""
 
     });
 
 
 
-    function handleChange(e){
-
-        const {name,value}=e.target;
 
 
-        setForm(prev=>({
+    function handleChange(e) {
+
+        const { name, value } = e.target;
+
+
+        setForm(prev => ({
 
             ...prev,
 
-            [name]:value
+            [name]: value
 
         }));
 
@@ -40,22 +51,24 @@ export default function Auth() {
 
 
 
-    async function handleSubmit(e){
+
+    async function handleSubmit(e) {
 
         e.preventDefault();
+
 
         setLoading(true);
 
 
 
-        try{
+        try {
 
 
-            const endpoint = mode==="login"
+            const endpoint = mode === "login"
 
                 ? "/staff/login"
 
-                : "/staff/signup";
+                : "/staff";
 
 
 
@@ -65,16 +78,16 @@ export default function Auth() {
 
                 {
 
-                    method:"POST",
+                    method: "POST",
 
-                    headers:{
+                    headers: {
 
-                        "Content-Type":"application/json"
+                        "Content-Type": "application/json"
 
                     },
 
 
-                    body:JSON.stringify(form)
+                    body: JSON.stringify(form)
 
                 }
 
@@ -86,56 +99,85 @@ export default function Auth() {
 
 
 
-            if(!response.ok){
+            if (!response.ok) {
 
                 throw new Error(
-                    data.message || "Authentication failed"
+
+                    data.error || "Authentication failed"
+
                 );
 
             }
 
 
 
+
+
             alert(
 
-                mode==="login"
+                mode === "login"
 
-                ? "Login successful"
+                    ? "Login successful"
 
-                : "Account created successfully"
+                    : "Staff account created successfully"
 
             );
 
 
 
-            if(mode==="login"){
+
+
+            if (mode === "login") {
 
 
                 localStorage.setItem(
 
                     "staff",
 
-                    JSON.stringify(data.staff)
+                    JSON.stringify(data)
 
                 );
 
 
-                window.location.href="/dashboard";
+                window.location.href = "/dashboard";
+
+
+            } 
+            else {
+
+
+                setMode("login");
+
+
+                setForm({
+
+                    Full_Name: "",
+
+                    Username: "",
+
+                    Password: "",
+
+                    Role: "Staff",
+
+                    WeChat_ID: "",
+
+                    Phone: ""
+
+                });
 
 
             }
 
 
 
-        }
 
-        catch(err){
-
-
-            console.error(err);
+        } catch (error) {
 
 
-            alert(err.message);
+            console.error(error);
+
+
+            alert(error.message);
 
 
         }
@@ -144,13 +186,17 @@ export default function Auth() {
 
         setLoading(false);
 
+
     }
 
 
 
 
 
+
+
     return (
+
 
         <div className="
             min-h-screen
@@ -159,16 +205,21 @@ export default function Auth() {
         ">
 
 
+
             <Header />
+
+
+
 
 
 
             <section className="
                 py-16
+                px-6
                 flex
                 justify-center
-                px-6
             ">
+
 
 
                 <form
@@ -178,15 +229,16 @@ export default function Auth() {
                     className="
                         bg-white
                         text-gray-900
+                        w-full
+                        max-w-md
                         rounded-xl
                         shadow-xl
                         p-8
-                        w-full
-                        max-w-md
                         space-y-5
                     "
 
                 >
+
 
 
 
@@ -196,32 +248,54 @@ export default function Auth() {
                         text-center
                     ">
 
-                        Staff 
+
+                        Staff
+
                         {
-                            mode==="login"
-                            ? " Login"
-                            : " Sign Up"
+
+                            mode === "login"
+
+                            ?
+
+                            " Login"
+
+                            :
+
+                            " Sign Up"
+
                         }
+
 
                     </h1>
 
 
 
 
+
+
+
                     {
-                    mode==="signup" &&
+
+                    mode === "signup" &&
+
 
                     <input
 
-                        name="Staff_Name"
 
-                        placeholder="Staff Name"
+                        name="Full_Name"
 
-                        value={form.Staff_Name}
+
+                        placeholder="Full Name"
+
+
+                        value={form.Full_Name}
+
 
                         onChange={handleChange}
 
+
                         required
+
 
                         className="
                             w-full
@@ -230,26 +304,35 @@ export default function Auth() {
                             rounded-lg
                         "
 
+
                     />
+
 
                     }
 
 
 
 
+
+
+
                     <input
 
-                        type="email"
 
-                        name="Email"
+                        name="Username"
 
-                        placeholder="Email"
 
-                        value={form.Email}
+                        placeholder="Username"
+
+
+                        value={form.Username}
+
 
                         onChange={handleChange}
 
+
                         required
+
 
                         className="
                             w-full
@@ -258,25 +341,35 @@ export default function Auth() {
                             rounded-lg
                         "
 
+
                     />
 
 
 
 
 
+
+
                     <input
+
 
                         type="password"
 
+
                         name="Password"
+
 
                         placeholder="Password"
 
+
                         value={form.Password}
+
 
                         onChange={handleChange}
 
+
                         required
+
 
                         className="
                             w-full
@@ -285,7 +378,130 @@ export default function Auth() {
                             rounded-lg
                         "
 
+
                     />
+
+
+
+
+
+
+
+                    {
+
+
+                    mode === "signup" &&
+
+
+                    <>
+
+
+                    <input
+
+
+                        name="WeChat_ID"
+
+
+                        placeholder="WeChat ID"
+
+
+                        value={form.WeChat_ID}
+
+
+                        onChange={handleChange}
+
+
+                        className="
+                            w-full
+                            border
+                            p-3
+                            rounded-lg
+                        "
+
+
+                    />
+
+
+
+
+
+                    <input
+
+
+                        name="Phone"
+
+
+                        placeholder="Phone Number"
+
+
+                        value={form.Phone}
+
+
+                        onChange={handleChange}
+
+
+                        className="
+                            w-full
+                            border
+                            p-3
+                            rounded-lg
+                        "
+
+
+                    />
+
+
+
+
+
+                    <select
+
+
+                        name="Role"
+
+
+                        value={form.Role}
+
+
+                        onChange={handleChange}
+
+
+                        className="
+                            w-full
+                            border
+                            p-3
+                            rounded-lg
+                        "
+
+
+                    >
+
+
+                        <option value="Staff">
+
+                            Staff
+
+                        </option>
+
+
+                        <option value="Admin">
+
+                            Admin
+
+                        </option>
+
+
+
+                    </select>
+
+
+
+                    </>
+
+
+                    }
+
+
 
 
 
@@ -293,7 +509,9 @@ export default function Auth() {
 
                     <button
 
+
                         disabled={loading}
+
 
                         className="
                             w-full
@@ -305,28 +523,34 @@ export default function Auth() {
                             font-bold
                         "
 
+
                     >
 
+
+
                         {
-                            loading
 
-                            ?
+                        loading
 
-                            "Processing..."
+                        ?
 
-                            :
+                        "Processing..."
 
-                            mode==="login"
+                        :
 
-                            ?
+                        mode === "login"
 
-                            "Login"
+                        ?
 
-                            :
+                        "Login"
 
-                            "Create Account"
+                        :
+
+                        "Create Staff Account"
+
 
                         }
+
 
 
                     </button>
@@ -335,13 +559,17 @@ export default function Auth() {
 
 
 
+
+
                     <button
+
 
                         type="button"
 
-                        onClick={()=>setMode(
 
-                            mode==="login"
+                        onClick={() => setMode(
+
+                            mode === "login"
 
                             ?
 
@@ -353,31 +581,41 @@ export default function Auth() {
 
                         )}
 
+
                         className="
                             w-full
                             text-blue-600
+                            font-semibold
                         "
+
 
                     >
 
+
                         {
-                            mode==="login"
 
-                            ?
+                        mode === "login"
 
-                            "Create staff account"
+                        ?
 
-                            :
+                        "Create Staff Account"
 
-                            "Already have account? Login"
+                        :
+
+                        "Back to Login"
+
 
                         }
+
 
                     </button>
 
 
 
+
+
                 </form>
+
 
 
             </section>
@@ -385,10 +623,15 @@ export default function Auth() {
 
 
 
+
+
+
             <Footer />
 
 
+
         </div>
+
 
     );
 
