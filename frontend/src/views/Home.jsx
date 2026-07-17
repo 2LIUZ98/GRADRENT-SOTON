@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import { useLanguage } from "../context/LanguageContext.jsx";
+
+import en from "../translations/en.js";
+import zhCN from "../translations/zh-CN.js";
 
 import {
     GraduationCap,
@@ -15,6 +19,7 @@ import {
 } from "lucide-react";
 
 
+
 export default function Home({
 
     colorTheme,
@@ -23,14 +28,30 @@ export default function Home({
 }) {
 
 
+    const { language } = useLanguage();
+
+
+    const t = language === "zh"
+        ? zhCN
+        : en;
+
+
+
+
     return (
 
-        <div className="min-h-screen bg-[#00539F] text-white">
+        <div className="
+            min-h-screen
+            bg-[#00539F]
+            text-white
+        ">
+
 
 
             {/* ================================
                 HEADER
             ================================= */}
+
 
             <Header
 
@@ -42,16 +63,17 @@ export default function Home({
 
 
 
-            {/* ================================
-                MAIN CONTENT
-            ================================= */}
+
+
 
             <main>
+
 
 
                 {/* ================================
                     HERO SECTION
                 ================================= */}
+
 
                 <section className="
                     bg-primary
@@ -61,16 +83,26 @@ export default function Home({
                     text-center
                 ">
 
+
                     <div className="
                         max-w-5xl
                         mx-auto
                     ">
 
 
+
                         <GraduationCap
+
                             size={70}
-                            className="mx-auto mb-6"
+
+                            className="
+                                mx-auto
+                                mb-6
+                            "
+
                         />
+
+
 
 
                         <h1 className="
@@ -79,12 +111,12 @@ export default function Home({
                             mb-6
                         ">
 
-                            University of Southampton
-                            <br />
-
-                            Graduation Gown Rental 🎓
+                            {t.heroTitle}
 
                         </h1>
+
+
+
 
 
                         <p className="
@@ -93,14 +125,19 @@ export default function Home({
                             opacity-90
                         ">
 
-                            Affordable graduation gowns,
-                            hoods and caps for your special day.
+                            {t.heroDescription}
 
                         </p>
 
 
-                      <Link
+
+
+
+
+                        <Link
+
                             to="/booking"
+
                             className="
                                 bg-blue-600
                                 text-white
@@ -110,322 +147,549 @@ export default function Home({
                                 font-bold
                                 hover:bg-blue-700
                                 transition
-                                  "
-                                        >
-                          Book Your Gown
+                            "
+
+                        >
+
+                            {t.heroButton}
+
+
                         </Link>
 
 
+
+
                     </div>
+
 
 
                 </section>
 
 
 
+
+
+
+
+
+
                 {/* ================================
-                SERVICES
-            ================================= */}
-
-            <section className="
-                py-16
-                px-6
-            ">
+                    SERVICES
+                ================================= */}
 
 
-                <div className="
-                    max-w-6xl
-                    mx-auto
-                    grid
-                    md:grid-cols-3
-                    gap-8
+
+                <section className="
+                    py-16
+                    px-6
                 ">
-
-
-                    <ServiceCard
-
-                        icon={<PackageCheck size={40} className="text-primary"/>}
-
-                        title="Complete Set"
-
-                        text="
-                        Graduation gown, hood and hat included.
-                        "
-
-                    />
-
-
-                    <ServiceCard
-
-                        icon={<Ruler size={40} className="text-primary"/>}
-
-                        title="Multiple Sizes"
-
-                        text="
-                        Gowns available in sizes 45, 48, 51 and 54.
-                        "
-
-                    />
-
-
-                    <ServiceCard
-
-                        icon={<MessageCircle size={40} className="text-primary"/>}
-
-                        title="Easy Booking"
-
-                        text="
-                        Contact us directly through WeChat.
-                        "
-
-                    />
-
-
-                </div>
-
-
-            </section>
-
-
-
-
-            {/* ================================
-                GOWN OPTIONS
-            ================================= */}
-
-            <section className="
-                bg-white
-                text-gray-800
-                py-16
-                px-6
-            ">
-
-
-                <div className="
-                    max-w-6xl
-                    mx-auto
-                ">
-
-
-                    <h2 className="
-                        text-3xl
-                        font-bold
-                        text-center
-                        mb-10
-                    ">
-
-                        Our Graduation Gown Options
-
-                    </h2>
-
 
 
                     <div className="
-                        grid
-                        md:grid-cols-2
-                        gap-8
-                    ">
-
-
-
-                        <OptionCard
-
-                            title="High Replica 高仿"
-
-                            items={[
-                                "Gown sizes: 45 / 48 / 51 / 54",
-                                "MA Hood",
-                                "MSc Hood",
-                                "Hat sizes: L / XL"
-                            ]}
-
-                            price="£13 per day"
-
-                        />
-
-
-
-                        <OptionCard
-
-                            title="Original 原版"
-
-                            items={[
-                                "Gown sizes: 45 / 48 / 51 / 54",
-                                "MA Hood",
-                                "MSc Hood",
-                                "Hat sizes: S / M / L / XL"
-                            ]}
-
-                            price="£43 per day"
-
-                        />
-
-
-                    </div>
-
-
-                </div>
-
-
-            </section>
-
-
-
-
-
-            {/* ================================
-                HOW IT WORKS
-            ================================= */}
-
-            <section className="
-                py-16
-                px-6
-                bg-gray-100
-                text-gray-900
-            ">
-
-
-                <div className="
-                    max-w-5xl
-                    mx-auto
-                ">
-
-
-                    <h2 className="
-                        text-3xl
-                        font-bold
-                        text-center
-                        mb-12
-                    ">
-
-                        How It Works
-
-                    </h2>
-
-
-
-                    <div className="
+                        max-w-6xl
+                        mx-auto
                         grid
                         md:grid-cols-3
                         gap-8
                     ">
 
 
-                        <Step
 
-                            number="1"
+                        <ServiceCard
 
-                            title="Contact Us"
 
-                            text="
-                            Send your graduation details through WeChat.
-                            "
+                            icon={
+
+                                <PackageCheck
+
+                                    size={40}
+
+                                    className="text-primary"
+
+                                />
+
+                            }
+
+
+                            title={t.completeSet}
+
+
+                            text={t.completeSetText}
+
+
+
+                        />
+
+
+
+
+
+
+                        <ServiceCard
+
+
+                            icon={
+
+                                <Ruler
+
+                                    size={40}
+
+                                    className="text-primary"
+
+                                />
+
+                            }
+
+
+                            title={t.multipleSizes}
+
+
+                            text={t.multipleSizesText}
+
+
 
                         />
 
 
-                        <Step
 
-                            number="2"
 
-                            title="Reserve"
 
-                            text="
-                            Choose your gown size and rental package.
-                            "
+
+
+                        <ServiceCard
+
+
+                            icon={
+
+                                <MessageCircle
+
+                                    size={40}
+
+                                    className="text-primary"
+
+                                />
+
+                            }
+
+
+                            title={t.easyBooking}
+
+
+                            text={t.easyBookingText}
+
+
 
                         />
 
-
-                        <Step
-
-                            number="3"
-
-                            title="Collect & Return"
-
-                            text="
-                            Collect before graduation and return after use.
-                            "
-
-                        />
 
 
                     </div>
 
 
-                </div>
 
-
-            </section>
-
+                </section>
 
 
 
 
 
-            {/* ================================
-                CTA
-            ================================= */}
-
-            <section className="
-                py-16
-                bg-primary
-                text-white
-                text-center
-                px-6
-            ">
 
 
-                <CalendarDays
-                    size={50}
-                    className="mx-auto mb-5"
-                />
 
 
-                <h2 className="
-                    text-3xl
-                    font-bold
-                    mb-4
+
+
+
+                {/* ================================
+                    GOWN OPTIONS
+                ================================= */}
+
+
+
+                <section className="
+                    bg-white
+                    text-gray-800
+                    py-16
+                    px-6
                 ">
 
-                    Ready for Graduation Day?
-
-                </h2>
 
 
-                <p className="mb-8">
-
-                    Reserve your graduation gown today.
-
-                </p>
+                    <div className="
+                        max-w-6xl
+                        mx-auto
+                    ">
 
 
 
-                <Link
+                        <h2 className="
+                            text-3xl
+                            font-bold
+                            text-center
+                            mb-10
+                        ">
 
-                    to="/booking"
 
-                    className="
-                        bg-blue-600
-                        text-primary
-                        px-8
-                        py-3
-                        rounded-lg
+                            {t.gownOptions}
+
+
+                        </h2>
+
+
+
+
+
+
+                        <div className="
+                            grid
+                            md:grid-cols-2
+                            gap-8
+                        ">
+
+
+
+
+
+
+                            <OptionCard
+
+
+                                title={t.highReplica}
+
+
+
+                                items={[
+
+                                    t.sizeList,
+
+                                    t.maHood,
+
+                                    t.mscHood,
+
+                                    t.hatSize
+
+                                ]}
+
+
+
+                                price={t.replicaPrice}
+
+
+
+                            />
+
+
+
+
+
+
+
+
+
+                            <OptionCard
+
+
+                                title={t.original}
+
+
+
+                                items={[
+
+                                    t.sizeList,
+
+                                    t.maHood,
+
+                                    t.mscHood,
+
+                                    t.originalHatSize
+
+                                ]}
+
+
+
+                                price={t.originalPrice}
+
+
+
+                            />
+
+
+
+
+
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+                </section>
+
+                
+
+
+
+
+
+                {/* ================================
+                    HOW IT WORKS
+                ================================= */}
+
+
+
+                <section className="
+                    py-16
+                    px-6
+                    bg-gray-100
+                    text-gray-900
+                ">
+
+
+
+                    <div className="
+                        max-w-5xl
+                        mx-auto
+                    ">
+
+
+
+                        <h2 className="
+                            text-3xl
+                            font-bold
+                            text-center
+                            mb-12
+                        ">
+
+
+                            {t.howItWorks}
+
+
+                        </h2>
+
+
+
+
+
+
+
+                        <div className="
+                            grid
+                            md:grid-cols-3
+                            gap-8
+                        ">
+
+
+
+
+
+                            <Step
+
+
+                                number="1"
+
+
+                                title={t.step1Title}
+
+
+                                text={t.step1Text}
+
+
+
+                            />
+
+
+
+
+
+
+                            <Step
+
+
+                                number="2"
+
+
+                                title={t.step2Title}
+
+
+                                text={t.step2Text}
+
+
+
+                            />
+
+
+
+
+
+
+
+                            <Step
+
+
+                                number="3"
+
+
+                                title={t.step3Title}
+
+
+                                text={t.step3Text}
+
+
+
+                            />
+
+
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+
+
+                </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {/* ================================
+                    CTA
+                ================================= */}
+
+
+
+                <section className="
+                    py-16
+                    bg-primary
+                    text-white
+                    text-center
+                    px-6
+                ">
+
+
+
+
+                    <CalendarDays
+
+                        size={50}
+
+                        className="
+                            mx-auto
+                            mb-5
+                        "
+
+                    />
+
+
+
+
+
+
+                    <h2 className="
+                        text-3xl
                         font-bold
-                        hover:bg-blue-700
-                    "
-
-                >
-
-                    Start Booking
-
-                </Link>
+                        mb-4
+                    ">
 
 
-            </section>
+                        {t.readyTitle}
 
 
-                </main>
+
+                    </h2>
+
+
+
+
+
+
+
+                    <p className="mb-8">
+
+
+                        {t.readyText}
+
+
+
+                    </p>
+
+
+
+
+
+
+
+
+
+                    <Link
+
+
+                        to="/booking"
+
+
+                        className="
+                            bg-blue-600
+                            text-white
+                            px-8
+                            py-3
+                            rounded-lg
+                            font-bold
+                            hover:bg-blue-700
+                        "
+
+
+                    >
+
+
+
+                        {t.booking}
+
+
+
+
+                    </Link>
+
+
+
+
+
+
+                </section>
+
+
+
+
+
+
+            </main>
+
+
+
+
 
 
 
@@ -433,26 +697,50 @@ export default function Home({
                 FOOTER
             ================================= */}
 
+
+
             <Footer />
 
 
+
+
+
+
+
         </div>
+
+
 
     );
 
 }
 
+
+
+
+
+
+
+
+
+
+
 // =====================================
-// SERVICE CARD COMPONENT
+// SERVICE CARD
 // =====================================
 
+
 function ServiceCard({
+
     icon,
     title,
     text
+
 }) {
 
+
     return (
+
 
         <div className="
             bg-white
@@ -464,15 +752,23 @@ function ServiceCard({
         ">
 
 
+
             <div className="
                 flex
                 justify-center
                 mb-5
             ">
 
+
                 {icon}
 
+
+
             </div>
+
+
+
+
 
 
             <h3 className="
@@ -481,19 +777,40 @@ function ServiceCard({
                 mb-3
             ">
 
+
+
                 {title}
+
+
 
             </h3>
 
 
-            <p className="text-gray-600">
+
+
+
+
+
+            <p className="
+                text-gray-600
+            ">
+
+
 
                 {text}
+
+
 
             </p>
 
 
+
+
+
+
         </div>
+
+
 
     );
 
@@ -501,18 +818,31 @@ function ServiceCard({
 
 
 
+
+
+
+
+
+
+
+
+
 // =====================================
-// OPTION CARD COMPONENT
+// OPTION CARD
 // =====================================
 
+
 function OptionCard({
+
     title,
     items,
     price
+
 }) {
 
 
     return (
+
 
         <div className="
             border
@@ -524,15 +854,28 @@ function OptionCard({
         ">
 
 
+
+
+
             <h3 className="
                 text-2xl
                 font-bold
                 mb-5
             ">
 
+
+
                 {title}
 
+
+
             </h3>
+
+
+
+
+
+
 
 
 
@@ -542,27 +885,59 @@ function OptionCard({
             ">
 
 
-                {items.map((item, index) => (
 
-                    <li
-                        key={index}
-                        className="
-                            flex
-                            items-center
-                            gap-2
-                        "
-                    >
 
-                        <CheckCircle size={18}/>
+                {
 
-                        {item}
+                    items.map((item,index)=>(
 
-                    </li>
 
-                ))}
+
+                        <li
+
+                            key={index}
+
+                            className="
+                                flex
+                                items-center
+                                gap-2
+                            "
+
+                        >
+
+
+
+                            <CheckCircle
+
+                                size={18}
+
+                            />
+
+
+
+                            {item}
+
+
+
+                        </li>
+
+
+
+
+                    ))
+
+                }
+
+
 
 
             </ul>
+
+
+
+
+
+
 
 
 
@@ -571,12 +946,21 @@ function OptionCard({
                 font-bold
             ">
 
+
                 {price}
+
+
 
             </p>
 
 
+
+
+
+
         </div>
+
+
 
     );
 
@@ -585,20 +969,36 @@ function OptionCard({
 
 
 
+
+
+
+
+
+
+
 // =====================================
 // STEP COMPONENT
 // =====================================
 
+
 function Step({
+
     number,
     title,
     text
+
 }) {
+
 
 
     return (
 
+
         <div className="text-center">
+
+
+
+
 
 
             <div className="
@@ -615,9 +1015,19 @@ function Step({
                 font-bold
             ">
 
+
+
                 {number}
 
+
+
             </div>
+
+
+
+
+
+
 
 
 
@@ -627,20 +1037,42 @@ function Step({
                 mb-2
             ">
 
+
+
                 {title}
+
+
 
             </h3>
 
 
 
-            <p className="text-gray-600">
+
+
+
+
+
+            <p className="
+                text-gray-600
+            ">
+
+
 
                 {text}
+
+
 
             </p>
 
 
+
+
+
+
+
         </div>
+
+
 
     );
 
