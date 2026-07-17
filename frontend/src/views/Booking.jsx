@@ -10,30 +10,35 @@ export default function Booking() {
 
     const [form, setForm] = useState({
 
-        University: "University of Southampton",
+    University: "University of Southampton",
 
-        Student_Name: "",
-        WeChat_ID: "",
+    Student_Name: "",
+    WeChat_ID: "",
 
-        Graduation_Date: "",
+    Graduation_Date: "",
 
-        Degree_Type: "",
+    Degree_Type: "",
 
-        Gown_Type: "High Replica",
 
-        Gown_Size: "",
+    Items: [
 
-        Hood_Type: "",
+        {
+            Gown_Type: "High Replica",
+            Gown_Size: "",
+            Hood_Type: "",
+            Hat_Size: ""
+        }
 
-        Hat_Size: "",
+    ],
 
-        Collection_Date: "",
 
-        Return_Date: "",
+    Collection_Date: "",
 
-        Remark: ""
+    Return_Date: "",
 
-    });
+    Remark: ""
+
+});
 
 
 
@@ -49,7 +54,72 @@ export default function Booking() {
 
     }
 
+    function addItem(){
 
+    setForm(prev => ({
+
+        ...prev,
+
+        Items:[
+
+            ...prev.Items,
+
+            {
+                Gown_Type:"High Replica",
+                Gown_Size:"",
+                Hood_Type:"",
+                Hat_Size:""
+            }
+
+        ]
+
+    }));
+
+}
+
+
+
+function removeItem(index){
+
+    setForm(prev => ({
+
+        ...prev,
+
+        Items: prev.Items.filter(
+            (_,i)=>i!==index
+        )
+
+    }));
+
+}
+
+
+
+function handleItemChange(index,e){
+
+    const {name,value}=e.target;
+
+
+    setForm(prev=>({
+
+        ...prev,
+
+        Items:prev.Items.map((item,i)=>
+
+            i===index
+
+            ? {
+                ...item,
+                [name]:value
+              }
+
+            : item
+
+        )
+
+    }));
+
+}
 
 
 
@@ -373,132 +443,204 @@ export default function Booking() {
 
 
 
-                    <select
+                    <h2 className="text-2xl font-bold">
+                        Gown Selection
+                    </h2>
 
-                        name="Gown_Type"
 
-                        value={form.Gown_Type}
+                    {
+                    form.Items.map((item,index)=>(
 
-                        onChange={handleChange}
-
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
-
+                    <div
+                    key={index}
+                    className="
+                    border
+                    rounded-lg
+                    p-5
+                    space-y-4
+                    "
                     >
 
-                        <option>
-                            High Replica
-                        </option>
 
-                        <option>
-                            Original
-                        </option>
+                    <div className="flex justify-between">
 
-                    </select>
+                    <h3 className="font-bold">
+                        Set {index+1}
+                    </h3>
 
 
+                    {
+                    form.Items.length > 1 &&
 
+                    <button
 
+                    type="button"
 
-                    <select
+                    onClick={()=>removeItem(index)}
 
-                        name="Gown_Size"
-
-                        value={form.Gown_Size}
-
-                        onChange={handleChange}
-
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
+                    className="text-red-600"
 
                     >
+                    Remove
+                    </button>
 
-                        <option>
-                            Select Gown Size
-                        </option>
+                    }
 
-                        <option>45</option>
-                        <option>48</option>
-                        <option>51</option>
-                        <option>54</option>
-
-                    </select>
+                    </div>
 
 
 
+                                <select
 
+                                name="Gown_Type"
 
-                    <select
+                                value={item.Gown_Type}
 
-                        name="Hood_Type"
+                                onChange={(e)=>handleItemChange(index,e)}
 
-                        value={form.Hood_Type}
+                                className="
+                                w-full
+                                border
+                                p-3
+                                rounded-lg
+                                "
 
-                        onChange={handleChange}
+                                >
 
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
+                                <option>
+                                High Replica
+                                </option>
 
-                    >
+                                <option>
+                                Original
+                                </option>
 
-                        <option>
-                            Select Hood
-                        </option>
-
-                        <option>
-                            MA Hood
-                        </option>
-
-                        <option>
-                            MSc Hood
-                        </option>
-
-
-                    </select>
+                                </select>
 
 
 
+                                <select
+
+                                name="Gown_Size"
+
+                                value={item.Gown_Size}
+
+                                onChange={(e)=>handleItemChange(index,e)}
+
+                                className="
+                                w-full
+                                border
+                                p-3
+                                rounded-lg
+                                "
+
+                                >
+
+                                <option>
+                                Select Gown Size
+                                </option>
+
+                                <option>45</option>
+                                <option>48</option>
+                                <option>51</option>
+                                <option>54</option>
+
+                                </select>
 
 
-                    <select
 
-                        name="Hat_Size"
+                                <select
 
-                        value={form.Hat_Size}
+                                name="Hood_Type"
 
-                        onChange={handleChange}
+                                value={item.Hood_Type}
 
-                        className="
-                            w-full
-                            border
-                            p-3
-                            rounded-lg
-                        "
+                                onChange={(e)=>handleItemChange(index,e)}
 
-                    >
+                                className="
+                                w-full
+                                border
+                                p-3
+                                rounded-lg
+                                "
 
-                        <option>
-                            Select Hat Size
-                        </option>
+                                >
 
-                        <option>S</option>
-                        <option>M</option>
-                        <option>L</option>
-                        <option>XL</option>
+                                <option>
+                                Select Hood
+                                </option>
 
-                    </select>
+                                <option>
+                                MA Hood
+                                </option>
+
+                                <option>
+                                MSc Hood
+                                </option>
+
+
+                                </select>
+
+
+
+
+                                <select
+
+                                name="Hat_Size"
+
+                                value={item.Hat_Size}
+
+                                onChange={(e)=>handleItemChange(index,e)}
+
+                                className="
+                                w-full
+                                border
+                                p-3
+                                rounded-lg
+                                "
+
+                                >
+
+                                <option>
+                                Select Hat Size
+                                </option>
+
+                                <option>S</option>
+                                <option>M</option>
+                                <option>L</option>
+                                <option>XL</option>
+
+                                </select>
+
+
+                                </div>
+
+
+                                ))
+
+                                }
+
+
+
+                                <button
+
+                                type="button"
+
+                                onClick={addItem}
+
+                                className="
+                                bg-slate-800
+                                text-white
+                                px-5
+                                py-3
+                                rounded-lg
+                                "
+
+                                >
+
+                                + Add Another Set
+
+                                </button>
 
 
 
