@@ -12,7 +12,7 @@ import Auth from "./views/Auth.jsx";
 import Staff from "./views/Staff.jsx";
 import Customers from "./views/staff/Customers.jsx";
 import Inventory from "./views/staff/Inventory.jsx";
-import Rentals from "./views/staff/Rentals.jsx";
+import Rentals from "./views/staff/Rental.jsx";
 import Products from "./views/staff/Products.jsx";
 import Payments from "./views/staff/Payments.jsx";
 import Returns from "./views/staff/Returns.jsx";
