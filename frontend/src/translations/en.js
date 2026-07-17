@@ -72,8 +72,14 @@ const en = {
         "Original",
 
 
-    priceFrom:
-        "From £12",
+    originalPrice:
+        "£13 per day",
+
+        replicaPrice:
+        "£43 per day",
+
+           sizeList:
+        "45, 48, 51, 54",
 
 
 
