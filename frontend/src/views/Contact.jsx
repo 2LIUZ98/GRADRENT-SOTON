@@ -1,5 +1,6 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 import {
@@ -10,6 +11,15 @@ import {
 
 
 export default function Contact() {
+
+
+    const { language } = useLanguage();
+
+
+    const t = language === "zh"
+        ? zhCN
+        : en;
+
 
 
     return (
@@ -41,7 +51,7 @@ export default function Contact() {
                     font-bold
                 ">
 
-                    Contact Us
+                    {t.contactTitle}
 
                 </h1>
 
@@ -53,13 +63,12 @@ export default function Contact() {
                     text-lg
                 ">
 
-                    Get in touch for graduation gown enquiries.
+                    {t.contactDescription}
 
                 </p>
 
 
             </section>
-
 
 
 
@@ -83,14 +92,13 @@ export default function Contact() {
                 ">
 
 
-
                     <ContactCard
 
                         icon={<MessageCircle size={40}/>}
 
-                        title="WeChat"
+                        title={t.wechatTitle}
 
-                        text="UKYUWIN"
+                        text={t.wechatText}
 
                     />
 
@@ -100,9 +108,9 @@ export default function Contact() {
 
                         icon={<Mail size={40}/>}
 
-                        title="Email"
+                        title={t.emailTitle}
 
-                        text="Contact us via email for enquiries."
+                        text={t.emailText}
 
                     />
 
@@ -112,9 +120,9 @@ export default function Contact() {
 
                         icon={<Phone size={40}/>}
 
-                        title="Phone"
+                        title={t.phoneTitle}
 
-                        text="Available for graduation booking enquiries."
+                        text={t.phoneText}
 
                     />
 
@@ -123,6 +131,7 @@ export default function Contact() {
 
 
             </section>
+
 
 
 
@@ -156,7 +165,7 @@ export default function Contact() {
                         mb-5
                     ">
 
-                        Graduation Gown Rental Enquiries
+                        {t.gownEnquiryTitle}
 
                     </h2>
 
@@ -165,17 +174,10 @@ export default function Contact() {
                     <p className="
                         text-gray-600
                         leading-8
+                        whitespace-pre-line
                     ">
 
-                        If you have any questions about gown sizes,
-                        packages, availability or booking arrangements,
-                        please contact us.
-
-                        <br />
-                        <br />
-
-                        We will help you prepare for your
-                        University of Southampton graduation day.
+                        {t.gownEnquiryText}
 
                     </p>
 
@@ -192,6 +194,7 @@ export default function Contact() {
 
 
 
+
             <Footer />
 
 
@@ -200,6 +203,7 @@ export default function Contact() {
     );
 
 }
+
 
 
 

@@ -709,6 +709,76 @@ role:"角色",
 
 staffID:"员工编号",
 
+gownsTitle:
+"毕业学位服",
+
+gownsDescription:
+"南安普顿大学毕业学位服租赁",
+
+universitySpecific:
+"大学专属",
+
+universitySpecificText:
+"适用于南安普顿大学毕业典礼。",
+
+availablePackages:
+"可选学位服套餐",
+
+bookThisPackage:
+"预订此套餐",
+
+sizeGuide:
+"学位服尺寸指南",
+
+availableSizes:
+"可选尺寸：",
+
+size:
+"尺寸",
+
+southamptonGown:
+"南安普顿大学学位服",
+
+officialGown:
+"官方毕业学位服",
+
+maHood:
+"MA 披肩",
+
+mscHood:
+"MSc 披肩",
+
+hatIncluded:
+"包含毕业帽",
+
+sizesAvailable:
+"尺寸：45 / 48 / 51 / 54",
+
+wechatTitle:
+    "微信",
+
+wechatText:
+    "UKYUWIN",
+
+emailTitle:
+    "邮箱",
+
+emailText:
+    "如有问题，欢迎通过邮箱联系我们。",
+
+phoneTitle:
+    "电话",
+
+phoneText:
+    "提供毕业学位服预订咨询服务。",
+
+
+gownEnquiryTitle:
+    "毕业学位服咨询",
+
+gownEnquiryText:
+    "如果您对学位服尺寸、套餐、库存或预订安排有任何疑问，请联系我们。\n\n我们将帮助您准备南安普顿大学毕业典礼。",
+
 
 };
 

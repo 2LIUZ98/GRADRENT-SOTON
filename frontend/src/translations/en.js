@@ -543,6 +543,77 @@ role:"Role",
 
 staffID:"Staff ID",
 
+
+gownsTitle:
+"Graduation Gowns",
+
+gownsDescription:
+"University of Southampton Graduation Gown Rental",
+
+universitySpecific:
+"University Specific",
+
+universitySpecificText:
+"Designed for University of Southampton ceremonies.",
+
+availablePackages:
+"Available Gown Packages",
+
+bookThisPackage:
+"Book This Package",
+
+sizeGuide:
+"Gown Size Guide",
+
+availableSizes:
+"Available sizes:",
+
+size:
+"Size",
+
+southamptonGown:
+"University of Southampton gown",
+
+officialGown:
+"Official graduation gown",
+
+maHood:
+"MA Hood",
+
+mscHood:
+"MSc Hood",
+
+hatIncluded:
+"Hat included",
+
+sizesAvailable:
+"Sizes: 45 / 48 / 51 / 54",
+
+wechatTitle:
+    "WeChat",
+
+wechatText:
+    "UKYUWIN",
+
+emailTitle:
+    "Email",
+
+emailText:
+    "Contact us via email for enquiries.",
+
+phoneTitle:
+    "Phone",
+
+phoneText:
+    "Available for graduation booking enquiries.",
+
+
+gownEnquiryTitle:
+    "Graduation Gown Rental Enquiries",
+
+gownEnquiryText:
+    "If you have any questions about gown sizes, packages, availability or booking arrangements, please contact us.\n\nWe will help you prepare for your University of Southampton graduation day.",
+
     // =========================
     // COMMON
     // =========================

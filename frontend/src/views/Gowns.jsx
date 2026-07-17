@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import { useLanguage } from "../context/LanguageContext.jsx";
 
 import {
@@ -13,42 +14,76 @@ import {
 } from "lucide-react";
 
 
+
 export default function Gowns() {
+
+
+    const { language } = useLanguage();
+
+
+    const text = language;
+
 
 
     const gownOptions = [
 
-        {
-            title: "High Replica 高仿",
-            price: "£13 per day",
 
-            items: [
-                "University of Southampton gown",
-                "MA Hood",
-                "MSc Hood",
-                "Hat included",
-                "Sizes: 45 / 48 / 51 / 54"
+        {
+            title:
+                text.highReplica,
+
+            price:
+                "£13 per day",
+
+
+            items:[
+
+                text.southamptonGown,
+
+                text.maHood,
+
+                text.mscHood,
+
+                text.hatIncluded,
+
+                `${text.sizes}: 45 / 48 / 51 / 54`
+
             ]
 
         },
 
 
-        {
-            title: "Original Official 原版",
-            price: "£43 per day",
 
-            items: [
-                "Official graduation gown",
-                "MA Hood",
-                "MSc Hood",
-                "Hat included",
-                "Sizes: 45 / 48 / 51 / 54"
+        {
+
+
+            title:
+                text.original,
+
+
+            price:
+                "£43 per day",
+
+
+            items:[
+
+                text.officialGown,
+
+                text.maHood,
+
+                text.mscHood,
+
+                text.hatIncluded,
+
+                `${text.sizes}: 45 / 48 / 51 / 54`
+
             ]
 
         }
 
 
     ];
+
 
 
 
@@ -65,7 +100,7 @@ export default function Gowns() {
 
 
 
-            {/* HERO */}
+
 
             <section className="
                 bg-[#00539F]
@@ -88,14 +123,16 @@ export default function Gowns() {
                 />
 
 
+
                 <h1 className="
                     text-5xl
                     font-bold
                 ">
 
-                    Graduation Gowns 🎓
+                    {text.gownsTitle}
 
                 </h1>
+
 
 
                 <p className="
@@ -104,7 +141,7 @@ export default function Gowns() {
                     text-xl
                 ">
 
-                    University of Southampton Graduation Rental
+                    {text.gownsDescription}
 
                 </p>
 
@@ -115,7 +152,7 @@ export default function Gowns() {
 
 
 
-            {/* FEATURES */}
+
 
             <section className="
                 max-w-6xl
@@ -132,15 +169,17 @@ export default function Gowns() {
                 ">
 
 
+
                     <Feature
 
                         icon={<PackageCheck size={40}/>}
 
-                        title="Complete Set"
+                        title={text.completeSet}
 
-                        text="Gown, hood and graduation hat included."
+                        text={text.completeSetText}
 
                     />
+
 
 
 
@@ -148,11 +187,12 @@ export default function Gowns() {
 
                         icon={<Ruler size={40}/>}
 
-                        title="Multiple Sizes"
+                        title={text.multipleSizes}
 
-                        text="Available sizes from 45 to 54."
+                        text={text.multipleSizesText}
 
                     />
+
 
 
 
@@ -160,9 +200,9 @@ export default function Gowns() {
 
                         icon={<GraduationCap size={40}/>}
 
-                        title="University Specific"
+                        title={text.universitySpecific}
 
-                        text="Designed for University of Southampton ceremonies."
+                        text={text.universitySpecificText}
 
                     />
 
@@ -177,14 +217,13 @@ export default function Gowns() {
 
 
 
-            {/* GOWN OPTIONS */}
-
 
             <section className="
                 bg-white
                 py-16
                 px-6
             ">
+
 
 
                 <div className="
@@ -200,9 +239,10 @@ export default function Gowns() {
                         mb-10
                     ">
 
-                        Available Gown Packages
+                        {text.availablePackages}
 
                     </h2>
+
 
 
 
@@ -247,6 +287,7 @@ export default function Gowns() {
 
 
 
+
                                     <ul className="
                                         space-y-3
                                         mb-6
@@ -270,7 +311,9 @@ export default function Gowns() {
 
                                                 >
 
+
                                                     <CheckCircle size={18}/>
+
 
                                                     {item}
 
@@ -287,6 +330,7 @@ export default function Gowns() {
 
 
 
+
                                     <p className="
                                         text-xl
                                         font-bold
@@ -295,7 +339,9 @@ export default function Gowns() {
 
                                         {gown.price}
 
+
                                     </p>
+
 
 
 
@@ -318,11 +364,10 @@ export default function Gowns() {
 
                                     >
 
-                                        Book This Package
+                                        {text.bookPackage}
 
 
                                     </Link>
-
 
 
 
@@ -333,7 +378,9 @@ export default function Gowns() {
                         }
 
 
+
                     </div>
+
 
 
                 </div>
@@ -346,7 +393,7 @@ export default function Gowns() {
 
 
 
-            {/* SIZE GUIDE */}
+
 
 
             <section className="
@@ -354,6 +401,7 @@ export default function Gowns() {
                 px-6
                 bg-gray-100
             ">
+
 
 
                 <div className="
@@ -369,19 +417,22 @@ export default function Gowns() {
                         mb-6
                     ">
 
-                        Gown Size Guide
+
+                        {text.sizeGuide}
+
 
                     </h2>
 
 
 
-                    <p className="
-                        text-gray-700
-                    ">
 
-                        Available sizes:
+                    <p>
+
+                        {text.availableSizes}
 
                     </p>
+
+
 
 
 
@@ -398,6 +449,7 @@ export default function Gowns() {
                             ["45","48","51","54"].map(
                                 size=>(
 
+
                                 <div
 
                                     key={size}
@@ -413,7 +465,8 @@ export default function Gowns() {
 
                                 >
 
-                                    Size {size}
+                                    {text.size} {size}
+
 
                                 </div>
 
@@ -422,13 +475,17 @@ export default function Gowns() {
                         }
 
 
+
                     </div>
+
 
 
                 </div>
 
 
+
             </section>
+
 
 
 
@@ -443,6 +500,7 @@ export default function Gowns() {
     );
 
 }
+
 
 
 
@@ -481,6 +539,7 @@ function Feature({
 
 
 
+
             <h3 className="
                 text-xl
                 font-bold
@@ -493,6 +552,7 @@ function Feature({
 
 
 
+
             <p className="
                 text-gray-600
             ">
@@ -502,7 +562,9 @@ function Feature({
             </p>
 
 
+
         </div>
+
 
     );
 
