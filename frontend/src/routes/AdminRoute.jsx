@@ -32,7 +32,7 @@ export default function AdminRoute() {
         return (
 
             <Navigate
-                to="/staff"
+                to="/staff/dashboard"
                 replace
             />
 

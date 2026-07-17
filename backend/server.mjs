@@ -17,44 +17,127 @@ import staffRouter from "./routes/staff.mjs";
 // =====================================
 // INITIALISE EXPRESS
 // =====================================
+
 const app = express();
+
 
 
 // =====================================
 // MIDDLEWARE
 // =====================================
+
 app.use(cors());
 
-app.use(express.json());
+app.use(
+    express.json()
+);
+
 
 
 // =====================================
-// REGISTER ROUTES
+// API ROUTES
 // =====================================
-app.use("/customers", customersRouter);
 
-app.use("/inventory", inventoryRouter);
+app.use(
+    "/customers",
+    customersRouter
+);
 
-app.use("/products", productsRouter);
 
-app.use("/rentals", rentalsRouter);
+app.use(
+    "/inventory",
+    inventoryRouter
+);
 
-app.use("/payments", paymentsRouter);
 
-app.use("/returns", returnsRouter);
+app.use(
+    "/products",
+    productsRouter
+);
 
-app.use("/status", statusRouter);
 
-app.use("/staff", staffRouter);
+app.use(
+    "/rentals",
+    rentalsRouter
+);
+
+
+app.use(
+    "/payments",
+    paymentsRouter
+);
+
+
+app.use(
+    "/returns",
+    returnsRouter
+);
+
+
+app.use(
+    "/status",
+    statusRouter
+);
+
+
+app.use(
+    "/staff",
+    staffRouter
+);
+
+
+
+// =====================================
+// HEALTH CHECK
+// =====================================
+
+app.get(
+    "/api/health",
+    (req, res) => {
+
+        res.json({
+            status: "OK",
+            message: "Graduation Gown Rental API running"
+        });
+
+    }
+);
+
+
+
+// =====================================
+// VITE EXPRESS CONFIG
+// =====================================
+
+ViteExpress.config({
+
+    mode: "production"
+
+});
+
 
 
 // =====================================
 // START SERVER
 // =====================================
-ViteExpress.listen(app, 3000, () => {
 
-    console.log("====================================");
-    console.log("🎓 Graduation Gown Rental System");
-    console.log("====================================");
+ViteExpress.listen(
+    app,
+    3000,
+    () => {
 
-});
+        console.log(
+            "===================================="
+        );
+
+        console.log(
+            "🎓 Graduation Gown Rental System"
+        );
+
+
+        console.log(
+            "===================================="
+        );
+
+    }
+);

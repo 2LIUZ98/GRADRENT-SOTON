@@ -44,7 +44,7 @@ export default function PrivateRoutes() {
     ) : (
 
         <Navigate
-            to="/staff"
+            to="/staff-login"
             replace
         />
 
