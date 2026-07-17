@@ -8,18 +8,6 @@ import {
 
 import Home from "./views/Home";
 
-import Gowns from "./views/Gowns";
-
-import Booking from "./views/Booking";
-
-import HowItWorks from "./views/HowItWorks";
-
-import Contact from "./views/Contact";
-
-import StaffLogin from "./views/StaffLogin";
-
-import Dashboard from "./views/Dashboard";
-
 
 
 export default function App() {
