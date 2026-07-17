@@ -1,7 +1,8 @@
 import { useState } from "react";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { useLanguage } from "../context/LanguageContext.jsx";
+
 
 
 export default function Auth() {
@@ -13,7 +14,7 @@ export default function Auth() {
 
 
 
-    const [form, setForm] = useState({
+    const emptyForm = {
 
         Full_Name: "",
 
@@ -27,15 +28,26 @@ export default function Auth() {
 
         Phone: ""
 
-    });
+    };
+
+
+
+    const [form,setForm] = useState(emptyForm);
 
 
 
 
 
-    function handleChange(e) {
 
-        const { name, value } = e.target;
+
+    function handleChange(e){
+
+
+        const {
+            name,
+            value
+        } = e.target;
+
 
 
         setForm(prev => ({
@@ -53,7 +65,12 @@ export default function Auth() {
 
 
 
-    async function handleSubmit(e) {
+
+
+
+
+    async function handleSubmit(e){
+
 
         e.preventDefault();
 
@@ -65,6 +82,7 @@ export default function Auth() {
         try {
 
 
+
             const endpoint = mode === "login"
 
                 ? "/staff/login"
@@ -73,22 +91,24 @@ export default function Auth() {
 
 
 
+
+
+
             const response = await fetch(
 
-                `https://gradrent-soton.onrender.com${endpoint}`,
+                endpoint,
 
                 {
 
-                    method: "POST",
+                    method:"POST",
 
-                    headers: {
+                    headers:{
 
-                        "Content-Type": "application/json"
+                        "Content-Type":"application/json"
 
                     },
 
-
-                    body: JSON.stringify(form)
+                    body:JSON.stringify(form)
 
                 }
 
@@ -96,26 +116,29 @@ export default function Auth() {
 
 
 
-          const contentType = response.headers.get("content-type");
-
-let data;
-
-if (contentType && contentType.includes("application/json")) {
-    data = await response.json();
-} else {
-    const text = await response.text();
-    console.error(text);
-    throw new Error("Server returned HTML instead of JSON.");
-}
 
 
-            if (!response.ok) {
+
+
+            const data = await response.json();
+
+
+
+
+
+
+
+            if(!response.ok){
+
 
                 throw new Error(
 
-                    data.error || "Authentication failed"
+                    data.error ||
+
+                    "Authentication failed"
 
                 );
+
 
             }
 
@@ -123,21 +146,10 @@ if (contentType && contentType.includes("application/json")) {
 
 
 
-            alert(
-
-                mode === "login"
-
-                    ? "Login successful"
-
-                    : "Staff account created successfully"
-
-            );
 
 
+            if(mode === "login"){
 
-
-
-            if (mode === "login") {
 
 
                 localStorage.setItem(
@@ -149,31 +161,34 @@ if (contentType && contentType.includes("application/json")) {
                 );
 
 
-                window.location.href = "/staff/dashboard";
+
+                alert("Login successful");
 
 
-            } 
+
+                window.location.href="/staff/dashboard";
+
+
+
+            }
+
             else {
+
+
+
+                alert(
+
+                    "Staff account created successfully"
+
+                );
+
 
 
                 setMode("login");
 
 
-                setForm({
+                setForm(emptyForm);
 
-                    Full_Name: "",
-
-                    Username: "",
-
-                    Password: "",
-
-                    Role: "Staff",
-
-                    WeChat_ID: "",
-
-                    Phone: ""
-
-                });
 
 
             }
@@ -181,7 +196,11 @@ if (contentType && contentType.includes("application/json")) {
 
 
 
-        } catch (error) {
+
+        }
+
+        catch(error){
+
 
 
             console.error(error);
@@ -190,14 +209,23 @@ if (contentType && contentType.includes("application/json")) {
             alert(error.message);
 
 
+
         }
 
 
 
-        setLoading(false);
+        finally{
+
+
+            setLoading(false);
+
+
+        }
 
 
     }
+
+
 
 
 
@@ -232,6 +260,9 @@ if (contentType && contentType.includes("application/json")) {
 
 
 
+
+
+
                 <form
 
                     onSubmit={handleSubmit}
@@ -252,6 +283,7 @@ if (contentType && contentType.includes("application/json")) {
 
 
 
+
                     <h1 className="
                         text-3xl
                         font-bold
@@ -259,20 +291,9 @@ if (contentType && contentType.includes("application/json")) {
                     ">
 
 
-                        Staff
-
-                        {
-
-                            mode === "login"
-
-                            ?
-
-                            " Login"
-
-                            :
-
-                            " Sign Up"
-
+                        Staff {mode==="login"
+                            ? "Login"
+                            : "Sign Up"
                         }
 
 
@@ -285,27 +306,19 @@ if (contentType && contentType.includes("application/json")) {
 
 
                     {
-
-                    mode === "signup" &&
-
+                    mode==="signup" &&
 
                     <input
 
-
                         name="Full_Name"
-
 
                         placeholder="Full Name"
 
-
                         value={form.Full_Name}
-
 
                         onChange={handleChange}
 
-
                         required
-
 
                         className="
                             w-full
@@ -314,9 +327,7 @@ if (contentType && contentType.includes("application/json")) {
                             rounded-lg
                         "
 
-
                     />
-
 
                     }
 
@@ -326,23 +337,19 @@ if (contentType && contentType.includes("application/json")) {
 
 
 
-                    <input
 
+
+                    <input
 
                         name="Username"
 
-
                         placeholder="Username"
-
 
                         value={form.Username}
 
-
                         onChange={handleChange}
 
-
                         required
-
 
                         className="
                             w-full
@@ -351,8 +358,9 @@ if (contentType && contentType.includes("application/json")) {
                             rounded-lg
                         "
 
-
                     />
+
+
 
 
 
@@ -362,24 +370,17 @@ if (contentType && contentType.includes("application/json")) {
 
                     <input
 
-
                         type="password"
-
 
                         name="Password"
 
-
                         placeholder="Password"
-
 
                         value={form.Password}
 
-
                         onChange={handleChange}
 
-
                         required
-
 
                         className="
                             w-full
@@ -388,8 +389,9 @@ if (contentType && contentType.includes("application/json")) {
                             rounded-lg
                         "
 
-
                     />
+
+
 
 
 
@@ -398,28 +400,21 @@ if (contentType && contentType.includes("application/json")) {
 
 
                     {
-
-
-                    mode === "signup" &&
-
+                    mode==="signup" &&
 
                     <>
 
 
-                    <input
 
+                    <input
 
                         name="WeChat_ID"
 
-
                         placeholder="WeChat ID"
-
 
                         value={form.WeChat_ID}
 
-
                         onChange={handleChange}
-
 
                         className="
                             w-full
@@ -428,8 +423,8 @@ if (contentType && contentType.includes("application/json")) {
                             rounded-lg
                         "
 
-
                     />
+
 
 
 
@@ -437,18 +432,13 @@ if (contentType && contentType.includes("application/json")) {
 
                     <input
 
-
                         name="Phone"
 
-
-                        placeholder="Phone Number"
-
+                        placeholder="Phone"
 
                         value={form.Phone}
 
-
                         onChange={handleChange}
-
 
                         className="
                             w-full
@@ -457,8 +447,10 @@ if (contentType && contentType.includes("application/json")) {
                             rounded-lg
                         "
 
-
                     />
+
+
+
 
 
 
@@ -466,15 +458,11 @@ if (contentType && contentType.includes("application/json")) {
 
                     <select
 
-
                         name="Role"
-
 
                         value={form.Role}
 
-
                         onChange={handleChange}
-
 
                         className="
                             w-full
@@ -483,23 +471,16 @@ if (contentType && contentType.includes("application/json")) {
                             rounded-lg
                         "
 
-
                     >
 
-
                         <option value="Staff">
-
                             Staff
-
                         </option>
 
 
                         <option value="Admin">
-
                             Admin
-
                         </option>
-
 
 
                     </select>
@@ -508,8 +489,9 @@ if (contentType && contentType.includes("application/json")) {
 
                     </>
 
-
                     }
+
+
 
 
 
@@ -519,9 +501,7 @@ if (contentType && contentType.includes("application/json")) {
 
                     <button
 
-
                         disabled={loading}
-
 
                         className="
                             w-full
@@ -533,9 +513,7 @@ if (contentType && contentType.includes("application/json")) {
                             font-bold
                         "
 
-
                     >
-
 
 
                         {
@@ -548,7 +526,7 @@ if (contentType && contentType.includes("application/json")) {
 
                         :
 
-                        mode === "login"
+                        mode==="login"
 
                         ?
 
@@ -558,12 +536,12 @@ if (contentType && contentType.includes("application/json")) {
 
                         "Create Staff Account"
 
-
                         }
 
 
 
                     </button>
+
 
 
 
@@ -573,24 +551,25 @@ if (contentType && contentType.includes("application/json")) {
 
                     <button
 
-
                         type="button"
 
+                        onClick={()=>{
 
-                        onClick={() => setMode(
+                            setMode(
 
-                            mode === "login"
+                                mode==="login"
 
-                            ?
+                                ?
 
-                            "signup"
+                                "signup"
 
-                            :
+                                :
 
-                            "login"
+                                "login"
 
-                        )}
+                            );
 
+                        }}
 
                         className="
                             w-full
@@ -598,13 +577,12 @@ if (contentType && contentType.includes("application/json")) {
                             font-semibold
                         "
 
-
                     >
 
 
                         {
 
-                        mode === "login"
+                        mode==="login"
 
                         ?
 
@@ -614,8 +592,8 @@ if (contentType && contentType.includes("application/json")) {
 
                         "Back to Login"
 
-
                         }
+
 
 
                     </button>
@@ -624,7 +602,11 @@ if (contentType && contentType.includes("application/json")) {
 
 
 
+
+
                 </form>
+
+
 
 
 
@@ -640,9 +622,11 @@ if (contentType && contentType.includes("application/json")) {
 
 
 
+
         </div>
 
 
     );
+
 
 }

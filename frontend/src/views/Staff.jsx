@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import Header from "../components/header";
 import Footer from "../components/footer";
-import { useLanguage } from "../context/LanguageContext.jsx";
 
 import {
     Users,
@@ -17,45 +16,52 @@ import {
 } from "lucide-react";
 
 
+
 export default function Staff() {
 
 
-    const [staff,setStaff] = useState(null);
+    const [staff, setStaff] = useState(null);
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
 
         const data = localStorage.getItem("staff");
 
 
-        if(!data){
 
-            window.location.href="/staff";
+        if (!data) {
+
+
+            window.location.href = "/staff-login";
 
             return;
 
+
         }
+
 
 
         setStaff(JSON.parse(data));
 
 
-    },[]);
+
+    }, []);
 
 
 
 
 
 
-    function logout(){
+
+    function logout() {
 
 
         localStorage.removeItem("staff");
 
 
-        window.location.href="/staff";
+        window.location.href = "/staff-login";
 
 
     }
@@ -66,11 +72,14 @@ export default function Staff() {
 
 
 
-    if(!staff){
+    if (!staff) {
+
 
         return null;
 
+
     }
+
 
 
 
@@ -81,53 +90,53 @@ export default function Staff() {
     const cards = [
 
 
+
         {
-            title:"Customers",
-            icon:<Users size={40}/>,
-            link:"/staff/customers"
+            title: "Customers",
+            icon: <Users size={40}/>,
+            link: "/staff/customers"
         },
 
 
+
         {
-            title:"Inventory",
-            icon:<Package size={40}/>,
-            link:"/staff/inventory"
+            title: "Inventory",
+            icon: <Package size={40}/>,
+            link: "/staff/inventory"
         },
 
 
+
         {
-            title:"Products",
-            icon:<ShoppingBag size={40}/>,
-            link:"/staff/products"
+            title: "Products",
+            icon: <ShoppingBag size={40}/>,
+            link: "/staff/products"
         },
 
 
+
         {
-            title:"Rentals",
-            icon:<ClipboardList size={40}/>,
-            link:"/staff/rentals"
+            title: "Rentals",
+            icon: <ClipboardList size={40}/>,
+            link: "/staff/rentals"
         },
 
 
+
         {
-            title:"Payments",
-            icon:<CreditCard size={40}/>,
-            link:"/staff/payments"
+            title: "Payments",
+            icon: <CreditCard size={40}/>,
+            link: "/staff/payments"
         },
 
 
-        {
-            title:"Returns",
-            icon:<RotateCcw size={40}/>,
-            link:"/staff/returns"
-        },
-
 
         {
-            title:"Staff Management",
-            icon:<UserCog size={40}/>,
-            link:"/staff/manage"
+            title: "Returns",
+            icon: <RotateCcw size={40}/>,
+            link: "/staff/returns"
         }
+
 
 
     ];
@@ -138,7 +147,35 @@ export default function Staff() {
 
 
 
+    // ADMIN ONLY
+
+    if (staff.Role === "Admin") {
+
+
+        cards.push({
+
+            title: "Staff Management",
+
+            icon: <UserCog size={40}/>,
+
+            link: "/staff/manage"
+
+
+        });
+
+
+    }
+
+
+
+
+
+
+
+
+
     return (
+
 
         <div className="
             min-h-screen
@@ -154,12 +191,18 @@ export default function Staff() {
 
 
 
+
+
+            {/* HEADER */}
+
+
             <section className="
                 bg-[#00539F]
                 text-white
                 py-16
                 px-6
             ">
+
 
 
                 <div className="
@@ -182,7 +225,9 @@ export default function Staff() {
 
                             Staff Dashboard
 
+
                         </h1>
+
 
 
 
@@ -198,8 +243,9 @@ export default function Staff() {
                         </p>
 
 
-
                     </div>
+
+
 
 
 
@@ -223,15 +269,20 @@ export default function Staff() {
 
                     >
 
+
                         <LogOut size={20}/>
 
+
                         Logout
+
 
                     </button>
 
 
 
+
                 </div>
+
 
 
 
@@ -245,13 +296,16 @@ export default function Staff() {
 
 
 
+            {/* MODULES */}
+
+
+
             <main className="
                 max-w-6xl
                 mx-auto
                 px-6
                 py-12
             ">
-
 
 
 
@@ -288,6 +342,7 @@ export default function Staff() {
 
 
 
+
                             <div className="
                                 text-blue-600
                                 mb-5
@@ -298,6 +353,8 @@ export default function Staff() {
 
 
                             </div>
+
+
 
 
 
@@ -316,14 +373,21 @@ export default function Staff() {
 
 
 
+
+
+
                             <p className="
                                 text-gray-500
                                 mt-2
                             ">
 
+
                                 Manage {card.title.toLowerCase()}
 
+
                             </p>
+
+
 
 
 
@@ -344,6 +408,12 @@ export default function Staff() {
 
 
 
+
+
+                {/* STAFF INFORMATION */}
+
+
+
                 <section className="
                     mt-12
                     bg-white
@@ -353,15 +423,21 @@ export default function Staff() {
                 ">
 
 
+
                     <h2 className="
                         text-2xl
                         font-bold
                         mb-5
                     ">
 
+
                         Staff Information
 
+
                     </h2>
+
+
+
 
 
 
@@ -381,11 +457,15 @@ export default function Staff() {
                         </p>
 
 
+
+
                         <p>
 
                             <b>Username:</b> {staff.Username}
 
                         </p>
+
+
 
 
 
@@ -396,6 +476,9 @@ export default function Staff() {
                         </p>
 
 
+
+
+
                         <p>
 
                             <b>Staff ID:</b> {staff.Staff_ID}
@@ -404,11 +487,15 @@ export default function Staff() {
 
 
 
+
                     </div>
 
 
 
+
+
                 </section>
+
 
 
 
@@ -423,12 +510,16 @@ export default function Staff() {
 
 
 
+
+
             <Footer />
 
 
 
         </div>
 
+
     );
+
 
 }
