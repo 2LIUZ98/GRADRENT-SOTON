@@ -12,8 +12,10 @@ import Auth from "./views/Auth.jsx";
 import Staff from "./views/Staff.jsx";
 import Customers from "./views/staff/Customers.jsx";
 import Inventory from "./views/staff/Inventory.jsx";
-import Rentals from "./views/Staff/Rentals.jsx";
-
+import Rentals from "./views/staff/Rentals.jsx";
+import Products from "./views/staff/Products.jsx";
+import Payments from "./views/staff/Payments.jsx";
+import Returns from "./views/staff/Returns.jsx";
 
 
 export default function App() {
@@ -85,6 +87,20 @@ export default function App() {
 />
 
 
+<Route
+    path="/staff/products"
+    element={<Products />}
+/>
+
+<Route
+    path="/staff/payments"
+    element={<Payments />}
+/>
+
+<Route
+    path="/staff/returns"
+    element={<Returns />}
+/>
 
         </Routes>
 
