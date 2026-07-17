@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import Header from "../views/components/header";
+import Footer from "../views/components/footer";
 
 
 export default function Customers() {
