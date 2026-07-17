@@ -932,7 +932,13 @@ termsPrivacyText: "Any personal information collected during the booking process
 termsContactTitle: "7. Contact Us",
 termsContactText: "If you have any questions regarding these Terms & Conditions, please contact us.",
 
+ customersTitle: "Customers",
+
+    loading: "Loading...",
+
+    noCustomers: "No customers found",
+
+    
+
 };
-
-
 export default en;

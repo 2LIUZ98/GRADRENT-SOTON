@@ -7,14 +7,27 @@ import {
     useLanguage
 } from "../../context/LanguageContext.jsx";
 
+import en from "../../translations/en.js";
+import zhCN from "../../translations/zh-CN.js";
+
 
 
 export default function Customers() {
 
 
+
     const {
-        t
+        language
     } = useLanguage();
+
+
+
+
+    const text = language === "zh"
+        ? zhCN
+        : en;
+
+
 
 
 
@@ -25,9 +38,14 @@ export default function Customers() {
 
 
 
+
+
+
     useEffect(() => {
 
+
         fetchCustomers();
+
 
     }, []);
 
@@ -35,32 +53,48 @@ export default function Customers() {
 
 
 
+
+
+
     async function fetchCustomers() {
+
 
         try {
 
+
             const response = await fetch(
-                "https://gradrent-soton.onrender.com/customers"
+
+                "/api/customers"
+
             );
+
 
 
             const data = await response.json();
 
 
+
             setCustomers(data);
+
 
 
         } catch(error) {
 
+
             console.error(
+
                 "Failed to load customers:",
                 error
+
             );
+
 
         }
 
 
+
         setLoading(false);
+
 
     }
 
@@ -69,7 +103,11 @@ export default function Customers() {
 
 
 
+
+
+
     return (
+
 
         <div className="
             min-h-screen
@@ -78,7 +116,10 @@ export default function Customers() {
         ">
 
 
+
             <Header />
+
+
 
 
 
@@ -92,15 +133,26 @@ export default function Customers() {
 
 
 
+
+
                 <h1 className="
                     text-4xl
                     font-bold
                     mb-8
                 ">
 
-                    {t("customers.title")}
+
+                    {
+                        text.customersTitle ||
+                        "Customers"
+                    }
+
 
                 </h1>
+
+
+
+
 
 
 
@@ -115,27 +167,54 @@ export default function Customers() {
 
 
 
+
                     {
-                        loading ? (
 
-                            <p className="p-8">
-
-                                {t("common.loading")}
-
-                            </p>
+                    loading ? (
 
 
-                        ) : customers.length === 0 ? (
+
+                        <p className="p-8">
 
 
-                            <p className="p-8">
+                            {
+                                text.loading ||
+                                "Loading..."
+                            }
 
-                                {t("customers.empty")}
 
-                            </p>
+                        </p>
 
 
-                        ) : (
+
+                    ) : customers.length === 0 ? (
+
+
+
+                        <p className="p-8">
+
+
+                            {
+                                text.noCustomers ||
+                                "No customers found"
+                            }
+
+
+                        </p>
+
+
+
+
+                    ) : (
+
+
+
+
+
+                        <div className="
+                            overflow-x-auto
+                        ">
+
 
 
                             <table className="
@@ -144,45 +223,55 @@ export default function Customers() {
                             ">
 
 
+
                                 <thead className="
                                     bg-slate-200
                                 ">
 
 
+
                                     <tr>
 
 
+
                                         <th className="p-4">
-                                            {t("customers.id")}
+                                            ID
                                         </th>
 
 
+
                                         <th className="p-4">
-                                            {t("customers.name")}
+                                            Name
                                         </th>
 
 
+
                                         <th className="p-4">
-                                            {t("customers.phone")}
+                                            Phone
                                         </th>
 
 
+
                                         <th className="p-4">
-                                            {t("customers.email")}
+                                            Email
                                         </th>
 
 
+
                                         <th className="p-4">
-                                            {t("customers.wechat")}
+                                            WeChat
                                         </th>
 
 
+
                                         <th className="p-4">
-                                            {t("customers.created")}
+                                            Created
                                         </th>
+
 
 
                                     </tr>
+
 
 
                                 </thead>
@@ -191,11 +280,19 @@ export default function Customers() {
 
 
 
+
+
+
                                 <tbody>
 
 
+
                                     {
-                                        customers.map(customer => (
+
+                                    customers.map(
+
+                                        customer => (
+
 
 
                                             <tr
@@ -212,63 +309,116 @@ export default function Customers() {
                                             >
 
 
+
+
+
                                                 <td className="p-4">
+
+
                                                     {
                                                         customer.Customer_ID
                                                     }
+
+
                                                 </td>
 
 
 
+
+
+
+
                                                 <td className="p-4">
+
+
                                                     {
                                                         customer.Full_Name
                                                     }
+
+
                                                 </td>
 
 
 
 
+
+
+
                                                 <td className="p-4">
+
+
                                                     {
-                                                        customer.Phone
+                                                        customer.Phone || "-"
                                                     }
+
+
                                                 </td>
 
 
 
 
+
+
+
                                                 <td className="p-4">
+
+
                                                     {
-                                                        customer.Email
+                                                        customer.Email || "-"
                                                     }
+
+
                                                 </td>
 
 
 
 
+
+
+
                                                 <td className="p-4">
+
+
                                                     {
-                                                        customer.WeChat_ID
+                                                        customer.WeChat_ID || "-"
                                                     }
+
+
                                                 </td>
 
 
 
 
+
+
+
                                                 <td className="p-4">
+
+
                                                     {
                                                         customer.Created_At
                                                     }
+
+
                                                 </td>
+
+
+
+
 
 
 
                                             </tr>
 
 
-                                        ))
+
+                                        )
+
+                                    )
+
                                     }
+
+
 
 
 
@@ -276,15 +426,26 @@ export default function Customers() {
 
 
 
+
+
                             </table>
 
 
-                        )
+
+
+                        </div>
+
+
+
+                    )
+
                     }
 
 
 
+
                 </div>
+
 
 
 
@@ -295,11 +456,19 @@ export default function Customers() {
 
 
 
+
+
+
             <Footer />
+
+
+
 
 
         </div>
 
+
     );
+
 
 }
