@@ -18,7 +18,7 @@ import Payments from "./views/staff/Payments.jsx";
 import Returns from "./views/staff/Returns.jsx";
 import Gowns from "./views/Gowns.jsx";
 import About from "./views/About.jsx";
-import About from "./views/Contact.jsx";
+import Contact from "./views/Contact.jsx";
 
 
 export default function App() {
