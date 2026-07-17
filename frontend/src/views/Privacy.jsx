@@ -1,9 +1,24 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import { useLanguage } from "../context/LanguageContext.jsx";
+
+import en from "../translations/en.js";
+import zhCN from "../translations/zh-CN.js";
+
 
 
 export default function Privacy() {
+
+
+    const { language } = useLanguage();
+
+
+    const text = language === "zh"
+        ? zhCN
+        : en;
+
+
 
     return (
 
@@ -28,14 +43,16 @@ export default function Privacy() {
                 text-center
             ">
 
+
                 <h1 className="
                     text-5xl
                     font-bold
                 ">
 
-                    Privacy Policy
+                    {text.privacyTitle}
 
                 </h1>
+
 
 
                 <p className="
@@ -44,12 +61,14 @@ export default function Privacy() {
                     text-lg
                 ">
 
-                    Southampton Graduation Gown Rental
+                    {text.privacyDescription}
 
                 </p>
 
 
             </section>
+
+
 
 
 
@@ -75,35 +94,17 @@ export default function Privacy() {
 
 
 
+
+
                     {/* 1 */}
 
-                    <div>
+                    <PrivacySection
 
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
+                        title={text.privacySection1Title}
 
-                            1. Information We Collect
+                        text={text.privacySection1Text}
 
-                        </h2>
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            When you make a booking or contact us, we may collect
-                            personal information including your name, WeChat ID,
-                            contact details, graduation information, gown requirements,
-                            and booking details.
-
-                        </p>
-
-                    </div>
+                    />
 
 
 
@@ -111,32 +112,13 @@ export default function Privacy() {
 
                     {/* 2 */}
 
-                    <div>
+                    <PrivacySection
 
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
+                        title={text.privacySection2Title}
 
-                            2. How We Use Your Information
+                        text={text.privacySection2Text}
 
-                        </h2>
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            Your information is used to process gown rental bookings,
-                            confirm reservations, communicate with you regarding your
-                            order, and provide customer support.
-
-                        </p>
-
-                    </div>
+                    />
 
 
 
@@ -144,32 +126,13 @@ export default function Privacy() {
 
                     {/* 3 */}
 
-                    <div>
+                    <PrivacySection
 
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
+                        title={text.privacySection3Title}
 
-                            3. Data Protection
+                        text={text.privacySection3Text}
 
-                        </h2>
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            We take reasonable steps to protect your personal
-                            information and prevent unauthorised access, loss, or
-                            misuse of your data.
-
-                        </p>
-
-                    </div>
+                    />
 
 
 
@@ -177,32 +140,13 @@ export default function Privacy() {
 
                     {/* 4 */}
 
-                    <div>
+                    <PrivacySection
 
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
+                        title={text.privacySection4Title}
 
-                            4. Sharing Your Information
+                        text={text.privacySection4Text}
 
-                        </h2>
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            We do not sell, rent, or share your personal information
-                            with third parties unless required for providing our
-                            services or where required by law.
-
-                        </p>
-
-                    </div>
+                    />
 
 
 
@@ -210,65 +154,25 @@ export default function Privacy() {
 
                     {/* 5 */}
 
-                    <div>
+                    <PrivacySection
 
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
+                        title={text.privacySection5Title}
 
-                            5. Data Retention
+                        text={text.privacySection5Text}
 
-                        </h2>
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            We retain booking information only for as long as necessary
-                            to provide our services, maintain records, and comply with
-                            legal obligations.
-
-                        </p>
-
-                    </div>
-
-
+                    />
 
 
 
                     {/* 6 */}
 
-                    <div>
+                    <PrivacySection
 
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
+                        title={text.privacySection6Title}
 
-                            6. Your Rights
+                        text={text.privacySection6Text}
 
-                        </h2>
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            You have the right to request access to your personal
-                            information, request corrections, or ask for deletion of
-                            your data where applicable.
-
-                        </p>
-
-                    </div>
+                    />
 
 
 
@@ -276,31 +180,13 @@ export default function Privacy() {
 
                     {/* 7 */}
 
-                    <div>
+                    <PrivacySection
 
-                        <h2 className="
-                            text-2xl
-                            font-bold
-                            mb-3
-                            text-[#00539F]
-                        ">
+                        title={text.privacySection7Title}
 
-                            7. Contact Us
+                        text={text.privacySection7Text}
 
-                        </h2>
-
-
-                        <p className="
-                            text-gray-700
-                            leading-relaxed
-                        ">
-
-                            If you have any questions about this Privacy Policy or
-                            how your information is handled, please contact us.
-
-                        </p>
-
-                    </div>
+                    />
 
 
 
@@ -312,11 +198,75 @@ export default function Privacy() {
 
 
 
+
             <Footer />
+
 
 
         </div>
 
     );
+
+}
+
+
+
+
+
+
+
+// =====================================
+// PRIVACY SECTION COMPONENT
+// =====================================
+
+
+function PrivacySection({
+
+    title,
+    text
+
+}) {
+
+
+    return (
+
+        <div>
+
+
+            <h2 className="
+                text-2xl
+                font-bold
+                mb-3
+                text-[#00539F]
+            ">
+
+
+                {title}
+
+
+            </h2>
+
+
+
+
+
+            <p className="
+                text-gray-700
+                leading-relaxed
+            ">
+
+
+                {text}
+
+
+            </p>
+
+
+
+        </div>
+
+
+    );
+
 
 }

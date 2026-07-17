@@ -1043,7 +1043,37 @@ availableSizes:
         "条款与条件",
 
     allRightsReserved:
-        " 版权所有。"
+        " 版权所有。",
+        privacyTitle: "隐私政策",
+privacyDescription: "南安普顿大学毕业服租赁",
+
+privacySection1Title: "1. 我们收集的信息",
+privacySection1Text:
+    "当您进行预约或联系我们时，我们可能会收集您的姓名、微信号、联系方式、毕业信息、毕业服需求以及预约详情等个人信息。",
+
+privacySection2Title: "2. 我们如何使用您的信息",
+privacySection2Text:
+    "您的信息将用于处理毕业服租赁预约、确认订单、与您沟通预约详情，以及提供客户支持服务。",
+
+privacySection3Title: "3. 数据保护",
+privacySection3Text:
+    "我们会采取合理措施保护您的个人信息，防止未经授权的访问、丢失或滥用您的数据。",
+
+privacySection4Title: "4. 信息共享",
+privacySection4Text:
+    "除提供服务所必需或法律要求外，我们不会出售、出租或向第三方共享您的个人信息。",
+
+privacySection5Title: "5. 数据保存",
+privacySection5Text:
+    "我们仅会在提供服务、保存业务记录及履行法律义务所需的期限内保留您的预约信息。",
+
+privacySection6Title: "6. 您的权利",
+privacySection6Text:
+    "您有权申请查阅您的个人信息、要求更正相关资料，或在适用情况下要求删除您的个人数据。",
+
+privacySection7Title: "7. 联系我们",
+privacySection7Text:
+    "如果您对本隐私政策或您的个人信息处理方式有任何疑问，请随时联系我们。",
 
     
 };

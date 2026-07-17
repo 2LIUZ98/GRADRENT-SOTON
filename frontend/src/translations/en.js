@@ -875,7 +875,38 @@ gownEnquiryText:
         "Terms & Conditions",
 
     allRightsReserved:
-        " All rights reserved."
+        " All rights reserved.",
+
+        privacyTitle: "Privacy Policy",
+privacyDescription: "Southampton Graduation Gown Rental",
+
+privacySection1Title: "1. Information We Collect",
+privacySection1Text:
+    "When you make a booking or contact us, we may collect personal information including your name, WeChat ID, contact details, graduation information, gown requirements, and booking details.",
+
+privacySection2Title: "2. How We Use Your Information",
+privacySection2Text:
+    "Your information is used to process gown rental bookings, confirm reservations, communicate with you regarding your order, and provide customer support.",
+
+privacySection3Title: "3. Data Protection",
+privacySection3Text:
+    "We take reasonable steps to protect your personal information and prevent unauthorised access, loss, or misuse of your data.",
+
+privacySection4Title: "4. Sharing Your Information",
+privacySection4Text:
+    "We do not sell, rent, or share your personal information with third parties unless required for providing our services or where required by law.",
+
+privacySection5Title: "5. Data Retention",
+privacySection5Text:
+    "We retain booking information only for as long as necessary to provide our services, maintain records, and comply with legal obligations.",
+
+privacySection6Title: "6. Your Rights",
+privacySection6Text:
+    "You have the right to request access to your personal information, request corrections, or ask for deletion of your data where applicable.",
+
+privacySection7Title: "7. Contact Us",
+privacySection7Text:
+    "If you have any questions about this Privacy Policy or how your information is handled, please contact us.",
 
 };
 
