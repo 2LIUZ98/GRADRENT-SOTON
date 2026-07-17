@@ -779,7 +779,57 @@ gownEnquiryTitle:
 gownEnquiryText:
     "如果您对学位服尺寸、套餐、库存或预订安排有任何疑问，请联系我们。\n\n我们将帮助您准备南安普顿大学毕业典礼。",
 
+// =========================
+// BOOKING EXTRA
+// =========================
 
+selectDegree:
+    "选择学位",
+
+bsc:
+    "本科 BSc",
+
+msc:
+    "硕士 MSc",
+
+ma:
+    "硕士 MA",
+
+set:
+    "套",
+
+remove:
+    "删除",
+
+highReplica:
+    "高仿版本",
+
+original:
+    "原版",
+
+selectGownSize:
+    "选择学位服尺寸",
+
+selectHood:
+    "选择披肩",
+
+maHood:
+    "MA 披肩",
+
+mscHood:
+    "MSc 披肩",
+
+selectHatSize:
+    "选择帽子尺寸",
+
+addAnotherSet:
+    "+ 添加另一套",
+
+additionalNotes:
+    "备注信息",
+
+universityGraduation:
+    "南安普顿大学毕业典礼",
 };
 
 

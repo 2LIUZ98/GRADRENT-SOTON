@@ -200,6 +200,57 @@ const en = {
         "Submitting...",
 
 
+        // =========================
+// BOOKING EXTRA
+// =========================
+
+selectDegree:
+    "Select Degree",
+
+bsc:
+    "BSc",
+
+msc:
+    "MSc",
+
+ma:
+    "MA",
+
+set:
+    "Set",
+
+remove:
+    "Remove",
+
+highReplica:
+    "High Replica",
+
+original:
+    "Original",
+
+selectGownSize:
+    "Select Gown Size",
+
+selectHood:
+    "Select Hood",
+
+maHood:
+    "MA Hood",
+
+mscHood:
+    "MSc Hood",
+
+selectHatSize:
+    "Select Hat Size",
+
+addAnotherSet:
+    "+ Add Another Set",
+
+additionalNotes:
+    "Additional notes",
+
+universityGraduation:
+    "University of Southampton Graduation",
 
 
 
