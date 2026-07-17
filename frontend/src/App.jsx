@@ -7,6 +7,7 @@ import {
 
 
 import Home from "./views/Home.jsx";
+import Booking from "./views/Booking.jsx";
 
 
 
@@ -29,6 +30,21 @@ export default function App() {
                 path="/"
 
                 element={<Home />}
+
+            />
+
+
+
+            {/* =========================
+                GRADUATION GOWN BOOKING
+            ========================= */}
+
+
+            <Route
+
+                path="/booking"
+
+                element={<Booking />}
 
             />
 
