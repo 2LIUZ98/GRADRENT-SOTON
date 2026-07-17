@@ -85,9 +85,9 @@ export default function Auth() {
 
             const endpoint = mode === "login"
 
-                ? "/staff/login"
+                ? "/api/staff/login"
 
-                : "/staff/create";
+                : "/api/staff/create";
 
 
 

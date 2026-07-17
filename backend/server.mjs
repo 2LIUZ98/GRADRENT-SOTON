@@ -81,7 +81,7 @@ app.use(
 
 
 app.use(
-    "/staff",
+    "/api/staff",
     staffRouter
 );
 
