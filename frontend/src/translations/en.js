@@ -77,6 +77,11 @@ const en = {
 
 
 
+    // =========================
+    // HOW IT WORKS
+    // =========================
+
+
     howItWorks:
         "How It Works",
 
@@ -115,7 +120,7 @@ const en = {
 
 
     // =========================
-    // BOOKING PAGE
+    // BOOKING
     // =========================
 
 
@@ -199,7 +204,7 @@ const en = {
 
 
     // =========================
-    // ABOUT PAGE
+    // ABOUT
     // =========================
 
 
@@ -232,7 +237,7 @@ const en = {
 
 
     // =========================
-    // CONTACT PAGE
+    // CONTACT
     // =========================
 
 
@@ -249,8 +254,54 @@ const en = {
 
 
 
+
+
     // =========================
-    // STAFF
+    // STAFF AUTH
+    // =========================
+
+
+    login:
+        "Login",
+
+
+    signup:
+        "Sign Up",
+
+
+    username:
+        "Username",
+
+
+    password:
+        "Password",
+
+
+    fullNameLabel:
+        "Full Name",
+
+
+    phone:
+        "Phone Number",
+
+
+    role:
+        "Role",
+
+
+    loginSuccess:
+        "Login successful",
+
+
+    loginFailed:
+        "Invalid username or password",
+
+
+
+
+
+    // =========================
+    // STAFF DASHBOARD
     // =========================
 
 
@@ -287,7 +338,115 @@ const en = {
 
 
     logout:
-        "Logout"
+        "Logout",
+
+
+
+
+
+    // =========================
+    // STAFF MANAGEMENT
+    // =========================
+
+
+    addStaff:
+        "Add Staff",
+
+
+    editStaff:
+        "Edit Staff",
+
+
+    deleteStaff:
+        "Delete Staff",
+
+
+    staffName:
+        "Staff Name",
+
+
+    active:
+        "Active",
+
+
+    inactive:
+        "Inactive",
+
+
+
+
+
+    // =========================
+    // PRODUCTS
+    // =========================
+
+
+    addProduct:
+        "Add Product",
+
+
+    editProduct:
+        "Edit Product",
+
+
+    deleteProduct:
+        "Delete Product",
+
+
+    productName:
+        "Product Name",
+
+
+    productType:
+        "Product Type",
+
+
+    degree:
+        "Degree",
+
+
+    size:
+        "Size",
+
+
+    price:
+        "Price",
+
+
+    quantity:
+        "Quantity",
+
+
+
+
+
+    // =========================
+    // COMMON
+    // =========================
+
+
+    save:
+        "Save",
+
+
+    cancel:
+        "Cancel",
+
+
+    delete:
+        "Delete",
+
+
+    edit:
+        "Edit",
+
+
+    loading:
+        "Loading...",
+
+
+    noData:
+        "No data found."
 
 };
 

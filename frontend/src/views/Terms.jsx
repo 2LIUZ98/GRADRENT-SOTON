@@ -5,6 +5,11 @@ import { useLanguage } from "../context/LanguageContext.jsx";
 
 export default function Terms() {
 
+
+    const { t } = useLanguage();
+
+
+
     return (
 
         <div className="
@@ -28,14 +33,16 @@ export default function Terms() {
                 text-center
             ">
 
+
                 <h1 className="
                     text-5xl
                     font-bold
                 ">
 
-                    Terms & Conditions
+                    {t.termsTitle}
 
                 </h1>
+
 
 
                 <p className="
@@ -44,12 +51,13 @@ export default function Terms() {
                     text-lg
                 ">
 
-                    Southampton Graduation Gown Rental
+                    {t.termsSubtitle}
 
                 </p>
 
 
             </section>
+
 
 
 
@@ -65,6 +73,7 @@ export default function Terms() {
             ">
 
 
+
                 <div className="
                     bg-white
                     rounded-2xl
@@ -72,6 +81,8 @@ export default function Terms() {
                     p-8
                     space-y-10
                 ">
+
+
 
 
 
@@ -86,20 +97,25 @@ export default function Terms() {
                             text-[#00539F]
                         ">
 
-                            1. Booking & Reservation
+                            {t.termsBookingTitle}
 
                         </h2>
 
 
-                        <p className="text-gray-700 leading-relaxed">
 
-                            A booking is only confirmed once the required information
-                            has been provided and confirmation has been received.
-                            Availability is subject to gown stock at the time of booking.
+                        <p className="
+                            text-gray-700
+                            leading-relaxed
+                        ">
+
+                            {t.termsBookingText}
 
                         </p>
 
+
                     </div>
+
+
 
 
 
@@ -116,20 +132,25 @@ export default function Terms() {
                             text-[#00539F]
                         ">
 
-                            2. Rental Period
+                            {t.termsRentalTitle}
 
                         </h2>
 
 
-                        <p className="text-gray-700 leading-relaxed">
 
-                            Graduation gowns are rented for the agreed rental period.
-                            Customers must collect and return the gown within the
-                            arranged dates and times.
+                        <p className="
+                            text-gray-700
+                            leading-relaxed
+                        ">
+
+                            {t.termsRentalText}
 
                         </p>
 
+
                     </div>
+
+
 
 
 
@@ -146,21 +167,25 @@ export default function Terms() {
                             text-[#00539F]
                         ">
 
-                            3. Customer Responsibility
+                            {t.termsResponsibilityTitle}
 
                         </h2>
 
 
-                        <p className="text-gray-700 leading-relaxed">
 
-                            Customers are responsible for taking care of the gown,
-                            hood, and hat during the rental period.
-                            Any damage, loss, or missing items may result in additional
-                            charges.
+                        <p className="
+                            text-gray-700
+                            leading-relaxed
+                        ">
+
+                            {t.termsResponsibilityText}
 
                         </p>
 
+
                     </div>
+
+
 
 
 
@@ -177,20 +202,25 @@ export default function Terms() {
                             text-[#00539F]
                         ">
 
-                            4. Cancellation Policy
+                            {t.termsCancellationTitle}
 
                         </h2>
 
 
-                        <p className="text-gray-700 leading-relaxed">
 
-                            Cancellation requests should be made as early as possible.
-                            Refund eligibility depends on the timing of the cancellation
-                            and whether the gown has already been reserved.
+                        <p className="
+                            text-gray-700
+                            leading-relaxed
+                        ">
+
+                            {t.termsCancellationText}
 
                         </p>
 
+
                     </div>
+
+
 
 
 
@@ -207,20 +237,25 @@ export default function Terms() {
                             text-[#00539F]
                         ">
 
-                            5. Payment
+                            {t.termsPaymentTitle}
 
                         </h2>
 
 
-                        <p className="text-gray-700 leading-relaxed">
 
-                            Payment details will be confirmed during the booking process.
-                            Prices may vary depending on gown type, package selection,
-                            and rental duration.
+                        <p className="
+                            text-gray-700
+                            leading-relaxed
+                        ">
+
+                            {t.termsPaymentText}
 
                         </p>
 
+
                     </div>
+
+
 
 
 
@@ -237,20 +272,25 @@ export default function Terms() {
                             text-[#00539F]
                         ">
 
-                            6. Privacy
+                            {t.termsPrivacyTitle}
 
                         </h2>
 
 
-                        <p className="text-gray-700 leading-relaxed">
 
-                            Personal information collected during booking will only be
-                            used for processing your gown rental and contacting you
-                            regarding your order.
+                        <p className="
+                            text-gray-700
+                            leading-relaxed
+                        ">
+
+                            {t.termsPrivacyText}
 
                         </p>
 
+
                     </div>
+
+
 
 
 
@@ -267,23 +307,30 @@ export default function Terms() {
                             text-[#00539F]
                         ">
 
-                            7. Contact Us
+                            {t.termsContactTitle}
 
                         </h2>
 
 
-                        <p className="text-gray-700 leading-relaxed">
 
-                            If you have any questions regarding these terms and
-                            conditions, please contact us before making a booking.
+                        <p className="
+                            text-gray-700
+                            leading-relaxed
+                        ">
+
+                            {t.termsContactText}
 
                         </p>
+
 
                     </div>
 
 
 
+
+
                 </div>
+
 
 
             </section>
@@ -291,7 +338,10 @@ export default function Terms() {
 
 
 
+
+
             <Footer />
+
 
 
         </div>

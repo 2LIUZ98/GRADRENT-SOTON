@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
+
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import { useLanguage } from "../context/LanguageContext.jsx";
+
+import {
+    useLanguage
+} from "../../context/LanguageContext.jsx";
+
 
 
 export default function Customers() {
 
 
+    const {
+        t
+    } = useLanguage();
+
+
+
     const [customers, setCustomers] = useState([]);
 
     const [loading, setLoading] = useState(true);
+
 
 
 
@@ -86,7 +98,7 @@ export default function Customers() {
                     mb-8
                 ">
 
-                    Customers
+                    {t("customers.title")}
 
                 </h1>
 
@@ -106,11 +118,9 @@ export default function Customers() {
                     {
                         loading ? (
 
-                            <p className="
-                                p-8
-                            ">
+                            <p className="p-8">
 
-                                Loading customers...
+                                {t("common.loading")}
 
                             </p>
 
@@ -118,11 +128,9 @@ export default function Customers() {
                         ) : customers.length === 0 ? (
 
 
-                            <p className="
-                                p-8
-                            ">
+                            <p className="p-8">
 
-                                No customers found.
+                                {t("customers.empty")}
 
                             </p>
 
@@ -145,32 +153,32 @@ export default function Customers() {
 
 
                                         <th className="p-4">
-                                            ID
+                                            {t("customers.id")}
                                         </th>
 
 
                                         <th className="p-4">
-                                            Name
+                                            {t("customers.name")}
                                         </th>
 
 
                                         <th className="p-4">
-                                            Phone
+                                            {t("customers.phone")}
                                         </th>
 
 
                                         <th className="p-4">
-                                            Email
+                                            {t("customers.email")}
                                         </th>
 
 
                                         <th className="p-4">
-                                            WeChat
+                                            {t("customers.wechat")}
                                         </th>
 
 
                                         <th className="p-4">
-                                            Created
+                                            {t("customers.created")}
                                         </th>
 
 
@@ -205,65 +213,53 @@ export default function Customers() {
 
 
                                                 <td className="p-4">
-
                                                     {
                                                         customer.Customer_ID
                                                     }
-
                                                 </td>
 
 
 
                                                 <td className="p-4">
-
                                                     {
                                                         customer.Full_Name
                                                     }
-
                                                 </td>
 
 
 
 
                                                 <td className="p-4">
-
                                                     {
                                                         customer.Phone
                                                     }
-
                                                 </td>
 
 
 
 
                                                 <td className="p-4">
-
                                                     {
                                                         customer.Email
                                                     }
-
                                                 </td>
 
 
 
 
                                                 <td className="p-4">
-
                                                     {
                                                         customer.WeChat_ID
                                                     }
-
                                                 </td>
 
 
 
 
                                                 <td className="p-4">
-
                                                     {
                                                         customer.Created_At
                                                     }
-
                                                 </td>
 
 

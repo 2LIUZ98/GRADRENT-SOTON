@@ -359,7 +359,208 @@ const zhCN = {
 
 
     logout:
-        "退出登录"
+        "退出登录",
+
+        // =========================
+// GOWNS PAGE
+// =========================
+
+gownsTitle:
+    "毕业学位服",
+
+gownsDescription:
+    "选择适合您的毕业学位服套餐。",
+
+bachelor:
+    "本科",
+
+master:
+    "硕士",
+
+selectGown:
+    "选择学位服",
+
+viewDetails:
+    "查看详情",
+
+
+
+// =========================
+// STAFF PAGES
+// =========================
+
+
+loading:
+    "加载中...",
+
+
+noData:
+    "暂无数据",
+
+
+actions:
+    "操作",
+
+
+edit:
+    "编辑",
+
+
+delete:
+    "删除",
+
+
+add:
+    "添加",
+
+
+save:
+    "保存",
+
+
+cancel:
+    "取消",
+
+
+
+// =========================
+// CUSTOMERS
+// =========================
+
+
+customerManagement:
+    "客户管理",
+
+customerName:
+    "客户姓名",
+
+phone:
+    "电话",
+
+email:
+    "邮箱",
+
+wechatID:
+    "微信号",
+
+createdDate:
+    "创建日期",
+
+
+
+// =========================
+// PRODUCTS
+// =========================
+
+
+productManagement:
+    "产品管理",
+
+productName:
+    "产品名称",
+
+productType:
+    "产品类型",
+
+degree:
+    "学位",
+
+size:
+    "尺寸",
+
+price:
+    "价格",
+
+stock:
+    "库存",
+
+
+addProduct:
+    "添加产品",
+
+
+
+// =========================
+// INVENTORY
+// =========================
+
+
+inventoryManagement:
+    "库存管理",
+
+quantity:
+    "数量",
+
+available:
+    "可用",
+
+unavailable:
+    "不可用",
+
+
+
+
+// =========================
+// RENTALS
+// =========================
+
+
+rentalManagement:
+    "租赁订单管理",
+
+rentalDate:
+    "租赁日期",
+
+returnDate:
+    "归还日期",
+
+status:
+    "状态",
+
+
+
+
+// =========================
+// PAYMENTS
+// =========================
+
+
+paymentManagement:
+    "付款管理",
+
+amount:
+    "金额",
+
+paymentStatus:
+    "付款状态",
+
+
+
+
+// =========================
+// RETURNS
+// =========================
+
+
+returnManagement:
+    "归还管理",
+
+returnedDate:
+    "归还日期",
+
+
+
+
+// =========================
+// TERMS
+// =========================
+
+
+termsTitle:
+    "服务条款",
+
+privacyTitle:
+    "隐私政策",
 
 
 };
