@@ -365,4 +365,4 @@ const zhCN = {
 };
 
 
-export default zh;
+export default zhCN;
