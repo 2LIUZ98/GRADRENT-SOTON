@@ -12,28 +12,28 @@ export default function Props() {
             nameEn: "Official Graduation Clip",
             nameZh: "官方毕业夹子",
             quantity: 1,
-            image: "/images/props/official-clip.jpg"
+            image: "/images/props/official-clip.HEIC"
         },
 
         {
-            nameEn: "Official Graduation Bucket",
+            nameEn: "Official Graduation Tube",
             nameZh: "官方毕业桶",
             quantity: 2,
-            image: "/images/props/official-bucket.jpg"
+            image: "/images/props/official-tube.HEIC"
         },
 
         {
             nameEn: "Official Teddy Bear (2024)",
             nameZh: "官方毕业熊（2024）",
             quantity: 1,
-            image: "/images/props/teddy-2024.jpg"
+            image: "/images/props/teddy-2024.HEIC"
         },
 
         {
             nameEn: "Official Teddy Bear (2023)",
             nameZh: "官方毕业熊（2023）",
             quantity: 1,
-            image: "/images/props/teddy-2023.jpg"
+            image: "/images/props/teddy-2023.HEIC"
         }
 
     ];
@@ -43,31 +43,31 @@ export default function Props() {
     const unofficialProps = [
 
         {
-            nameEn: "Red Graduation Bucket",
+            nameEn: "Red Graduation Tube",
             nameZh: "红色毕业桶",
             quantity: 1,
-            image: "/images/props/red-bucket.jpg"
+            image: "/images/props/red-tube.HEIC"
         },
 
         {
-            nameEn: "Dark Blue Graduation Bucket",
+            nameEn: "Dark Blue Graduation Tube",
             nameZh: "深蓝色毕业桶",
             quantity: 1,
-            image: "/images/props/blue-bucket.jpg"
+            image: "/images/props/blue-tube.HEIC"
         },
 
         {
             nameEn: "Unofficial Teddy Bear A",
             nameZh: "非官方毕业熊 A",
             quantity: 1,
-            image: "/images/props/teddy-a.jpg"
+            image: "/images/props/teddy-a.HEIC"
         },
 
         {
             nameEn: "Unofficial Teddy Bear B",
             nameZh: "非官方毕业熊 B",
             quantity: 1,
-            image: "/images/props/teddy-b.jpg"
+            image: "/images/props/teddy-b.HEIC"
         }
 
     ];
@@ -80,14 +80,27 @@ export default function Props() {
             nameEn: "Reflector",
             nameZh: "反光板",
             quantity: 1,
-            image: "/images/props/reflector.jpg"
+            image: "/images/props/reflector.HEIC"
+        },
+        {
+            nameEn: "Artificial Graduation Bouquet A",
+            nameZh: "仿真毕业花束 A",
+            quantity: 1,
+            image: "/images/props/fake-flower-a.HEIC"
+        },
+
+        {
+            nameEn: "Artificial Graduation Bouquet B",
+            nameZh: "仿真毕业花束 B",
+            quantity: 1,
+            image: "/images/props/fake-flower-b.HEIC"
         },
 
         {
             nameEn: "Harry Potter's First Wand",
             nameZh: "哈利波特第一根魔杖",
             quantity: 1,
-            image: "/images/props/wand.jpg"
+            image: "/images/props/wand.HEIC"
         }
 
     ];
