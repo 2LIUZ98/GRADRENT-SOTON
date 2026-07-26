@@ -26,6 +26,7 @@ import About from "./views/About.jsx";
 import Contact from "./views/Contact.jsx";
 import Terms from "./views/Terms.jsx";
 import Privacy from "./views/Privacy.jsx";
+import Props from "./views/Props.jsx";
 
 
 import PrivateRoutes from "./routes/PrivateRoutes.jsx";
@@ -86,6 +87,11 @@ export default function App() {
             <Route
                 path="/privacy"
                 element={<Privacy />}
+            />
+
+            <Route
+                path="/props"
+                element={<Props />}
             />
 
 
