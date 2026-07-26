@@ -2,25 +2,23 @@ import {
     useState
 } from "react";
 
-
 import {
     Link
 } from "react-router-dom";
-
 
 import {
     Sun,
     Moon,
     Menu as MenuIcon,
     LogIn,
-    Globe2
+    Globe2,
+    ChevronDown
 } from "lucide-react";
 
-
 import {
-    Drawer
+    Drawer,
+    Dropdown
 } from "antd";
-
 
 import {
     useLanguage
@@ -37,7 +35,7 @@ export default function Header({
 
 
 
-    const [open,setOpen] = useState(false);
+    const [open, setOpen] = useState(false);
 
 
 
@@ -46,6 +44,60 @@ export default function Header({
         changeLanguage
 
     } = useLanguage();
+
+
+
+    // =====================
+    // PRODUCT MENU
+    // =====================
+
+    const productMenu = {
+
+        items: [
+
+            {
+
+                key: "gowns",
+
+                label: (
+
+                    <Link to="/gowns">
+
+                        {
+                            language === "zh"
+                                ? "礼服"
+                                : "Gowns"
+                        }
+
+                    </Link>
+
+                )
+
+            },
+
+            {
+
+                key: "props",
+
+                label: (
+
+                    <Link to="/props">
+
+                        {
+                            language === "zh"
+                                ? "道具"
+                                : "Props"
+                        }
+
+                    </Link>
+
+                )
+
+            }
+
+        ]
+
+    };
 
 
 
@@ -99,26 +151,11 @@ export default function Header({
 
 
                 <Link to="/">
-                    {
-                        language==="zh"
-                        ?
-                        "首页"
-                        :
-                        "Home"
-                    }
-                </Link>
-
-
-
-
-                <Link to="/gowns">
 
                     {
-                        language==="zh"
-                        ?
-                        "礼服"
-                        :
-                        "Gowns"
+                        language === "zh"
+                            ? "首页"
+                            : "Home"
                     }
 
                 </Link>
@@ -126,14 +163,45 @@ export default function Header({
 
 
 
-                <Link to="/about">
+                {/* PRODUCTS DROPDOWN */}
+
+                <Dropdown
+
+                    menu={productMenu}
+
+                    trigger={["hover"]}
+
+                >
+
+                    <div className="
+                        flex
+                        items-center
+                        gap-1
+                        cursor-pointer
+                        hover:text-blue-300
+                    ">
+
+                        <span>
+
+                            {
+                                language === "zh"
+                                    ? "产品分类"
+                                    : "Products"
+                            }
+
+                        </span>
+
+                        <ChevronDown size={16} />
+
+                    </div>
+
+                </Dropdown>
+                                <Link to="/about">
 
                     {
-                        language==="zh"
-                        ?
-                        "关于我们"
-                        :
-                        "About Us"
+                        language === "zh"
+                            ? "关于我们"
+                            : "About Us"
                     }
 
                 </Link>
@@ -145,11 +213,9 @@ export default function Header({
                 <Link to="/contact">
 
                     {
-                        language==="zh"
-                        ?
-                        "联系我们"
-                        :
-                        "Contact Us"
+                        language === "zh"
+                            ? "联系我们"
+                            : "Contact Us"
                     }
 
                 </Link>
@@ -173,11 +239,9 @@ export default function Header({
                 >
 
                     {
-                        language==="zh"
-                        ?
-                        "立即预订"
-                        :
-                        "Book Now"
+                        language === "zh"
+                            ? "立即预订"
+                            : "Book Now"
                     }
 
                 </Link>
@@ -206,15 +270,14 @@ export default function Header({
                 ">
 
 
-                    <Globe2 size={18}/>
-
+                    <Globe2 size={18} />
 
 
                     <select
 
                         value={language}
 
-                        onChange={(e)=>
+                        onChange={(e) =>
                             changeLanguage(
                                 e.target.value
                             )
@@ -228,7 +291,6 @@ export default function Header({
                         "
 
                     >
-
 
                         <option
                             value="en"
@@ -250,14 +312,9 @@ export default function Header({
 
                         </option>
 
-
-
                     </select>
 
-
                 </div>
-
-
 
 
 
@@ -280,21 +337,20 @@ export default function Header({
                 >
 
                     {
-                        colorTheme==="dark"
 
-                        ?
+                        colorTheme === "dark"
 
-                        <Sun size={18}/>
+                            ?
 
-                        :
+                            <Sun size={18} />
 
-                        <Moon size={18}/>
+                            :
+
+                            <Moon size={18} />
 
                     }
 
-
                 </button>
-
 
 
 
@@ -312,11 +368,9 @@ export default function Header({
 
                 >
 
-                    <LogIn size={18}/>
-
+                    <LogIn size={18} />
 
                     Staff Login
-
 
                 </Link>
 
@@ -327,19 +381,9 @@ export default function Header({
 
 
         </nav>
-
-
-
-
-
-
-
-
-
-        {/* =====================
+                {/* =====================
             MOBILE
         ====================== */}
-
 
         <header className="
             md:hidden
@@ -351,7 +395,6 @@ export default function Header({
             justify-between
             items-center
         ">
-
 
             <Link
                 to="/"
@@ -366,19 +409,17 @@ export default function Header({
 
 
 
-
             <button
 
-                onClick={()=>
+                onClick={() =>
                     setOpen(true)
                 }
 
             >
 
-                <MenuIcon/>
+                <MenuIcon />
 
             </button>
-
 
         </header>
 
@@ -391,22 +432,25 @@ export default function Header({
 
             open={open}
 
-            onClose={()=>
+            onClose={() =>
                 setOpen(false)
             }
 
             placement="right"
 
-
             styles={{
 
-                body:{
-                    background:"#0f172a",
-                    color:"white"
+                body: {
+
+                    background: "#0f172a",
+                    color: "white"
+
                 },
 
-                header:{
-                    background:"#0f172a"
+                header: {
+
+                    background: "#0f172a"
+
                 }
 
             }}
@@ -425,33 +469,90 @@ export default function Header({
 
                 <Link to="/">
 
-                    Home
+                    {
+                        language === "zh"
+                            ? "首页"
+                            : "Home"
+                    }
 
                 </Link>
 
 
 
-                <Link to="/gowns">
 
-                    Gowns
 
-                </Link>
+                {/* PRODUCTS */}
+
+                <div className="
+                    flex
+                    flex-col
+                    gap-3
+                ">
+
+                    <span className="font-semibold">
+
+                        {
+                            language === "zh"
+                                ? "产品分类"
+                                : "Products"
+                        }
+
+                    </span>
+
+
+
+                    <Link to="/gowns">
+
+                        {
+                            language === "zh"
+                                ? "礼服"
+                                : "Gowns"
+                        }
+
+                    </Link>
+
+
+
+                    <Link to="/props">
+
+                        {
+                            language === "zh"
+                                ? "道具"
+                                : "Props"
+                        }
+
+                    </Link>
+
+                </div>
+
+
 
 
 
                 <Link to="/about">
 
-                    About Us
+                    {
+                        language === "zh"
+                            ? "关于我们"
+                            : "About Us"
+                    }
 
                 </Link>
+
+
 
 
 
                 <Link to="/contact">
 
-                    Contact Us
+                    {
+                        language === "zh"
+                            ? "联系我们"
+                            : "Contact Us"
+                    }
 
                 </Link>
+
 
 
 
@@ -469,7 +570,11 @@ export default function Header({
 
                 >
 
-                    Book Now
+                    {
+                        language === "zh"
+                            ? "立即预订"
+                            : "Book Now"
+                    }
 
                 </Link>
 
@@ -477,7 +582,8 @@ export default function Header({
 
 
 
-                <hr/>
+                <hr />
+
 
 
 
@@ -488,15 +594,13 @@ export default function Header({
                     gap-2
                 ">
 
-
-                    <Globe2 size={18}/>
-
+                    <Globe2 size={18} />
 
                     <select
 
                         value={language}
 
-                        onChange={(e)=>
+                        onChange={(e) =>
                             changeLanguage(
                                 e.target.value
                             )
@@ -513,22 +617,72 @@ export default function Header({
                             value="en"
                             className="text-black"
                         >
-                            English
-                        </option>
 
+                            English
+
+                        </option>
 
                         <option
                             value="zh"
                             className="text-black"
                         >
-                            中文
-                        </option>
 
+                            中文
+
+                        </option>
 
                     </select>
 
-
                 </div>
+
+
+
+
+
+                <button
+
+                    onClick={() =>
+                        setTheme(colorTheme)
+                    }
+
+                    className="
+                        flex
+                        items-center
+                        gap-2
+                    "
+
+                >
+
+                    {
+
+                        colorTheme === "dark"
+
+                            ?
+
+                            <Sun size={18} />
+
+                            :
+
+                            <Moon size={18} />
+
+                    }
+
+                    {
+
+                        language === "zh"
+
+                            ?
+
+                            "切换主题"
+
+                            :
+
+                            "Toggle Theme"
+
+                    }
+
+                </button>
+
 
 
 
@@ -539,15 +693,15 @@ export default function Header({
 
                     className="
                         flex
+                        items-center
                         gap-2
                     "
 
                 >
 
-                    <LogIn size={18}/>
+                    <LogIn size={18} />
 
                     Staff Login
-
 
                 </Link>
 
@@ -557,7 +711,6 @@ export default function Header({
 
 
         </Drawer>
-
 
 
         </>
